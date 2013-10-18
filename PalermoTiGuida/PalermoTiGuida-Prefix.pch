@@ -11,4 +11,11 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "PTGBaseViewController.h"
+#import "LoggingAndValidations.h"
+#import <CoreData/CoreData.h>
+#define MR_SHORTHAND
+#import "CoreData+MagicalRecord.h"
+#import "SMFWebService.h"
+#import "ICFontUtils.h"
 #endif

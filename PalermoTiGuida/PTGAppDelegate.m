@@ -12,7 +12,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:NAV_BAR_BG_IMAGE] forBarMetrics:UIBarMetricsDefault];
+    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage new]];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"back_button_bg"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [MagicalRecord setupCoreDataStack];
     return YES;
 }
 							

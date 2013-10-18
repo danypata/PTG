@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="PTGCategory" representedClassName="PTGCategory" syncable="YES">
+        <attribute name="categoryId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parrentId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="placesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subcategoryCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PTGCategory" inverseName="parent" inverseEntity="PTGCategory" syncable="YES"/>
+        <relationship name="parent" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PTGCategory" inverseName="children" inverseEntity="PTGCategory" syncable="YES"/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PTGPlace" inverseName="category" inverseEntity="PTGPlace" syncable="YES"/>
+    </entity>
+    <entity name="PTGPlace" representedClassName="PTGPlace" syncable="YES">
+        <attribute name="categoryType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="faxes" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longit" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mainImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="opendayFrom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openDayTo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openTimeAMFrom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openTimeAMTo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openTimePMFrom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openTimePMTo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phones" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="placeBoardId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="placeBoardName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="placeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="placeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="placePortId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="placePortName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetNo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="webAddresses" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PTGCategory" inverseName="places" inverseEntity="PTGCategory" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="PTGCategory" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PTGPlace" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>
