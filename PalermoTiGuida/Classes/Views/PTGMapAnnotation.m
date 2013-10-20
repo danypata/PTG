@@ -25,8 +25,8 @@
 }
 
 -(void)setupViews {
-    CGFloat lat = [self.place.lat floatValue];
-    CGFloat longit =[self.place.longit floatValue];
+    CGFloat lat = [self.place.lat doubleValue];
+    CGFloat longit =[self.place.longit doubleValue];
     CLLocationCoordinate2D annotationCoord;
     annotationCoord.latitude = lat;
     annotationCoord.longitude = longit;

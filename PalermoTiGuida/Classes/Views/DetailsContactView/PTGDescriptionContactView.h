@@ -10,7 +10,7 @@
 #import "PTGPlace.h"
 
 #define DEFAULT_MARGIN 10
-@interface PTGDescriptionContactView : UIView {
+@interface PTGDescriptionContactView : UIView<UIAlertViewDelegate> {
     IBOutlet UILabel *headerTitleLabel;
     IBOutlet UILabel *switchLabel;
     IBOutlet UIButton *twitterButton;
@@ -18,11 +18,13 @@
     CGFloat yOffset;
     IBOutlet UIImageView *bgImage;
     IBOutlet UIView *buttonsView;
+    PTGPlace *currentPlace;
 }
 - (IBAction)facebookButtonTapped:(id)sender;
 - (IBAction)twitterButtonTapped:(id)sender;
 
 +(PTGDescriptionContactView *)initializeViews;
 -(void)setupPlace:(PTGPlace *)place;
+- (IBAction)addRemoveToDiaryTapped:(id)sender;
 
 @end

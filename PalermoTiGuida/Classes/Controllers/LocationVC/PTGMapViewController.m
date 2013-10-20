@@ -32,49 +32,96 @@
 {
     [super viewDidLoad];
     if([self.navigationController.viewControllers count] == 1) {
+        [self addLeftMenu];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(0, 0, 40, 40);
+        button.frame = CGRectMake(0, 0,44 , 44);
         [button setImage:[UIImage imageNamed:@"menu_button"] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(showSlide) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-        [self addLeftMenu];
     }
+    mapView.delegate = self;
     if(VALID_NOTEMPTY(self.places, NSArray)) {
-        [self addAnnotations];
         needUserUpdate = NO;
+        topBarContainer.hidden = YES;
+        [self addAnnotations];
     }
     else {
         needUserUpdate = YES;
+        topBarContainer.hidden = NO;
+        topHeaderLabel.text = NSLocalizedString(topHeaderLabel.text, @"");
+        [ICFontUtils applyFont:QLASSIK_TB forView:topHeaderLabel];
     }
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(mapView.userLocation.location.coordinate, 500, 500);
-    [mapView setRegion:viewRegion];
+    if(leftMenuview) {
+        CGRect leftMenuFrame = leftMenuview.frame ;
+        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+            leftMenuFrame.size.height = self.view.frame.size.height;
+        } else {
+            leftMenuFrame.origin.y = -44;
+            leftMenuFrame.size.height = self.view.frame.size.height + 44;
+        }
+
+        leftMenuview.frame = leftMenuFrame;
+    }
 }
 
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    CGRect navBarFrame = self.navigationController.navigationBar.frame;
+    navBarFrame.origin.x = 0;
+    self.navigationController.navigationBar.frame = navBarFrame;
+    self.navigationController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    [leftMenuview shouldShow:NO];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-
+    
 }
 -(void)showSlide {
-    [UIView animateWithDuration:0.5 animations:^{
-        self.navigationController.view.frame = CGRectMake(self.view.frame.size.width - 20, 0, self.navigationController.view.frame.size.width, self.navigationController.view.frame.size.height);
-        [leftMenuview shouldShow:YES];
-    }];
+    if(!leftMenuview.isShown) {
+        [leftMenuview setupDataSource];
+        [UIView animateWithDuration:0.5 animations:^{
+            [leftMenuview shouldShow:YES];
+            CGRect navBarFrame = self.navigationController.navigationBar.frame;
+            navBarFrame.origin.x = navBarFrame.size.width - 63;
+            self.navigationController.navigationBar.frame = navBarFrame;
+        }];
+    }
+    else {
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect navBarFrame = self.navigationController.navigationBar.frame;
+            navBarFrame.origin.x = 0;
+            self.navigationController.navigationBar.frame = navBarFrame;
+            [leftMenuview shouldShow:NO];
+        }];
+    }
+    
 }
 -(void)addAnnotations {
     for(PTGPlace *place in self.places) {
         [UIImageView downloadImageWithURLString:[[PTGURLUtils pinImageUrlString] stringByAppendingFormat:@"%@.png",place.category.categoryId]  successBlock:^(UIImage *image) {
-            PTGMapAnnotation *annotation = [[PTGMapAnnotation alloc] init];
-            annotation.pinImage = image;
-            annotation.place = place;
-            [annotation setupViews];
-            [mapView addAnnotation:annotation];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                PTGMapAnnotation *annotation = [[PTGMapAnnotation alloc] init];
+                annotation.pinImage = image;
+                annotation.place = place;
+                [annotation setupViews];
+                [mapView addAnnotation:annotation];
+                
+            });
         } failureBloc:^(NSError *error) {
         }];
+    }
+    if([self.places count] == 1) {
+        PTGPlace *place = [self.places objectAtIndex:0];
+        CLLocationCoordinate2D pinLocation;
+        pinLocation.latitude = [place.lat doubleValue];
+        pinLocation.longitude = [place.longit doubleValue];
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pinLocation, 800, 800);
+        [mapView setRegion:[mapView regionThatFits:region] animated:YES];
     }
 }
 
@@ -82,12 +129,12 @@
 -(void)addLeftMenu {
     if(!leftMenuview) {
         leftMenuview = [PTGLeftMenuView initializeViews];
+        leftMenuview.isShown = NO;
         leftMenuview.frame = CGRectMake(-leftMenuview.frame.size.width,
                                         0,
                                         leftMenuview.frame.size.width,
-                                        self.tabBarController.view.frame.size.height
-                                        -self.tabBarController.tabBar.frame.size.height);
-        [self.tabBarController.view addSubview:leftMenuview];
+                                        self.view.frame.size.height);
+        [self.view addSubview:leftMenuview];
     }
 }
 
@@ -105,23 +152,23 @@
 
 -(void)mapView:(MKMapView *)mapViewD didUpdateUserLocation:(MKUserLocation *)userLocation {
     if(needUserUpdate) {
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
+        [mapView setRegion:[mapView regionThatFits:region] animated:YES];
         double distance = [self getDistance];
         CLLocationCoordinate2D coord = mapView.userLocation.coordinate;
         
-            NSString *url = [[PTGURLUtils placesNearMeUrlString] stringByAppendingFormat:@"%f/%f/%f",coord.latitude, coord.longitude, distance];
-            [PTGPlace placesForUrl:url succes:^(NSString *requestUrl, NSArray *products) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self removeActivityIndicator];
-                    self.places = [NSArray arrayWithArray:products];
-                    [self addAnnotations];
-                });
-            } failure:^(NSString *requestUrl, NSError *error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self removeActivityIndicator];
-                    [self showAllertMessageForErro:error];
-                });
-            }];
-
+        NSString *url = [[PTGURLUtils placesNearMeUrlString] stringByAppendingFormat:@"%f/%f/%f",coord.latitude, coord.longitude, distance];
+        [PTGPlace placesForUrl:url succes:^(NSString *requestUrl, NSArray *products) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self removeActivityIndicator];
+                self.places = [NSArray arrayWithArray:products];
+            });
+        } failure:^(NSString *requestUrl, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self removeActivityIndicator];
+                [self showAllertMessageForErro:error];
+            });
+        }];
     }
 }
 
@@ -139,5 +186,6 @@
     
     
 }
+
 
 @end

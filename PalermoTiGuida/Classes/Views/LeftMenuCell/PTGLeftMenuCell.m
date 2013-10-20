@@ -19,11 +19,18 @@
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+    checkmark.highlighted = selected;
+}
 
-    // Configure the view for the selected state
++(PTGLeftMenuCell *)initializeViews {
+    NSArray *views = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil];
+    return [views objectAtIndex:0];
+}
+-(void)setTitle:(NSString *)title {
+    cellTitle.text = title;
+    [ICFontUtils applyFont:QLASSIK_TB forView:cellTitle];
 }
 
 @end

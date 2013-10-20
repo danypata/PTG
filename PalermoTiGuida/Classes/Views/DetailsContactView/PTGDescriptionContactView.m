@@ -10,6 +10,8 @@
 #import "PTGPlace.h"
 #import "PTGIconLabelView.h"
 #import "BMXSwitch.h"
+#import "PTGDiaryItem.h"
+
 
 @implementation PTGDescriptionContactView
 
@@ -25,6 +27,7 @@
             [view removeFromSuperview];
         }
     }
+    currentPlace = place;
     CGRect labelFrame = CGRectZero;
     if(VALID_NOTEMPTY([self addressStringForPlace:place], NSString)) {
         [self addLabelsFromArray:@[[self addressStringForPlace:place]] withStartingString:@"" iconType:kIconTypeAddress];
@@ -58,6 +61,22 @@
                             self.frame.size.width,
                             buttonsView.frame.size.height + buttonsView.frame.origin.y);
     
+}
+
+- (IBAction)addRemoveToDiaryTapped:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    if(!button.selected) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                    message:NSLocalizedString(@"Hai già visitato questo punto d'interesse?", nil)
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"SI", @"")
+                                          otherButtonTitles:NSLocalizedString(@"NO", @""), nil];
+        [alert show];
+        button.selected = YES;
+    }
+    else {
+        [PTGDiaryItem removeDiaryForPlace:currentPlace];
+    }
 }
 
 -(void)setupFonts {
@@ -156,6 +175,14 @@
         }
     }
     return result;
-    
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex == 0) {
+        [PTGDiaryItem diaryItemWithPlace:currentPlace visited:YES];
+    }
+    else {
+        [PTGDiaryItem diaryItemWithPlace:currentPlace visited:NO];
+    }
 }
 @end

@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PTGLeftMenuView : UIView <UITableViewDataSource, UITableViewDelegate>{
+#import "PTGLeftMenuSection.h"
+@interface PTGLeftMenuView : UIView <UITableViewDataSource, UITableViewDelegate, PTGLeftMenuSectionDelegate>{
     
     IBOutlet UILabel *titleLabel;
     IBOutlet UITableView *tableView;
-    BOOL isShown;
     NSArray *parrentCategories;
-}
+    NSInteger selectedSection;
+    NSMutableArray *sectionInfo;
+    NSMutableArray *selectedFilters;
 
+}
+@property(nonatomic) BOOL isShown;
 +(PTGLeftMenuView *)initializeViews;
 -(void)shouldShow:(BOOL)show;
 -(void)setupDataSource;

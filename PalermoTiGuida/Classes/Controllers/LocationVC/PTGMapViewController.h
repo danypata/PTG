@@ -13,8 +13,9 @@
     IBOutlet MKMapView *mapView;
     BOOL needUserUpdate;
     PTGLeftMenuView *leftMenuview;
+    IBOutlet UILabel *topHeaderLabel;
+    IBOutlet UIView *topBarContainer;
 }
 
 @property(nonatomic, strong) NSArray *places;
-
 @end

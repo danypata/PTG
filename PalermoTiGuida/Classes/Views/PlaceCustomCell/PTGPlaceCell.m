@@ -24,12 +24,14 @@
 }
 
 -(void)prepareForReuse {
-    [placeImageView cancelImageRequestOperation];
-    placeImageView.image = nil;
+    if(placeImageView) {
+        [placeImageView cancelImageRequestOperation];
+        placeImageView.image = nil;
+    }
 }
 
 -(void)setupWithPlace:(PTGPlace*)place {
-    if(VALID_NOTEMPTY(place.mainImage, NSString)) {
+    if(VALID_NOTEMPTY(place.mainImage, NSString) && VALID(placeImageView, UIImageView)) {
         [placeImageView setImageWithURLString:[PTGURLUtils mainImageUrlForId:place.mainImage]
                             urlRebuildOptions:kFromOther
                                   withSuccess:nil failure:nil];

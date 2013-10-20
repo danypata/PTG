@@ -110,7 +110,7 @@
     [self setupFonts];
     [contactView setupPlace:self.place];
     contactView.frame = CGRectMake(0,
-                                   descriptionView.frame.origin.y + descriptionView.frame.size.height,
+                                   descriptionView.frame.origin.y + descriptionView.frame.size.height - 10,
                                    contactView.frame.size.width,
                                    contactView.frame.size.height);
     containerScrollView.contentSize = CGSizeMake(containerScrollView.contentSize.width,

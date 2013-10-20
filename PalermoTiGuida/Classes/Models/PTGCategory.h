@@ -1,7 +1,7 @@
 #import "_PTGCategory.h"
 
 
-static NSString *categoryKeyRoot            = @"category_place";
+static NSString *categoryKeyRoot            = @"categorys";
 static NSString *categoryKeyId              = @"id_category";
 static NSString *categoryKeyParentId        = @"parent_id";
 static NSString *categoryKeyType            = @"id_category_type";
@@ -15,15 +15,13 @@ static NSString *categoryKeyName            = @"name";
 @interface PTGCategory : _PTGCategory {
 }
 
-+(PTGCategory *)categoryFromDictionary:(NSDictionary *)dictionary usingCategory:(PTGCategory *)category;
++(PTGCategory *)categoryFromDictionary:(NSDictionary *)dictionary usingCategory:(PTGCategory *)category context:(NSManagedObjectContext *)context;
 +(NSArray *)firstLevelCategories;
 -(NSArray *)childCategories;
 +(void)loadCategoriesFromServerWithSuccess:(void (^)(NSArray *))successBlock
                               failureBlock:(void (^)(NSString *requestUrl, NSError *))failureBlock;
 
--(void)loadSubcategoriesFromServerWithSucces:(void(^)(NSArray *subcategories))successBlock
-                                failureBlock:(void(^)(NSString *requestUrl, NSError *error))failureBlock;
-
++(PTGCategory *)firstLevelCategoryWithName:(NSString *)name;
 
 -(void)loadPlacesWithSuccess:(void(^)(NSArray *products))successBlock
                      failure:(void(^)(NSString *requestUrl, NSError *error))failureBlock;

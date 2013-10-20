@@ -46,7 +46,6 @@
 
 -(void)createLabelForCurrentString:(NSString *)string isLastItem:(BOOL)lastItem{
     UIFont *font = [UIFont fontWithName:QLASSIK_TB size:fontSize];
-//    CGSize textSize =[string sizeWithFont:font];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(currentOffset,
                                                               0,
                                                               self.frame.size.width,

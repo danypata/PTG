@@ -30,17 +30,30 @@
 -(void)setIsOpened:(BOOL)isOpened {
     _isOpened = isOpened;
     arrowImage.highlighted = isOpened;
-    [ICFontUtils applyFont:QLASSIK_TB forView:sectionTitle];
-}
 
+}
+-(void)setTitle:(NSString *)title {
+    sectionTitle.text = title;
+    [ICFontUtils applyFont:QLASSIK_TB forView:sectionTitle];
+    [self addTapGesture];
+}
 -(void)addTapGesture {
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sectionTapped)];
     [self addGestureRecognizer:tapGesture];
 }
 
 -(void)sectionTapped {
-    if([self.delegate respondsToSelector:@selector(didSelectSectionAtIndex:sectionOpen:)]) {
-        [self.delegate didSelectSectionAtIndex:self.section sectionOpen:!self.isOpened];
+    self.isOpened = !self.isOpened;
+    if(self.isOpened) {
+        if([self.delegate respondsToSelector:@selector(openSectionAtIndex:)]){
+            [self.delegate openSectionAtIndex:self.section];
+
+        }
+    }
+    else  {
+        if([self.delegate respondsToSelector:@selector(closeSectionAtIndex:)]){
+            [self.delegate closeSectionAtIndex:self.section];
+        }
     }
 }
 

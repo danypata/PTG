@@ -11,7 +11,7 @@
 #import "PTGBreadcrumbView.h"
 #import "UIImageView+AFNetworking.h"
 #import "PTGPlaceListViewController.h"
-
+#import "PTGURLUtils.h"
 @interface PTGSubcategoryViewController ()
 
 @end
@@ -31,30 +31,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self shouldHideAllViews:YES];
-    [self addActivityIndicator];
-    
     if(![self isKindOfClass:[PTGPlaceListViewController class]]) {
-        [self.parentCategory loadSubcategoriesFromServerWithSucces:^(NSArray *subcategories) {
-            dataSource = [NSArray arrayWithArray:subcategories];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self removeActivityIndicator];
-                [self shouldHideAllViews:NO];
-                [subcategoryTableView reloadData];
-            });
-            
-        } failureBlock:^(NSString *requestUrl, NSError *error) {
-            [self showAllertMessageForErro:error];
-            ZLog(@"%@", error);
-        }];
+        dataSource = [NSArray arrayWithArray:[self.parentCategory childCategories]];
     }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    subcategoryTableView.rowHeight = 45;
-    if([self.parentCategory.imageType integerValue] == 1) {
-        containerView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    subcategoryTableView.rowHeight = 50;
+    if([self.parentCategory.children count] > 0) {
+        [headerImageView setImageWithURLString:[PTGURLUtils
+                                                mainImageUrlForId:self.parentCategory.categoryId]
+                             urlRebuildOptions:kFromOther
+                                   withSuccess:nil
+                                       failure:nil];
+        containerView.frame = CGRectMake(0, headerImageView.frame.size.height
+                                         + headerImageView.frame.origin.x,
+                                         self.view.frame.size.width,
+                                         self.view.frame.size.height - headerImageView.frame.size.height
+                                         - headerImageView.frame.origin.x);
     }
     else {
         [headerImageView removeFromSuperview];
@@ -65,7 +60,9 @@
     [containerView addSubview:brView];
     CGRect frame =containerView.frame;
     frame.origin.y = brView.frame.size.height + 5;
-    frame.size.height = self.view.frame.size.height - brView.frame.size.height - brView.frame.origin.y - 2*5;
+    frame.size.height = containerView.frame.size.height
+                                    - brView.frame.size.height
+                                    - brView.frame.origin.y;
     subcategoryTableView.frame = frame;
     if([self.breadcrumbs count] > 1)  {
         [brView setFontSize:kFontSizeSmall];
@@ -100,7 +97,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"cellIdentifier";
+    static NSString *cellIdentifier = @"categoryCell";
     PTGCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell) {
         cell =[ PTGCategoryCell setupViews];
@@ -128,7 +125,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PTGCategory *currentCategory = [dataSource objectAtIndex:indexPath.row];
-    if([currentCategory.type integerValue] == 0) {
+    if([currentCategory.children count] > 0) {
         PTGSubcategoryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([self class])];
         vc.parentCategory = currentCategory;
         [self.navigationController pushViewController:vc animated:YES];

@@ -18,7 +18,7 @@ static NSString *itBaseUrl                      = @"http://palermotiguida.it/web
 
 static NSString *imagePath                      =@"img/";
 static NSString *pinImageUrl                    =@"img/pinpoint/";
-static NSString *categoryUrl                    = @"api/category_place_main";
+static NSString *categoryUrl                    = @"api/categoryall";
 static NSString *subcategoryUrl                 = @"api/category_place_by_parent";
 static NSString *placesUrl                      = @"api/place_by_category/";
 static NSString *placeByIdUrl                   = @"api/place_by_id/";

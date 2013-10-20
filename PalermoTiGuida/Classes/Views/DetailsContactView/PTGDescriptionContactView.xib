@@ -71,6 +71,18 @@
                                 <action selector="twitterButtonTapped:" destination="lLz-0F-h5O" eventType="touchUpInside" id="A93-z5-jU9"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="A8N-A3-94Y">
+                            <rect key="frame" x="254" y="0.0" width="35" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" image="checkbox_unchecked.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="checkbox_checked.png"/>
+                            <connections>
+                                <action selector="addRemoveToDiaryTapped:" destination="lLz-0F-h5O" eventType="touchUpInside" id="qeq-BG-DtS"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
@@ -88,6 +100,8 @@
     </objects>
     <resources>
         <image name="blue_divider.png" width="320" height="29"/>
+        <image name="checkbox_checked.png" width="14" height="14"/>
+        <image name="checkbox_unchecked.png" width="14" height="14"/>
         <image name="facebook_button_bg.png" width="145" height="33"/>
         <image name="facebook_button_logo.png" width="11" height="23"/>
         <image name="switch_bar_bg.png" width="302" height="31"/>

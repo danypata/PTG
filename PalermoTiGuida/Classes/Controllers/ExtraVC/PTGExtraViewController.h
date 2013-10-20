@@ -7,7 +7,12 @@
 //
 
 #import "PTGBaseViewController.h"
-
-@interface PTGExtraViewController : PTGBaseViewController
+#import "PTGCategory.h"
+@interface PTGExtraViewController : PTGBaseViewController <UITableViewDataSource, UITableViewDelegate> {
+    NSArray *dataSource;
+    IBOutlet UITableView *extraTableView;
+}
+@property (nonatomic, strong) PTGCategory *parentCategory;
+@property (nonatomic, strong) NSMutableArray *breadcrumbsItems;
 
 @end

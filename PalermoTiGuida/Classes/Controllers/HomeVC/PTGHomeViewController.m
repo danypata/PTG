@@ -97,7 +97,7 @@
         [self performSegueWithIdentifier:@"SubcategorySegue" sender:selectedCategory];
     }
     else {
-        
+        [self performSegueWithIdentifier:@"Diary" sender:nil];
     }
     
 }

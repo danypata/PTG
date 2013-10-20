@@ -82,7 +82,7 @@
     </objects>
     <resources>
         <image name="small_image_frame.png" width="71" height="51"/>
-        <image name="table_middle_cell_bg.png" width="315" height="64"/>
+        <image name="table_middle_cell_bg.png" width="320" height="47"/>
         <image name="table_view_arrow.png" width="27" height="27"/>
     </resources>
 </document>

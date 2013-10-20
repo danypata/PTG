@@ -15,7 +15,10 @@
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:NAV_BAR_BG_IMAGE] forBarMetrics:UIBarMetricsDefault];
     [[UITabBar appearance] setSelectionIndicatorImage:[UIImage new]];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"back_button_bg"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"back_button_bg"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    
     [MagicalRecord setupCoreDataStack];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     return YES;
 }
 							

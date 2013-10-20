@@ -35,6 +35,7 @@ const struct PTGPlaceAttributes PTGPlaceAttributes = {
 
 const struct PTGPlaceRelationships PTGPlaceRelationships = {
 	.category = @"category",
+	.diaryItem = @"diaryItem",
 };
 
 const struct PTGPlaceFetchedProperties PTGPlaceFetchedProperties = {
@@ -266,12 +267,18 @@ const struct PTGPlaceFetchedProperties PTGPlaceFetchedProperties = {
 
 	
 
+@dynamic diaryItem;
+
+	
+
 
 
 
 
 
 #if TARGET_OS_IPHONE
+
+
 
 
 

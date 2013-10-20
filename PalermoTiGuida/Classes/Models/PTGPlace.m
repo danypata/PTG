@@ -74,7 +74,7 @@
 }
 
 -(void)loadDetailsWithSuccess:(void(^)(PTGPlace *place))success failure:(void(^)(NSError *error))failureBlock {
-    NSString *url = [[PTGURLUtils placeUrl] stringByAppendingFormat:@"%@/%@",self.placeId, self.category.type];
+    NSString *url = [[PTGURLUtils placeUrl] stringByAppendingFormat:@"%@/%@",self.placeId, self.categoryType];
     [[SMFWebService sharedInstance] sendJSONRequestWithURLString:url method:@"GET" parameters:nil withResponseOnMainThread:NO success:^(NSString *requestURL, id JSON) {
         if(VALID_NOTEMPTY(JSON, NSArray)) {
             [self copyPropertiesFromJSON:[JSON objectAtIndex:0]];

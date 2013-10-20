@@ -10,8 +10,6 @@
 #import "PTGSubcategoryViewController.h"
 
 @interface PTGPlaceListViewController : PTGSubcategoryViewController {
-    
 }
-
 
 @end

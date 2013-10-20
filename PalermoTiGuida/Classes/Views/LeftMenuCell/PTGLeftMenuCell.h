@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PTGLeftMenuCell : UITableViewCell
+@interface PTGLeftMenuCell : UITableViewCell {
+
+    IBOutlet UIImageView *checkmark;
+    IBOutlet UILabel *cellTitle;
+}
+
++(PTGLeftMenuCell *)initializeViews;
+-(void)setTitle:(NSString *)title;
 
 @end

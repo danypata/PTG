@@ -15,7 +15,7 @@
 }
 @property (nonatomic, strong) UIImage *pinImage;
 @property (nonatomic, strong) PTGPlace *place;
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
 

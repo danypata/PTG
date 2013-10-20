@@ -36,12 +36,14 @@ extern const struct PTGPlaceAttributes {
 
 extern const struct PTGPlaceRelationships {
 	__unsafe_unretained NSString *category;
+	__unsafe_unretained NSString *diaryItem;
 } PTGPlaceRelationships;
 
 extern const struct PTGPlaceFetchedProperties {
 } PTGPlaceFetchedProperties;
 
 @class PTGCategory;
+@class PTGDiaryItem;
 
 
 
@@ -361,8 +363,17 @@ extern const struct PTGPlaceFetchedProperties {
 
 
 
+@property (nonatomic, strong) PTGDiaryItem *diaryItem;
+
+//- (BOOL)validateDiaryItem:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 #if TARGET_OS_IPHONE
+
+
 
 
 
@@ -542,6 +553,11 @@ extern const struct PTGPlaceFetchedProperties {
 
 - (PTGCategory*)primitiveCategory;
 - (void)setPrimitiveCategory:(PTGCategory*)value;
+
+
+
+- (PTGDiaryItem*)primitiveDiaryItem;
+- (void)setPrimitiveDiaryItem:(PTGDiaryItem*)value;
 
 
 @end

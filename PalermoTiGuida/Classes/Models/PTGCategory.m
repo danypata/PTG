@@ -11,7 +11,10 @@
 
 @implementation PTGCategory
 
-+(PTGCategory *)categoryFromDictionary:(NSDictionary *)dictionary usingCategory:(PTGCategory *)category{
++(PTGCategory *)categoryFromDictionary:(NSDictionary *)dictionary usingCategory:(PTGCategory *)category context:(NSManagedObjectContext *)context{
+    if(context == nil) {
+        context = [NSManagedObjectContext contextForCurrentThread];
+    }
     if(!VALID(category, PTGCategory)) {
         category = [PTGCategory createEntity];
     }
@@ -23,13 +26,29 @@
     category.imageType = [dictionary objectForKey:categoryKeyImageType];
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     category.placesCount = [formatter numberFromString:[dictionary objectForKey:categoryKeyPlacesCount]];
-    category.subcategoryCount = [formatter numberFromString:[dictionary objectForKey:categoryKeyPlacesCount]];
+    category.subcategoryCount = [formatter numberFromString:[dictionary objectForKey:categoryKeyCategoryCount]];
     return category;
-    
+}
+
++(PTGCategory *)firstLevelCategoryWithName:(NSString *)name {
+    NSArray *firstLevel = [self firstLevelCategories];
+    for(PTGCategory *category in firstLevel) {
+        if([category.name compare:name options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+            return category;
+        }
+    }
+    return nil;
 }
 
 +(NSArray *)firstLevelCategories {
-    return [PTGCategory findAllWithPredicate:[NSPredicate predicateWithFormat:@"parrentId == 1"]];
+    NSArray *resutls = [PTGCategory findAllWithPredicate:[NSPredicate predicateWithFormat:@"parrentId == 1"] inContext:[NSManagedObjectContext defaultContext]];
+    return [resutls filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PTGCategory *evaluatedObject, NSDictionary *bindings) {
+        if([evaluatedObject.children count] == 0) {
+            return NO;
+        }
+        return YES;
+    }]];
+    
 }
 
 -(NSArray *)childCategories {
@@ -45,7 +64,8 @@
                                         withResponseOnMainThread:NO
                                                          success:^(NSString *requestURL, id JSON) {
                                                              if(VALID_NOTEMPTY(JSON, NSDictionary)) {
-                                                                 successBlock([self getCategoriesFromArray:[JSON objectForKey:categoryKeyRoot]]);
+                                                                 [self parseCatgoriesFromJSON:JSON];
+                                                                 successBlock([PTGCategory firstLevelCategories]);
                                                              }
                                                              else {
                                                                  failureBlock(requestURL, [NSError errorWithDomain:@"Invalid JSON format" code:1910 userInfo:nil]);
@@ -56,58 +76,68 @@
                                                          }];
 }
 
--(void)loadSubcategoriesFromServerWithSucces:(void(^)(NSArray *subcategories))successBlock failureBlock:(void(^)(NSString *requestUrl, NSError *error))failureBlock {
-    NSString *url = [[PTGURLUtils subcategoryUrl] stringByAppendingFormat:@"/%@",self.categoryId];
-    [[SMFWebService sharedInstance] sendJSONRequestWithURLString:url
-                                                          method:@"GET"
-                                                      parameters:nil
-                                        withResponseOnMainThread:NO
-                                                         success:^(NSString *requestURL, id JSON) {
-                                                             if(VALID_NOTEMPTY(JSON, NSDictionary)) {
-                                                                 NSArray *subcategories = [PTGCategory  getCategoriesFromArray:[JSON objectForKey:categoryKeyRoot]];
-                                                                 [self addChildren:[NSSet setWithArray:subcategories]];
-                                                                 successBlock([self.children allObjects]);
-                                                             }
-                                                             else {
-                                                                 failureBlock(requestURL, [NSError errorWithDomain:@"Invalid JSON format" code:1910 userInfo:nil]);
-                                                             }
-                                                             
-                                                         } failure:^(NSString *requestURL, NSError *error) {
-                                                             failureBlock(requestURL, error);
-                                                         }];
-}
+//-(void)loadSubcategoriesFromServerWithSucces:(void(^)(NSArray *subcategories))successBlock failureBlock:(void(^)(NSString *requestUrl, NSError *error))failureBlock {
+//    NSString *url = [[PTGURLUtils subcategoryUrl] stringByAppendingFormat:@"/%@",self.categoryId];
+//    [[SMFWebService sharedInstance] sendJSONRequestWithURLString:url
+//                                                          method:@"GET"
+//                                                      parameters:nil
+//                                        withResponseOnMainThread:NO
+//                                                         success:^(NSString *requestURL, id JSON) {
+//                                                             if(VALID_NOTEMPTY(JSON, NSDictionary)) {
+//                                                                 NSArray *subcategories = [PTGCategory  getCategoriesFromArray:[JSON objectForKey:categoryKeyRoot]];
+//                                                                 [self addChildren:[NSSet setWithArray:subcategories]];
+//                                                                 successBlock([self.children allObjects]);
+//                                                             }
+//                                                             else {
+//                                                                 failureBlock(requestURL, [NSError errorWithDomain:@"Invalid JSON format" code:1910 userInfo:nil]);
+//                                                             }
+//
+//                                                         } failure:^(NSString *requestURL, NSError *error) {
+//                                                             failureBlock(requestURL, error);
+//                                                         }];
+//}
 
 -(void)loadPlacesWithSuccess:(void(^)(NSArray *products))successBlock
                      failure:(void(^)(NSString *requestUrl, NSError *error))failureBlock {
+    __block CLLocation *oldLocation = nil;
     [[PTGLocationUtils sharedInstance] getLocationWithCompletionBlock:^(CLLocation *location) {
-        
-        NSString *url = [[PTGURLUtils categoryPlacesUrl] stringByAppendingString:self.categoryId];
-        url =[url stringByAppendingFormat:@"/%f/%f",location.coordinate.latitude, location.coordinate.longitude];
-        [PTGPlace placesForUrl:url succes:^(NSString *requestUrl, NSArray *products) {
-            NSArray *finalProducts = [PTGPlace findAllWithPredicate:[NSPredicate predicateWithFormat:@"self in %@", [products valueForKey:@"objectID"]] inContext:self.managedObjectContext];
-            [self addPlaces:[NSSet setWithArray:finalProducts]];
-            successBlock([self.places allObjects]);
-        } failure:failureBlock];
+        if(oldLocation.coordinate.latitude != location.coordinate.latitude
+           && oldLocation.coordinate.longitude != location.coordinate.longitude) {
+            oldLocation = location;
+            
+            NSString *url = [[PTGURLUtils categoryPlacesUrl] stringByAppendingString:self.categoryId];
+            url =[url stringByAppendingFormat:@"/%f/%f",location.coordinate.latitude, location.coordinate.longitude];
+            [PTGPlace placesForUrl:url succes:^(NSString *requestUrl, NSArray *products) {
+                NSArray *finalProducts = [PTGPlace findAllWithPredicate:[NSPredicate predicateWithFormat:@"self in %@", [products valueForKey:@"objectID"]] inContext:self.managedObjectContext];
+                [self addPlaces:[NSSet setWithArray:finalProducts]];
+                successBlock([self.places allObjects]);
+            } failure:failureBlock];
+        }
     }];
 }
 
-+(NSArray *)getCategoriesFromArray:(NSArray *)array  {
++(void)parseCatgoriesFromJSON:(id)JSON {
+    NSArray *mainCategories = [JSON objectForKey:categoryKeyRoot];
+    NSManagedObjectContext *context = [NSManagedObjectContext contextForCurrentThread];
+    [self getCategoriesFromArray:mainCategories context:context];
+    [context saveToPersistentStoreAndWait];
+}
+
++(NSArray *)getCategoriesFromArray:(NSArray *)array context:(NSManagedObjectContext *)context {
     NSMutableArray *categories = [NSMutableArray new];
     NSArray *allCategories = [PTGCategory findAll];
     for(NSDictionary *dict in array) {
         PTGCategory *category = [self isCategoryWithIDAdded:[dict objectForKey:categoryKeyId] allCategories:allCategories];
-        category = [PTGCategory categoryFromDictionary:dict usingCategory:category];
-        
+        category = [PTGCategory categoryFromDictionary:dict usingCategory:category context:context];
+        if(VALID_NOTEMPTY([dict objectForKey:@"child"], NSArray)) {
+            NSArray *children = [NSArray arrayWithArray:[PTGCategory getCategoriesFromArray:[dict objectForKey:@"child"] context:context]];
+            [category setChildren:[NSSet setWithArray:children]];
+        }
         if(VALID(category, PTGCategory)) {
             [categories addObject:category];
         }
     }
-    [[NSManagedObjectContext MR_contextForCurrentThread] saveToPersistentStoreAndWait];
-    NSArray *fetchedCategory = [PTGCategory findAllWithPredicate:[NSPredicate predicateWithFormat:@"self in %@",[categories valueForKey:@"objectID"]] inContext:[NSManagedObjectContext defaultContext]];
-    return [fetchedCategory sortedArrayUsingComparator:^NSComparisonResult(PTGCategory *obj1, PTGCategory *obj2) {
-        return [obj1.position compare:obj2.position];
-    }];
-    
+    return categories;
 }
 
 +(PTGCategory *)isCategoryWithIDAdded:(NSString *)categoryId allCategories:(NSArray *)all {
