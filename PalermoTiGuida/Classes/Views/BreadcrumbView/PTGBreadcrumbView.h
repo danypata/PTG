@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 typedef enum {
-    kFontSizeLarge = 23,
+    kFontSizeLarge = 27,
     kFontSizeSmall = 14
     
 }BreadcrumbFontSize;
 
-#define DEFAULT_COLOUR      [UIColor colorWithRed:0.f green:120.f/255.f blue:165.f/255.f alpha:1];
+#define DEFAULT_COLOUR      [UIColor colorWithRed:33.f/255.f green:82.f/255.f blue:132.f/255.f alpha:1];
 
 #define ARROW_MARGINS 5
 

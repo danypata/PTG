@@ -41,6 +41,7 @@
         <attribute name="placePortId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="placePortName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="slides" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetNo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="webAddresses" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -50,7 +51,7 @@
     </entity>
     <elements>
         <element name="PTGCategory" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PTGPlace" positionX="0" positionY="0" width="0" height="0"/>
         <element name="PTGDiaryItem" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PTGPlace" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

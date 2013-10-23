@@ -26,4 +26,5 @@ static NSString *categoryKeyName            = @"name";
 -(void)loadPlacesWithSuccess:(void(^)(NSArray *products))successBlock
                      failure:(void(^)(NSString *requestUrl, NSError *error))failureBlock;
 
+-(NSArray *)allSubcategories;
 @end

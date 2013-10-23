@@ -11,5 +11,5 @@
 
 @interface PTGPlaceListViewController : PTGSubcategoryViewController {
 }
-
+@property(nonatomic, strong) NSArray *downloadedProducts;
 @end

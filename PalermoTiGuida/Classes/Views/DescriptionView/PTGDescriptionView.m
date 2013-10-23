@@ -26,28 +26,33 @@
 -(void)setDescriptionForPlace:(PTGPlace *)place {
     descriptionTextField.text = place.descriptionText;
     initialHeight = descriptionTextField.frame.size.height;
-    [self setupFonts];
-    CGFloat height = descriptionTextField.contentSize.height;
-    if(height < descriptionTextField.frame.size.height) {
-//        descriptionTextField.frame = CGRectMake(descriptionTextField.frame.origin.x,
-//                                                descriptionTextField.frame.origin.y,
-//                                                descriptionTextField.frame.size.width,
-//                                                height);
-        moreButton.hidden = YES;
-    }
-    else {
-        moreButton.hidden = NO;
-    }
+    [descriptionTextField setNeedsLayout];
     if([place.categoryType integerValue] == 4) {
         buttonContainer.hidden = NO;
     }
     else {
         buttonContainer.hidden = YES;
     }
+    [descriptionTextField sizeToFit];
+    NSInteger lines = descriptionTextField.frame.size.height/ descriptionTextField.font.lineHeight;
+    ZLog(@"%d",lines);
+    if(lines < 10) {
+        moreButton.hidden = YES;
+    }
+    else {
+        moreButton.hidden = NO;
+    }
+    descriptionTextField.frame = CGRectMake(descriptionTextField.frame.origin.x,
+                                            descriptionTextField.frame.origin.y,
+                                            descriptionTextField.frame.size.width,
+                                            initialHeight);
+    [self setupFonts];
     [self positionViews];
 }
 
 -(void)positionViews {
+
+   
     moreButton.frame = CGRectMake(moreButton.frame.origin.x,
                                   descriptionTextField.frame.origin.y + descriptionTextField.frame.size.height + SPACING_TOP,
                                   moreButton.frame.size.width,
@@ -57,7 +62,7 @@
                                        moreButton.frame.origin.y + moreButton.frame.size.height + SPACING_TOP,
                                        buttonContainer.frame.size.width,
                                        buttonContainer.frame.size.height);
-
+    
     CGFloat height = buttonContainer.frame.size.height + buttonContainer.frame.origin.y;
     if(buttonContainer.hidden == YES) {
         height = moreButton.frame.size.height + moreButton.frame.origin.y;
@@ -66,11 +71,12 @@
                             self.frame.origin.y,
                             self.frame.size.width,
                             height+ SPACING_TOP);
+    
     bgImage.frame = CGRectMake(bgImage.frame.origin.x,
                                bgImage.frame.origin.y,
                                bgImage.frame.size.width,
-                               self.frame.size.height);
-
+                               self.frame.size.height + SPACING_TOP);
+    
     
 }
 
@@ -84,7 +90,7 @@
 - (IBAction)moreButtonPressed:(id)sender {
     [UIView animateWithDuration:0.5 animations:^{
         CGFloat height = descriptionTextField.contentSize.height;
-        if(descriptionTextField.frame.size.height == height) {
+        if(descriptionTextField.frame.size.height >= height) {
             descriptionTextField.frame = CGRectMake(descriptionTextField.frame.origin.x,
                                                     descriptionTextField.frame.origin.y,
                                                     descriptionTextField.frame.size.width,

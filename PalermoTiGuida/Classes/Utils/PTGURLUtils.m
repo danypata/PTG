@@ -39,7 +39,9 @@
 +(NSString *)categoryPlacesUrl {
     return [[self baseUrlString] stringByAppendingString:placesUrl];
 }
-
++(NSString *)placesSearchUrl {
+    return [[self baseUrlString] stringByAppendingString:placesSearch];
+}
 +(NSString *)placeUrl {
     return [[self baseUrlString] stringByAppendingString:placeByIdUrl];
 }
@@ -50,6 +52,23 @@
     return [[self baseUrlString] stringByAppendingString:placesNearMeUrl];
 }
 +(NSString *)mainImageUrlForId:(NSString *)imageId {
+    NSString *imageType = @"";
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2.0){
+            imageType = mainImageIpadRetina;
+        }
+        else {
+            imageType = mainImageIphone;
+        }
+    }
+    else {
+        imageType = mainImageIphoneRetina;
+    }
+    ZLog(@"%@",[[self baseUrlString] stringByAppendingFormat:@"%@maincategory/%@-%@.jpg", imagePath,imageId,imageType ]);
+    return [[self baseUrlString] stringByAppendingFormat:@"%@maincategory/%@-%@.jpg", imagePath,imageId,imageType ];
+}
+
++(NSString *)mainPlaceImageUrlForId:(NSString *)imageId{
     NSString *imageType = @"";
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2.0){

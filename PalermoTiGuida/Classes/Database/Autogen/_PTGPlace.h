@@ -28,6 +28,7 @@ extern const struct PTGPlaceAttributes {
 	__unsafe_unretained NSString *placePortId;
 	__unsafe_unretained NSString *placePortName;
 	__unsafe_unretained NSString *province;
+	__unsafe_unretained NSString *slides;
 	__unsafe_unretained NSString *street;
 	__unsafe_unretained NSString *streetNo;
 	__unsafe_unretained NSString *webAddresses;
@@ -44,6 +45,7 @@ extern const struct PTGPlaceFetchedProperties {
 
 @class PTGCategory;
 @class PTGDiaryItem;
+
 
 
 
@@ -316,6 +318,16 @@ extern const struct PTGPlaceFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSData* slides;
+
+
+
+//- (BOOL)validateSlides:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* street;
 
 
@@ -522,6 +534,12 @@ extern const struct PTGPlaceFetchedProperties {
 
 - (NSString*)primitiveProvince;
 - (void)setPrimitiveProvince:(NSString*)value;
+
+
+
+
+- (NSData*)primitiveSlides;
+- (void)setPrimitiveSlides:(NSData*)value;
 
 
 

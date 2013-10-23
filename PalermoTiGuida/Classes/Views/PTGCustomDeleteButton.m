@@ -33,6 +33,7 @@
     [self addGestureRecognizer:tapGesture];
     tapGesture.cancelsTouchesInView = NO;
     tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(deleteCell)];
+    [buttonLabel addGestureRecognizer:tapGesture];
 }
 
 -(void)toggleView {

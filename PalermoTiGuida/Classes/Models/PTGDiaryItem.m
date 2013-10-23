@@ -33,7 +33,7 @@
 +(BOOL)isDiaryForPlace:(PTGPlace *)place {
     NSArray *all = [PTGDiaryItem allDiaryItems];
     for(PTGDiaryItem *item in all) {
-        if([item.place.placeBoardId isEqualToString:place.placeBoardId]) {
+        if([item.place.placeId isEqualToString:place.placeId]) {
             return YES;
         }
     }

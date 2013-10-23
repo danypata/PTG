@@ -28,7 +28,7 @@
 -(void)setItems:(NSArray *)items {
     NSInteger index = 0;
     if([items count] == 1) {
-      [self createLabelForCurrentString:[items objectAtIndex:0] isLastItem:NO];
+        [self createLabelForCurrentString:[items objectAtIndex:0] isLastItem:YES];
     }
     else {
         for(NSString *string in items) {
@@ -36,7 +36,7 @@
                 [self createLabelForCurrentString:string isLastItem:YES];
             }
             else {
-               [self createLabelForCurrentString:string isLastItem:NO];
+                [self createLabelForCurrentString:string isLastItem:NO];
                 [self addArrow];
             }
             ++index;
@@ -47,8 +47,8 @@
 -(void)createLabelForCurrentString:(NSString *)string isLastItem:(BOOL)lastItem{
     UIFont *font = [UIFont fontWithName:QLASSIK_TB size:fontSize];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(currentOffset,
-                                                              0,
-                                                              self.frame.size.width,
+                                                               0,
+                                                               self.frame.size.width,
                                                                self.frame.size.height)];
     label.text = string;
     label.backgroundColor = [UIColor clearColor];
@@ -62,9 +62,13 @@
     [self addSubview:label];
     if(!lastItem) {
         label.textColor = DEFAULT_COLOUR;
+        label.shadowColor = [UIColor colorWithRed:210.f/255.f green:244.f/255.f blue:255.f/255.f alpha:0.75];
     }
     else {
         label.textColor = [UIColor whiteColor];
+        label.shadowColor = [UIColor colorWithRed:2.f/255.f green:45.f/255.f blue:67.f/255.f alpha:0.75];
+        label.shadowOffset = CGSizeMake(0, 1);
+        
     }
 }
 

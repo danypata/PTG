@@ -15,6 +15,7 @@
 #import "LoggingAndValidations.h"
 #import <CoreData/CoreData.h>
 #define MR_SHORTHAND
+#define MR_ENABLE_ACTIVE_RECORD_LOGGING 0
 #import "CoreData+MagicalRecord.h"
 #import "SMFWebService.h"
 #import "ICFontUtils.h"

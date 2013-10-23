@@ -32,7 +32,16 @@
         [self setImagesPrioriOS7];
     }
     [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor colorWithRed:74.f/255.f green:87.f/255 blue:91.f/255.f alpha:1]} forState:UIControlStateNormal];
-        [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor colorWithRed:74.f/255.f green:87.f/255 blue:91.f/255.f alpha:1]} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor colorWithRed:74.f/255.f green:87.f/255 blue:91.f/255.f alpha:1]} forState:UIControlStateSelected];
+    [self setTitles];
+}
+
+-(void)setTitles {
+    ((UITabBarItem*)[self.tabBar.items objectAtIndex:0]).title = NSLocalizedString(@"Guida", @"");
+    ((UITabBarItem*)[self.tabBar.items objectAtIndex:1]).title = NSLocalizedString(@"Around Me", @"");
+    ((UITabBarItem*)[self.tabBar.items objectAtIndex:2]).title = NSLocalizedString(@"Cerca", @"");
+    ((UITabBarItem*)[self.tabBar.items objectAtIndex:3]).title = NSLocalizedString(@"Extra", @"");
+    ((UITabBarItem*)[self.tabBar.items objectAtIndex:4]).title = NSLocalizedString(@"News", @"");
 }
 
 -(void)setImagesPrioriOS7 {
@@ -55,10 +64,10 @@
 
 -(void)setImagesFromiOS7 {
     ((UITabBarItem *)[self.tabBar.items objectAtIndex:0]).selectedImage = [[UIImage imageNamed:@"tab_bar_home_selected_icon"]
-                                                                   imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+                                                                           imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     ((UITabBarItem *)[self.tabBar.items objectAtIndex:0]).image = [[UIImage imageNamed:@"tab_bar_home_default_icon"]
-                                                                           imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+                                                                   imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     ((UITabBarItem *)[self.tabBar.items objectAtIndex:1]).image = [[UIImage imageNamed:@"tab_bar_location_button_default"]
                                                                    imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

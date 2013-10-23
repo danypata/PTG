@@ -10,7 +10,10 @@
 #import "PTGCategory.h"
 #import "PTGLeftMenuSection.h"
 #import "PTGLeftMenuCell.h"
+
 @implementation PTGLeftMenuView
+@synthesize selectedFilters;
+@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -38,17 +41,18 @@
 }
 
 -(void)setupDataSource {
-    titleLabel.text = NSLocalizedString(titleLabel.text, @"");
-    [ICFontUtils applyFont:QLASSIK_TB forView:titleLabel];
-    parrentCategories = [NSArray arrayWithArray:[PTGCategory firstLevelCategories]];
-    tableView.rowHeight = 30.f;
-    selectedSection = NSNotFound;
-    sectionInfo = [NSMutableArray new];
-    for(PTGCategory *cat in parrentCategories) {
-        [sectionInfo addObject:[NSNull null]];
-    }
-    selectedFilters = [NSMutableArray new];
-    [tableView reloadData];
+        titleLabel.text = NSLocalizedString(titleLabel.text, @"");
+        [ICFontUtils applyFont:QLASSIK_TB forView:titleLabel];
+        parrentCategories = [NSArray arrayWithArray:[PTGCategory firstLevelCategories]];
+        tableView.rowHeight = 30.f;
+        selectedSection = NSNotFound;
+        sectionInfo = [NSMutableArray new];
+        for(PTGCategory *cat in parrentCategories) {
+            [sectionInfo addObject:[NSNull null]];
+        }
+        self.selectedFilters = [NSMutableArray new];
+        [tableView reloadData];
+
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -89,7 +93,7 @@
     }
     PTGCategory *category = [parrentCategories objectAtIndex:indexPath.section];
     PTGCategory *subCategory = [[category.children allObjects] objectAtIndex:indexPath.row];
-    if([selectedFilters containsObject:subCategory]) {
+    if([self.selectedFilters containsObject:subCategory]) {
         [mTableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
     [cell setTitle:subCategory.name];
@@ -99,19 +103,18 @@
 -(void)tableView:(UITableView *)mTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PTGCategory *category = [parrentCategories objectAtIndex:indexPath.section];
     PTGCategory *subCategory = [[category.children allObjects] objectAtIndex:indexPath.row];
-    if([selectedFilters containsObject:subCategory]) {
+    if([self.selectedFilters containsObject:subCategory]) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
-        [selectedFilters removeObject:subCategory];
+        [self.selectedFilters removeObject:subCategory];
     }
     else {
-        [selectedFilters addObject:subCategory];
+        [self.selectedFilters addObject:subCategory];
+    }
+    if([self.delegate respondsToSelector:@selector(filterResultsUsingCategories:)]) {
+        [self.delegate filterResultsUsingCategories:self.selectedFilters];
     }
 
 }
-
--(void)didSelectSectionAtIndex:(NSInteger)index sectionOpen:(BOOL)isOpened {
-}
-
 
 -(void)openSectionAtIndex:(NSInteger)index {
     PTGLeftMenuSection *indexSection = [sectionInfo objectAtIndex:index];

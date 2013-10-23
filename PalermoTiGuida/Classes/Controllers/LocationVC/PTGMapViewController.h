@@ -9,13 +9,21 @@
 #import "PTGBaseViewController.h"
 #import <MapKit/MapKit.h>
 #import "PTGLeftMenuView.h"
-@interface PTGMapViewController : PTGBaseViewController <MKMapViewDelegate> {
+#import "PTGCustomMapView.h"
+#import "TTFadeSwitch.h"
+@interface PTGMapViewController : PTGBaseViewController <MKMapViewDelegate, PTGLeftMenuViewDelegate> {
     IBOutlet MKMapView *mapView;
     BOOL needUserUpdate;
     PTGLeftMenuView *leftMenuview;
     IBOutlet UILabel *topHeaderLabel;
     IBOutlet UIView *topBarContainer;
+    PTGCustomMapView *customMapView;
+    NSMutableArray *backupAnnotations;
+    TTFadeSwitch *fadeLabelSwitchLabel;
 }
 
 @property(nonatomic, strong) NSArray *places;
+
+
+
 @end

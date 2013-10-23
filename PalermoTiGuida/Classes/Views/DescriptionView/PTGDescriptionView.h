@@ -36,6 +36,7 @@
 - (IBAction)imbracaoButtonPressed:(id)sender;
 
 +(PTGDescriptionView *)setupViews;
+-(void)positionViews;
 -(void)setDescriptionForPlace:(PTGPlace *)place;
 
 

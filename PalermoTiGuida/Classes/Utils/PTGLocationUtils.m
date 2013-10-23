@@ -17,7 +17,6 @@
         manager.delegate = self;
         manager.distanceFilter = kCLDistanceFilterNone;
         manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-        didSendUpdate = NO;
 
     }
     return self;
@@ -31,7 +30,10 @@
     return instance;
 }
 
+
 -(void)getLocationWithCompletionBlock:(void(^)(CLLocation *location))block {
+    oldCoordinates.longitude =0;
+    oldCoordinates.latitude = 0;
     completionBlock = block;
     [manager startUpdatingLocation];
 
@@ -41,16 +43,19 @@
 -(void)locationManager:(CLLocationManager *)mManager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     [manager stopUpdatingLocation];
     manager.delegate = nil;
-    if(!didSendUpdate) {
-        didSendUpdate = YES;
+    CLLocationCoordinate2D coord = newLocation.coordinate;
+    if(coord.latitude != oldCoordinates.latitude && coord.longitude != oldCoordinates.longitude) {
+        oldCoordinates = coord;
         completionBlock(newLocation);
-        manager.delegate = self;
-        didSendUpdate = NO;
     }
 }
 
 -(void)locationManager:(CLLocationManager *)mManager didUpdateLocations:(NSArray *)locations {
-    completionBlock([locations lastObject]);
+    CLLocationCoordinate2D coord = ((CLLocation *)[locations objectAtIndex:0]).coordinate;
+    if(coord.latitude != oldCoordinates.latitude && coord.longitude != oldCoordinates.longitude) {
+        oldCoordinates = coord;
+        completionBlock([locations lastObject]);
+    }
     [manager stopUpdatingLocation];
 }
 
@@ -58,12 +63,7 @@
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     NSNumber *number =[formatter numberFromString:string];
     CGFloat distance = [number floatValue];
-    if(distance * KM >= KM) {
-        return [NSString stringWithFormat:@"%.2fKm",distance*KM];
-    }
-    else {
-        return [NSString stringWithFormat:@"%.2fm",distance*KM];
-    }
+    return [NSString stringWithFormat:@"%.2fKm",distance];
 }
 
 

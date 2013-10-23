@@ -10,7 +10,7 @@
 
 @protocol PTGCustomDeleteButtonDelegate <NSObject>
 
--(void)shouldDeleteCellAtIndex:(NSInteger)index;
+-(void)shouldDeleteCellAtIndex:(NSIndexPath *)indexPath;
 
 @end
 
@@ -18,7 +18,7 @@
     IBOutlet UILabel *buttonLabel;
     BOOL isShown;
 }
-@property (nonatomic)NSInteger cellIndex;
+@property (nonatomic, strong)NSIndexPath *cellIndex;
 @property (nonatomic, assign) id<PTGCustomDeleteButtonDelegate>delegate;
 
 +(PTGCustomDeleteButton *)initializeVies;

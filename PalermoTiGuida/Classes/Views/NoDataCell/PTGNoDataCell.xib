@@ -22,13 +22,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <string key="text">In quest’area del diario potrai tenere comepromemoria tutti quei punti d’interesse cheancora non hai visitato, ma che conti di vedere.Ti basterà attivare il “Metti in diario” nellaschermata del monumento. APPalermo ti chiederàse hai già visitato o meno il punto d’interesse.</string>
+                        <string key="text">In quest’area del diario potrai tenere come
+promemoria tutti quei punti d’interesse che
+ancora non hai visitato, ma che conti di vedere.
+Ti basterà attivare il “Metti in diario” nella
+schermata del monumento. APPalermo ti chiederà
+se hai già visitato o meno il punto d’interesse.</string>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                 </subviews>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="bgImage" destination="ae3-tM-QEA" id="i9u-tX-tia"/>
                 <outlet property="textView" destination="Ryb-NQ-cpV" id="5Y9-vN-ryA"/>

@@ -10,6 +10,15 @@
 
 #define QLASSIK_BOLD_TB @"QlassikBold"
 #define QLASSIK_TB @"QlassikMedium"
+
+#define IS_IPHONE_5 ([UIScreen mainScreen].bounds.size.height == 568.0)
+
+#ifdef IS_IPHONE_5
+#define SCREEN_HEIGHT 568
+#else
+#define SCREEN_HEIGHT 480
+#endif
+
 @interface ICFontUtils : NSObject {
     
 }

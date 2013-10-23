@@ -23,14 +23,27 @@
     [super setSelected:selected animated:animated];
 }
 
+-(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
+    self.cellBgImage.highlighted = highlighted;
+    if(highlighted) {
+        self.categoryNameLabel.shadowColor = [UIColor colorWithRed:19.f/255.f green:88.f/255.f blue:159.f/255.f alpha:1];
+    }
+    else {
+        self.categoryNameLabel.shadowColor = [UIColor colorWithRed:11.f/255.f green:12.f/255.f blue:13.f/255.f alpha:1];
+    }
+}
+
 -(void)isFirstCell {
     [self setupFont];
     self.cellBgImage.image = [UIImage imageNamed:@"table_top_cell_bg"];
+    self.cellBgImage.highlightedImage = [UIImage imageNamed:@"table_top_cell_selected"];
 }
 
 -(void)isMiddleCell {
     [self setupFont];
     self.cellBgImage.image = [UIImage imageNamed:@"table_middle_cell_bg"];
+    self.cellBgImage.highlightedImage = [UIImage imageNamed:@"table_midle_cell_selected"];
 }
 
 -(void)setupFont {
@@ -40,6 +53,7 @@
 -(void)isLastCell {
     [self setupFont];
     self.cellBgImage.image = [UIImage imageNamed:@"table_bottom_cell"];
+    self.cellBgImage.highlightedImage = [UIImage imageNamed:@"table_bottom_cell_selected"];
 }
 
 +(PTGCategoryCell *)setupViews {

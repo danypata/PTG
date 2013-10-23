@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PTGPlace.h"
+#import "TTFadeSwitch.h"
 
 #define DEFAULT_MARGIN 10
 @interface PTGDescriptionContactView : UIView<UIAlertViewDelegate> {
@@ -19,12 +20,13 @@
     IBOutlet UIImageView *bgImage;
     IBOutlet UIView *buttonsView;
     PTGPlace *currentPlace;
+    IBOutlet UIImageView *switchImageView;
+    TTFadeSwitch *fadeLabelSwitchLabel;
 }
 - (IBAction)facebookButtonTapped:(id)sender;
 - (IBAction)twitterButtonTapped:(id)sender;
 
 +(PTGDescriptionContactView *)initializeViews;
 -(void)setupPlace:(PTGPlace *)place;
-- (IBAction)addRemoveToDiaryTapped:(id)sender;
 
 @end

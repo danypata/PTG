@@ -24,6 +24,7 @@ static NSString *placesUrl                      = @"api/place_by_category/";
 static NSString *placeByIdUrl                   = @"api/place_by_id/";
 static NSString *placeWithDistanceUrl           = @"api/place_by_id_distance/";
 static NSString *placesNearMeUrl                = @"api/place_near_me/";
+static NSString *placesSearch                   = @"api/places/search/";
 
 static NSString *mainImageIphoneRetina          = @"MainPictureiPhone_retina";
 static NSString *mainImageIphone                = @"MainPictureiPhone_iphone";
@@ -43,9 +44,11 @@ static NSString *imageDetailsIpad               = @"Slide1iPad_retina";
 +(NSString *)mainCategoryUrl;
 +(NSString *)subcategoryUrl;
 +(NSString *)categoryPlacesUrl;
++(NSString *)placesSearchUrl;
 +(NSString *)placeUrl;
 +(NSString *)placeWithDistanceUrl;
 +(NSString *)placesNearMeUrlString;
 +(NSString *)mainImageUrlForId:(NSString *)imageId;
++(NSString *)mainPlaceImageUrlForId:(NSString *)imageId;
 +(NSString *)detailImageUrlForId:(NSString *)imageId;
 @end

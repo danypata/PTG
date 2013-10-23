@@ -17,4 +17,7 @@ static const NSString *placeKeyDistance = @"distance";
               failure:(void(^)(NSString *requestUrl, NSError *error))failureBlock;
 
 -(void)loadDetailsWithSuccess:(void(^)(PTGPlace *place))success failure:(void(^)(NSError *error))failureBlock;
++(void)placesNearMeForUrl:(NSString *)url
+                   succes:(void(^)(NSString *requestUrl, NSArray *products))successBlock
+                  failure:(void(^)(NSString *requestUrl, NSError *error))failureBlock;
 @end

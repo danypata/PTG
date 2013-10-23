@@ -33,12 +33,12 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    visitedPlaces = [[PTGDiaryItem allDiaryItems] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PTGDiaryItem *evaluatedObject, NSDictionary *bindings) {
+    visitedPlaces = [[[PTGDiaryItem allDiaryItems] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PTGDiaryItem *evaluatedObject, NSDictionary *bindings) {
         return  [evaluatedObject.isVisited boolValue];
-    }]];
-    toBeVisited = [[PTGDiaryItem allDiaryItems] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PTGDiaryItem *evaluatedObject, NSDictionary *bindings) {
+    }]] mutableCopy];
+    toBeVisited = [[[PTGDiaryItem allDiaryItems] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PTGDiaryItem *evaluatedObject, NSDictionary *bindings) {
         return  ![evaluatedObject.isVisited boolValue];
-    }]];
+    }]] mutableCopy];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,6 +117,8 @@
                 cell = [PTGPlaceCell setupViews];
                 PTGCustomDeleteButton *button = [PTGCustomDeleteButton initializeVies];
                 [button setupGestures];
+                button.delegate = self;
+                button.cellIndex = indexPath;
                 button.frame = CGRectMake(-button.frame.size.width +15,
                                           (cell.frame.size.height - button.frame.size.height) / 2,
                                           button.frame.size.width,
@@ -148,6 +150,8 @@
                 cell = [PTGPlaceCell setupViews];
                 PTGCustomDeleteButton *button = [PTGCustomDeleteButton initializeVies];
                 [button setupGestures];
+                button.cellIndex = indexPath;
+                button.delegate = self;
                 button.frame = CGRectMake(-button.frame.size.width +10,
                                           (cell.frame.size.height - button.frame.size.height) / 2,
                                           button.frame.size.width,
@@ -182,6 +186,22 @@
             [cell isMiddleCell];
         }
     }
+}
+
+-(void)shouldDeleteCellAtIndex:(NSIndexPath *)indexPath {
+    PTGDiaryItem *item = nil;
+    if(indexPath.section == 0) {
+        item = [toBeVisited objectAtIndex:indexPath.row];
+        [toBeVisited removeObject:item];
+    }
+    else {
+        item = [visitedPlaces objectAtIndex:indexPath.row];
+        [visitedPlaces removeObject:item];
+    }
+    
+    [diaryTableView reloadData];
+    [item deleteEntity];
+    [item.managedObjectContext saveToPersistentStoreAndWait];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

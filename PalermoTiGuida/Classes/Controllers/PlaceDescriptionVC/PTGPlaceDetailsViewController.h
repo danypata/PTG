@@ -13,6 +13,7 @@
 
 @interface PTGPlaceDetailsViewController : PTGBaseViewController <PTGDescriptionViewDelegate>{
     
+    IBOutlet UIScrollView *imageScrolLView;
     IBOutlet UILabel *titleLabel;
     IBOutlet UILabel *descriptionStaticLabel;
     IBOutlet UIImageView *blueDividerImageView;

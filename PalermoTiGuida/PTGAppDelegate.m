@@ -7,7 +7,7 @@
 //
 
 #import "PTGAppDelegate.h"
-
+#import "TestFlight.h"
 @implementation PTGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -16,9 +16,13 @@
     [[UITabBar appearance] setSelectionIndicatorImage:[UIImage new]];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"back_button_bg"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"back_button_bg"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"back_button_bg"] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+
     
     [MagicalRecord setupCoreDataStack];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+     [TestFlight takeOff:@"55286689-990e-4d49-b82b-26eb61f8b3f3"];
     return YES;
 }
 							

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "PTGLeftMenuSection.h"
+
+@protocol PTGLeftMenuViewDelegate <NSObject>
+
+-(void)filterResultsUsingCategories:(NSArray *)categories;
+
+@end
+
 @interface PTGLeftMenuView : UIView <UITableViewDataSource, UITableViewDelegate, PTGLeftMenuSectionDelegate>{
     
     IBOutlet UILabel *titleLabel;
@@ -15,9 +22,9 @@
     NSArray *parrentCategories;
     NSInteger selectedSection;
     NSMutableArray *sectionInfo;
-    NSMutableArray *selectedFilters;
-
 }
+@property(nonatomic, strong)    NSMutableArray *selectedFilters;
+@property(nonatomic, assign) id<PTGLeftMenuViewDelegate>delegate;
 @property(nonatomic) BOOL isShown;
 +(PTGLeftMenuView *)initializeViews;
 -(void)shouldShow:(BOOL)show;

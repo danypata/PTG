@@ -12,7 +12,6 @@
 #import "BMXSwitch.h"
 #import "PTGDiaryItem.h"
 
-
 @implementation PTGDescriptionContactView
 
 +(PTGDescriptionContactView *)initializeViews {
@@ -60,19 +59,18 @@
                             self.frame.origin.y,
                             self.frame.size.width,
                             buttonsView.frame.size.height + buttonsView.frame.origin.y);
+    [self addSwitch];
     
 }
 
-- (IBAction)addRemoveToDiaryTapped:(id)sender {
-    UIButton *button = (UIButton *)sender;
-    if(!button.selected) {
+- (void)addRemoveToDiary:(BOOL)add {
+    if(add) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
                                                     message:NSLocalizedString(@"Hai già visitato questo punto d'interesse?", nil)
                                                    delegate:self
                                           cancelButtonTitle:NSLocalizedString(@"SI", @"")
                                           otherButtonTitles:NSLocalizedString(@"NO", @""), nil];
         [alert show];
-        button.selected = YES;
     }
     else {
         [PTGDiaryItem removeDiaryForPlace:currentPlace];
@@ -83,6 +81,7 @@
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:facebookButton];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:twitterButton];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:switchLabel];
+    [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:headerTitleLabel];
 }
 - (IBAction)facebookButtonTapped:(id)sender {
 }
@@ -119,6 +118,39 @@
     }
 }
 
+-(void)addSwitch {
+    fadeLabelSwitchLabel = [[TTFadeSwitch alloc] initWithFrame:CGRectMake(switchImageView.frame.origin.x
+                                                                          + switchImageView.frame.size.width
+                                                                          - 75,
+                                                                          (switchImageView.frame.origin.y
+                                                                           + switchImageView.frame.size.height - 30) / 2,
+                                                                          60.f,
+                                                                          30.f)];
+    [buttonsView addSubview:fadeLabelSwitchLabel];
+    fadeLabelSwitchLabel.thumbImage = [UIImage imageNamed:@"switchToggle"];
+    fadeLabelSwitchLabel.trackMaskImage = [UIImage imageNamed:@"switchMask"];
+    fadeLabelSwitchLabel.thumbHighlightImage = [UIImage imageNamed:@"switchToggle"];
+    fadeLabelSwitchLabel.trackImageOn = [UIImage imageNamed:@"switchGreen"];
+    fadeLabelSwitchLabel.trackImageOff = [UIImage imageNamed:@"switchRed"];
+    fadeLabelSwitchLabel.onString = @"ON";
+    fadeLabelSwitchLabel.offString = @"OFF";
+    fadeLabelSwitchLabel.onLabel.font = [UIFont systemFontOfSize:16.f];
+    fadeLabelSwitchLabel.offLabel.font = [UIFont systemFontOfSize:16.f];
+    [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:fadeLabelSwitchLabel.onLabel];
+    [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:fadeLabelSwitchLabel.offLabel];
+    fadeLabelSwitchLabel.onLabel.textColor = [UIColor whiteColor];
+    fadeLabelSwitchLabel.offLabel.textColor = [UIColor colorWithRed:53.f/255.f green:103.f/255.f blue:132.f/255.f alpha:1];
+    fadeLabelSwitchLabel.labelsEdgeInsets = UIEdgeInsetsMake(5.0, 20, 1.0, 20);
+    fadeLabelSwitchLabel.thumbInsetX = 0.0;
+    fadeLabelSwitchLabel.thumbOffsetY = 1.0;
+    if([PTGDiaryItem isDiaryForPlace:currentPlace]) {
+        [fadeLabelSwitchLabel setOn:YES animated:NO];
+    }
+    __weak PTGDescriptionContactView *weakSelf = self;
+    [fadeLabelSwitchLabel setChangeHandler:^(BOOL on) {
+        [weakSelf addRemoveToDiary:on];
+    }];
+}
 
 -(NSString *)addressStringForPlace:(PTGPlace *)place {
     NSMutableString *result = [[NSMutableString alloc] init];

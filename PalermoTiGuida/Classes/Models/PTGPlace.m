@@ -39,15 +39,30 @@
                                         withResponseOnMainThread:NO
                                                          success:^(NSString *requestURL, id JSON) {
                                                              if([JSON isKindOfClass:[NSArray class]])  {
-                                                                 successBlock(requestURL, [self placesFromJSONArray:JSON]);
+                                                                 successBlock(requestURL, [self placesFromJSONArray:JSON linkWithCategory:YES]);
                                                              }
                                                              else {
-                                                                 successBlock(requestURL, [self placesFromJSONArray:[JSON objectForKey:placeKeyRoot]]);
+                                                                 successBlock(requestURL, [self placesFromJSONArray:[JSON objectForKey:placeKeyRoot] linkWithCategory:YES]);
                                                              }
                                                          } failure:failureBlock];
 }
 
-+(NSArray *)placesFromJSONArray:(NSArray *)array {
++(void)placesNearMeForUrl:(NSString *)url
+                   succes:(void(^)(NSString *requestUrl, NSArray *products))successBlock
+                  failure:(void(^)(NSString *requestUrl, NSError *error))failureBlock {
+    [[SMFWebService sharedInstance] cancelAllJSONRequests];
+    [[SMFWebService sharedInstance] sendJSONRequestWithURLString:url
+                                                          method:@"GET"
+                                                      parameters:nil
+                                        withResponseOnMainThread:NO
+                                                         success:^(NSString *requestURL, id JSON) {
+                                                             successBlock(requestURL, [self placesFromJSONArray:[JSON objectForKey:@"places_nearme"] linkWithCategory:YES]);
+                                                             
+                                                         } failure:failureBlock];
+}
+
+
++(NSArray *)placesFromJSONArray:(NSArray *)array linkWithCategory:(BOOL)link{
     NSArray *allPlaces = [PTGPlace findAll];
     NSMutableArray *results = [NSMutableArray new];
     for(NSDictionary *dict in array) {
@@ -56,9 +71,15 @@
         if(VALID(place, PTGPlace)) {
             [results addObject:place];
         }
+        if(link) {
+            PTGCategory *category = [PTGCategory findFirstByAttribute:@"categoryId" withValue:[dict objectForKey:@"id_category"] inContext:place.managedObjectContext];
+            [category addPlacesObject:place];
+            [place.managedObjectContext saveToPersistentStoreAndWait];
+            
+        }
     }
     [[NSManagedObjectContext MR_contextForCurrentThread] saveToPersistentStoreAndWait];
-    results = [[PTGPlace findAllWithPredicate:[NSPredicate predicateWithFormat:@"self in %@", [results valueForKey:@"objectID"]]] mutableCopy];
+    results = [[PTGPlace findAllWithPredicate:[NSPredicate predicateWithFormat:@"self in %@", [results valueForKey:@"objectID"]] inContext:[NSManagedObjectContext defaultContext]] mutableCopy];
     return [results sortedArrayUsingComparator:^NSComparisonResult(PTGPlace *obj1, PTGPlace *obj2) {
         return [obj1.name compare:obj2.name options:NSCaseInsensitiveSearch];
     }];
@@ -95,8 +116,9 @@
     self.province = [json objectForKey:@"province"];
     self.lat = [json objectForKey:@"lat"];
     self.longit = [json objectForKey:@"longit"];
-    self.phones = [NSKeyedArchiver archivedDataWithRootObject:[self phoneArrayFromJSON:json]];
-    self.faxes = [NSKeyedArchiver archivedDataWithRootObject:[self faxArrayFromJSON:json]];
+    self.phones = [NSKeyedArchiver archivedDataWithRootObject:[self arrayFromJSON:json usingKey:@"phone"]];
+    self.slides = [NSKeyedArchiver archivedDataWithRootObject:[self arrayFromJSON:json usingKey:@"slide"]];
+    self.faxes = [NSKeyedArchiver archivedDataWithRootObject:[self arrayFromJSON:json usingKey:@"fax"]];
     self.opendayFrom = [json objectForKey:@"opendayfrom"];
     self.openDayTo = [json objectForKey:@"opendayto"];
     self.openTimeAMFrom = [json objectForKey:@"opentimeamfrom"];
@@ -113,37 +135,12 @@
     if(VALID_NOTEMPTY(value, NSString)) {
         [array addObject:value];
     }
-    [array addObjectsFromArray:[self emailArrayFromJSON:json]];
+    [array addObjectsFromArray:[self arrayFromJSON:json usingKey:@"email"]];
     self.webAddresses = [NSKeyedArchiver archivedDataWithRootObject:array];
     [self.managedObjectContext saveToPersistentStoreAndWait];
 }
 
--(NSArray *)phoneArrayFromJSON:(id)JSON {
-    NSString *key = @"phone";
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for(int i=1; i<=5; i++) {
-        NSString *value = [JSON objectForKey:[key stringByAppendingFormat:@"%d",i]];
-        if(VALID_NOTEMPTY(value, NSString)) {
-            [array addObject:value];
-        }
-    }
-    return array;
-}
-
--(NSArray *)faxArrayFromJSON:(id)JSON {
-    NSString *key = @"fax";
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for(int i=1; i<=5; i++) {
-        NSString *value = [JSON objectForKey:[key stringByAppendingFormat:@"%d",i]];
-        if(VALID_NOTEMPTY(value, NSString)) {
-            [array addObject:value];
-        }
-    }
-    return array;
-}
-
--(NSArray *)emailArrayFromJSON:(id)JSON {
-    NSString *key = @"email";
+-(NSArray *)arrayFromJSON:(id)JSON usingKey:(NSString *)key {
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for(int i=1; i<=5; i++) {
         NSString *value = [JSON objectForKey:[key stringByAppendingFormat:@"%d",i]];

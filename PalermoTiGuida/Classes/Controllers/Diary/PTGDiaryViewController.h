@@ -8,11 +8,11 @@
 
 #import "PTGBaseViewController.h"
 #import "PTGCustomDeleteButton.h"
-@interface PTGDiaryViewController : PTGBaseViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface PTGDiaryViewController : PTGBaseViewController <UITableViewDataSource, UITableViewDelegate, PTGCustomDeleteButtonDelegate> {
     
     IBOutlet UITableView *diaryTableView;
-    NSArray *visitedPlaces;
-    NSArray *toBeVisited;
+    NSMutableArray *visitedPlaces;
+    NSMutableArray *toBeVisited;
     
 }
 

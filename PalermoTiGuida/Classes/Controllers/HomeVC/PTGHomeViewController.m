@@ -29,7 +29,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupFonts];
-    backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default"]];
+    UIImage *bgImage = nil;
+    if(IS_IPHONE_5) {
+        bgImage = [UIImage imageNamed:@"Default-568h@2x"];
+        topImage.image = [UIImage imageNamed:@"homeImage"];
+    }
+    else {
+        bgImage = [UIImage imageNamed:@"Default"];
+    }
+    backgroundImage = [[UIImageView alloc] initWithImage:bgImage];
     [self.tabBarController.view addSubview:backgroundImage];
     [PTGCategory loadCategoriesFromServerWithSuccess:^(NSArray *array) {
         categories = [NSArray arrayWithArray:array];

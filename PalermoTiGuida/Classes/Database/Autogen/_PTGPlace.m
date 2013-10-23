@@ -27,6 +27,7 @@ const struct PTGPlaceAttributes PTGPlaceAttributes = {
 	.placePortId = @"placePortId",
 	.placePortName = @"placePortName",
 	.province = @"province",
+	.slides = @"slides",
 	.street = @"street",
 	.streetNo = @"streetNo",
 	.webAddresses = @"webAddresses",
@@ -229,6 +230,13 @@ const struct PTGPlaceFetchedProperties PTGPlaceFetchedProperties = {
 
 
 @dynamic province;
+
+
+
+
+
+
+@dynamic slides;
 
 
 

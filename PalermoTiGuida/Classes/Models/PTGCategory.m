@@ -76,26 +76,19 @@
                                                          }];
 }
 
-//-(void)loadSubcategoriesFromServerWithSucces:(void(^)(NSArray *subcategories))successBlock failureBlock:(void(^)(NSString *requestUrl, NSError *error))failureBlock {
-//    NSString *url = [[PTGURLUtils subcategoryUrl] stringByAppendingFormat:@"/%@",self.categoryId];
-//    [[SMFWebService sharedInstance] sendJSONRequestWithURLString:url
-//                                                          method:@"GET"
-//                                                      parameters:nil
-//                                        withResponseOnMainThread:NO
-//                                                         success:^(NSString *requestURL, id JSON) {
-//                                                             if(VALID_NOTEMPTY(JSON, NSDictionary)) {
-//                                                                 NSArray *subcategories = [PTGCategory  getCategoriesFromArray:[JSON objectForKey:categoryKeyRoot]];
-//                                                                 [self addChildren:[NSSet setWithArray:subcategories]];
-//                                                                 successBlock([self.children allObjects]);
-//                                                             }
-//                                                             else {
-//                                                                 failureBlock(requestURL, [NSError errorWithDomain:@"Invalid JSON format" code:1910 userInfo:nil]);
-//                                                             }
-//
-//                                                         } failure:^(NSString *requestURL, NSError *error) {
-//                                                             failureBlock(requestURL, error);
-//                                                         }];
-//}
+
+-(NSArray *)allSubcategories {
+    NSMutableArray *allSubcategories = [NSMutableArray new];
+    for(PTGCategory *category in self.children) {
+        if([category.children count] == 0) {
+            [allSubcategories addObject:category];
+        }
+        else {
+            [allSubcategories addObjectsFromArray:[category allSubcategories]];
+        }
+    }
+    return allSubcategories;
+}
 
 -(void)loadPlacesWithSuccess:(void(^)(NSArray *products))successBlock
                      failure:(void(^)(NSString *requestUrl, NSError *error))failureBlock {

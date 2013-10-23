@@ -9,6 +9,8 @@
 #import "PTGPlaceCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "PTGURLUtils.h"
+#import <QuartzCore/QuartzCore.h>
+
 @implementation PTGPlaceCell
 
 - (id)initWithFrame:(CGRect)frame
@@ -23,6 +25,11 @@
     return [views objectAtIndex:0];
 }
 
+-(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
+    [self applyHighlight:highlighted];
+}
+
 -(void)prepareForReuse {
     if(placeImageView) {
         [placeImageView cancelImageRequestOperation];
@@ -32,9 +39,12 @@
 
 -(void)setupWithPlace:(PTGPlace*)place {
     if(VALID_NOTEMPTY(place.mainImage, NSString) && VALID(placeImageView, UIImageView)) {
-        [placeImageView setImageWithURLString:[PTGURLUtils mainImageUrlForId:place.mainImage]
+        [placeImageView setImageWithURLString:[PTGURLUtils mainPlaceImageUrlForId:place.mainImage]
                             urlRebuildOptions:kFromOther
                                   withSuccess:nil failure:nil];
+        placeImageView.layer.cornerRadius = 5;
+        placeImageView.layer.masksToBounds = YES;
+        
     }
     placeNameLabel.text = place.name;
     streetStaticLabel.text = NSLocalizedString(streetStaticLabel.text, @"");
@@ -54,7 +64,14 @@
     [self repositionLabel:streetLabel forSize:size anchorLabel:streetStaticLabel];
     size = [distanceStaticLabel.text sizeWithFont:distanceStaticLabel.font];
     [self repositionLabel:distanceLabel forSize:size anchorLabel:distanceStaticLabel];
+}
 
+-(void)applyHighlight:(BOOL)highlight {
+    placeNameLabel.highlighted = highlight;
+    streetStaticLabel.highlighted = highlight;
+    streetLabel.highlighted = highlight;
+    distanceStaticLabel.highlighted = highlight;
+    distanceLabel.highlighted = highlight;
 }
 
 -(void)repositionLabel:(UILabel *)label forSize:(CGSize )size anchorLabel:(UILabel *)anchorLabel {
@@ -65,7 +82,8 @@
                                  label.frame.origin.y,
                                  label.frame.size.width,
                                  label.frame.size.height);
-
 }
+
+
 
 @end

@@ -45,7 +45,7 @@
                 [UIView animateWithDuration:0.3 animations:^{
                     containerScrollView.alpha = 1;
                 }];
-
+                
             });
         } failure:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -93,13 +93,32 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self arrangeViews];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [descriptionView positionViews];
 }
 
 -(void)arrangeViews {
     titleLabel.text = self.place.name;
     distanceLabel.text = self.place.distance;
     [mainImageView setImageWithURLString:[PTGURLUtils detailImageUrlForId:self.place.mainImage] urlRebuildOptions:kFromOther withSuccess:nil failure:nil];
+    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:self.place.slides];
+    NSInteger width = mainImageView.frame.origin.x + mainImageView.frame.size.width;
+    for(int i = 1; i< [array count]; i++) {
+        NSString *string = [array objectAtIndex:i];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(width,
+                                                                               mainImageView.frame.origin.y,
+                                                                               mainImageView.frame.size.width,
+                                                                               mainImageView.frame.size.height)];
+        
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        [imageScrolLView addSubview:imageView];
+        [imageView setImageWithURLString:[PTGURLUtils detailImageUrlForId:string] urlRebuildOptions:kFromOther withSuccess:nil failure:nil];
+        width+=width;
+    }
+    imageScrolLView.contentSize = CGSizeMake(width, imageScrolLView.contentSize.height );
     [descriptionView setDescriptionForPlace:self.place];
     descriptionView.frame = CGRectMake(mainImageView.frame.origin.x,
                                        blueDividerImageView.frame.origin.y + blueDividerImageView.frame.size.height,
@@ -110,7 +129,7 @@
     [self setupFonts];
     [contactView setupPlace:self.place];
     contactView.frame = CGRectMake(0,
-                                   descriptionView.frame.origin.y + descriptionView.frame.size.height - 10,
+                                   descriptionView.frame.origin.y + descriptionView.frame.size.height - 2,
                                    contactView.frame.size.width,
                                    contactView.frame.size.height);
     containerScrollView.contentSize = CGSizeMake(containerScrollView.contentSize.width,

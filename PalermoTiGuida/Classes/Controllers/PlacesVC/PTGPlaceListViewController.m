@@ -14,6 +14,8 @@
 @end
 
 @implementation PTGPlaceListViewController
+@synthesize downloadedProducts;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,21 +30,31 @@
 {
     [super viewDidLoad];
     [self addActivityIndicator];
-    [self.parentCategory loadPlacesWithSuccess:^(NSArray *products) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            dataSource = [NSArray arrayWithArray:products];
-            [subcategoryTableView reloadData];
-            [self shouldHideAllViews:NO];
-            [self removeActivityIndicator];
-        });
-    } failure:^(NSString *requestUrl, NSError *error) {
+    if(VALID_NOTEMPTY(self.downloadedProducts, NSArray)) {
+        dataSource = [NSArray arrayWithArray:self.downloadedProducts];
+        self.downloadedProducts = nil;
+        [subcategoryTableView reloadData];
+        [self shouldHideAllViews:NO];
         [self removeActivityIndicator];
-        [self showAllertMessageForErro:error];
-    }];
+    }
+    else {
+        [self.parentCategory loadPlacesWithSuccess:^(NSArray *products) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                dataSource = [NSArray arrayWithArray:products];
+                [subcategoryTableView reloadData];
+                [self shouldHideAllViews:NO];
+                [self removeActivityIndicator];
+            });
+        } failure:^(NSString *requestUrl, NSError *error) {
+            [self removeActivityIndicator];
+            [self showAllertMessageForErro:error];
+        }];
+    }
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     subcategoryTableView.rowHeight = 64.f;
+    [subcategoryTableView reloadData];
 }
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

@@ -18,6 +18,7 @@
     __weak IBOutlet UIButton *sleepingButton;
     NSArray *categories;
     UIImageView *backgroundImage;
+    IBOutlet UIImageView *topImage;
 }
 - (IBAction)buttonTapped:(id)sender;
 
