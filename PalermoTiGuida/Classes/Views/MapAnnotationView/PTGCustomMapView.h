@@ -26,7 +26,7 @@
 }
 
 +(PTGCustomMapView *)initializeView;
--(void)setupWithPlace:(PTGPlace*)place;
+-(void)setupWithPlace:(PTGPlace*)place distanceFromUser:(double)distance;
 -(void)setTapHandler:(void(^)(PTGPlace * place))handler;
 
 

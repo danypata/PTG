@@ -29,7 +29,7 @@
     
 }
 
--(void)setupWithPlace:(PTGPlace*)place {
+-(void)setupWithPlace:(PTGPlace*)place distanceFromUser:(double)distance{
     if(VALID_NOTEMPTY(place.mainImage, NSString) && VALID(placeImageView, UIImageView)) {
         [placeImageView setImageWithURLString:[PTGURLUtils mainPlaceImageUrlForId:place.mainImage]
                             urlRebuildOptions:kFromOther
@@ -49,7 +49,7 @@
     distanceStaticLabel.text = NSLocalizedString(distanceStaticLabel.text, @"");
     placeTypeStaticLabel.text = NSLocalizedString(placeTypeStaticLabel.text, @"");
     placeTypeLabel.text = place.category.name;
-    distanceLabel.text = place.distance;
+    distanceLabel.text = [NSString stringWithFormat:@"%.2fKm", distance/1000];
     [self applyFonts];
     
 }

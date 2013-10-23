@@ -97,6 +97,7 @@
     
 }
 -(void)showSlide {
+    [customMapView removeFromSuperview];
     if(!leftMenuview.isShown) {
         [UIView animateWithDuration:0.5 animations:^{
             [leftMenuview shouldShow:YES];
@@ -121,8 +122,16 @@
     }
     
 }
+-(void)removeAnnotations {
+    for(PTGMapAnnotation *annotation in mapView.annotations) {
+        if(![annotation isKindOfClass:[MKUserLocation class]]) {
+            [mapView removeAnnotation:annotation];
+        }
+    }
+}
+
 -(void)addAnnotations {
-    [mapView removeAnnotations:mapView.annotations];
+    [self removeAnnotations];
     for(PTGPlace *place in self.places) {
         [UIImageView downloadImageWithURLString:[[PTGURLUtils pinImageUrlString] stringByAppendingFormat:@"%@.png",place.category.categoryId]  successBlock:^(UIImage *image) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -214,7 +223,6 @@
         if(!customMapView) {
             customMapView = [PTGCustomMapView initializeView];
         }
-        [customMapView setupWithPlace:((PTGCustomAnnotation *)view).place];
         if(needUserUpdate) {
             customMapView.frame = CGRectMake(5,
                                              topBarContainer.frame.origin.y
@@ -225,6 +233,8 @@
         else {
             customMapView.frame = CGRectMake(5, 15, customMapView.frame.size.width, customMapView.frame.size.height);
         }
+        PTGPlace *place = ((PTGCustomAnnotation *)view).place;
+        [customMapView setupWithPlace:place distanceFromUser:[self distanceFromUserToPlace:place]];
         [self.view addSubview:customMapView];
     }
 }
@@ -280,7 +290,12 @@
     ZLog(@"%f",radius);
     return radius;
 }
-
+-(double)distanceFromUserToPlace:(PTGPlace *)place {
+    CLLocation *centerLocation = [[CLLocation alloc] initWithLatitude:[place.lat doubleValue] longitude:[place.longit doubleValue]];
+    CLLocation *userLocation = mapView.userLocation.location;
+    double userDisatance = [userLocation distanceFromLocation:centerLocation];
+    return userDisatance;
+}
 -(void)filterResultsUsingCategories:(NSArray *)categories {
     NSArray *ids = [categories valueForKey:@"categoryId"];
     if(VALID_NOTEMPTY(ids, NSArray)) {
