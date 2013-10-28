@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PTGPlace.h"
+#import "PTGCoreTextView.h"
 
-#define SPACING_TOP 10
+#define SPACING_TOP 15
 
 @protocol PTGDescriptionViewDelegate <NSObject>
 
@@ -21,13 +22,14 @@
 
 @interface PTGDescriptionView : UIView {
     CGFloat initialHeight;
+    CGFloat actualHeight;
     IBOutlet UIImageView *bgImage;
     IBOutlet UIView *buttonContainer;
     IBOutlet UIButton *imbarcaoButton;
     IBOutlet UIButton *portoButton;
     IBOutlet UIImageView *mainImageView;
-    IBOutlet UITextView *descriptionTextField;
     IBOutlet UIButton *moreButton;
+    PTGCoreTextView *textView;
 }
 @property(nonatomic, strong) id<PTGDescriptionViewDelegate>delegate;
 

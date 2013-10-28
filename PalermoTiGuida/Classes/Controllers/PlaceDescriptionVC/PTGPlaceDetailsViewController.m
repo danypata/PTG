@@ -73,6 +73,7 @@
                     if(VALID_NOTEMPTY(copyProducts, NSArray)) {
                         self.place = [copyProducts objectAtIndex:0];
                         [self arrangeViews];
+                        [descriptionView positionViews];
                         [UIView animateWithDuration:0.3 animations:^{
                             containerScrollView.alpha = 1;
                         }];
@@ -97,7 +98,7 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [descriptionView positionViews];
+
 }
 
 -(void)arrangeViews {
@@ -108,19 +109,20 @@
     NSInteger width = mainImageView.frame.origin.x + mainImageView.frame.size.width;
     for(int i = 1; i< [array count]; i++) {
         NSString *string = [array objectAtIndex:i];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(width,
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i*width,
                                                                                mainImageView.frame.origin.y,
                                                                                mainImageView.frame.size.width,
                                                                                mainImageView.frame.size.height)];
         
         imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.layer.masksToBounds = YES;
         [imageScrolLView addSubview:imageView];
+        imageView.backgroundColor = [UIColor redColor];
         [imageView setImageWithURLString:[PTGURLUtils detailImageUrlForId:string] urlRebuildOptions:kFromOther withSuccess:nil failure:nil];
-        width+=width;
     }
-    imageScrolLView.contentSize = CGSizeMake(width, imageScrolLView.contentSize.height );
+    imageScrolLView.contentSize = CGSizeMake([array count] * width, imageScrolLView.contentSize.height );
     [descriptionView setDescriptionForPlace:self.place];
-    descriptionView.frame = CGRectMake(mainImageView.frame.origin.x,
+    descriptionView.frame = CGRectMake(0,
                                        blueDividerImageView.frame.origin.y + blueDividerImageView.frame.size.height,
                                        descriptionView.frame.size.width,
                                        descriptionView.frame.size.height);

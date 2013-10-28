@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3400" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="PTGCategory" representedClassName="PTGCategory" syncable="YES">
         <attribute name="categoryId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageType" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,7 +17,34 @@
         <attribute name="isVisited" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PTGPlace" inverseName="diaryItem" inverseEntity="PTGPlace" syncable="YES"/>
     </entity>
+    <entity name="PTGNews" representedClassName="PTGNews" syncable="YES">
+        <attribute name="alert" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="categoryId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="categoryType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newsId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="validFrom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="validTo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="web" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PTGNewsCategory" inverseName="news" inverseEntity="PTGNewsCategory" syncable="YES"/>
+        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PTGPlace" inverseName="news" inverseEntity="PTGPlace" syncable="YES"/>
+    </entity>
+    <entity name="PTGNewsCategory" representedClassName="PTGNewsCategory" syncable="YES">
+        <attribute name="categoryType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newNews" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="newsCategoryId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newsCount" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PTGNewsCategory" inverseName="parent" inverseEntity="PTGNewsCategory" syncable="YES"/>
+        <relationship name="news" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PTGNews" inverseName="category" inverseEntity="PTGNews" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PTGNewsCategory" inverseName="children" inverseEntity="PTGNewsCategory" syncable="YES"/>
+    </entity>
     <entity name="PTGPlace" representedClassName="PTGPlace" syncable="YES">
+        <attribute name="categoryId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="categoryType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
@@ -48,10 +75,13 @@
         <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PTGCategory" inverseName="places" inverseEntity="PTGCategory" syncable="YES"/>
         <relationship name="diaryItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PTGDiaryItem" inverseName="place" inverseEntity="PTGDiaryItem" syncable="YES"/>
+        <relationship name="news" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PTGNews" inverseName="place" inverseEntity="PTGNews" syncable="YES"/>
     </entity>
     <elements>
         <element name="PTGCategory" positionX="0" positionY="0" width="0" height="0"/>
         <element name="PTGDiaryItem" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PTGNews" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PTGNewsCategory" positionX="0" positionY="0" width="0" height="0"/>
         <element name="PTGPlace" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

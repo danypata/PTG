@@ -38,7 +38,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    subcategoryTableView.rowHeight = 50;
     if([self.parentCategory.children count] > 0) {
         [headerImageView setImageWithURLString:[PTGURLUtils
                                                 mainImageUrlForId:self.parentCategory.categoryId]
@@ -101,6 +100,8 @@
     PTGCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell) {
         cell =[ PTGCategoryCell setupViews];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.contentView.backgroundColor = [UIColor clearColor];
     }
     if(indexPath.row == 0) {
         [cell isFirstCell];
@@ -113,10 +114,10 @@
     }
     PTGCategory *currentCategory = [dataSource objectAtIndex:indexPath.row];
     if([currentCategory.subcategoryCount integerValue] != 0) {
-        cell.countLabel.text = [currentCategory.subcategoryCount stringValue];
+        [cell.countButton setTitle:[currentCategory.subcategoryCount stringValue] forState:UIControlStateNormal];
     }
     else {
-        cell.countLabel.text = [currentCategory.placesCount stringValue];
+        [cell.countButton setTitle:[currentCategory.placesCount stringValue] forState:UIControlStateNormal];
     }
     cell.categoryNameLabel.text = currentCategory.name;
     return cell;

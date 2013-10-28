@@ -9,6 +9,7 @@
 #import "PTGPlaceListViewController.h"
 #import "PTGPlaceCell.h"
 #import "PTGPlaceDetailsViewController.h"
+
 @interface PTGPlaceListViewController ()
 
 @end
@@ -53,7 +54,6 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    subcategoryTableView.rowHeight = 64.f;
     [subcategoryTableView reloadData];
 }
 -(void)viewDidAppear:(BOOL)animated {
@@ -77,6 +77,8 @@
     PTGPlaceCell *cell = [tableView dequeueReusableCellWithIdentifier:reuse];
     if(!cell) {
         cell = [PTGPlaceCell setupViews];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.contentView.backgroundColor = [UIColor clearColor];
     }
     if(indexPath.row == 0) {
         [cell isFirstCell];

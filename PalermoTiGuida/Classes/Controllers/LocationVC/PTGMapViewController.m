@@ -98,14 +98,21 @@
 }
 -(void)showSlide {
     [customMapView removeFromSuperview];
+    NSInteger xOffset =0;
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        xOffset = 63;
+    }
+    else {
+        xOffset = 255;
+    }
     if(!leftMenuview.isShown) {
         [UIView animateWithDuration:0.5 animations:^{
             [leftMenuview shouldShow:YES];
             CGRect navBarFrame = self.navigationController.navigationBar.frame;
-            navBarFrame.origin.x = navBarFrame.size.width - 63;
+            navBarFrame.origin.x = navBarFrame.size.width - xOffset;
             self.navigationController.navigationBar.frame = navBarFrame;
             navBarFrame = topBarContainer.frame;
-            navBarFrame.origin.x = navBarFrame.size.width - 63;
+            navBarFrame.origin.x = navBarFrame.size.width - xOffset;
             topBarContainer.frame = navBarFrame;
         }];
     }
@@ -183,7 +190,7 @@
     else {
         annotationView.image = [UIImage imageNamed:@"my_location_pin"];
     }
-
+    
     return annotationView;
     
 }
@@ -249,9 +256,8 @@
 -(void)loadPlacesForCurrentRegion {
     CLLocationCoordinate2D coord = mapView.region.center;
     double distance = [self getRadius];
-
+    
     NSString *url = [[PTGURLUtils placesNearMeUrlString] stringByAppendingFormat:@"%f/%f/%f",coord.latitude, coord.longitude, distance];
-//        NSString *url = [[PTGURLUtils placesNearMeUrlString] stringByAppendingFormat:@"%f/%f/%f",38.115796, 13.345693, distance];
     [PTGPlace placesNearMeForUrl:url succes:^(NSString *requestUrl, NSArray *products) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self removeActivityIndicator];
@@ -273,9 +279,15 @@
     [customMapView removeFromSuperview];
 }
 
--(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+-(void)mapView:(MKMapView *)mMapView regionDidChangeAnimated:(BOOL)animated {
     if(needUserUpdate) {
-        [self loadPlacesForCurrentRegion];
+        CLLocation * ul = mMapView.userLocation.location;
+        CGPoint userPoint = [mMapView convertCoordinate: ul.coordinate toPointToView: mMapView];
+        CGPoint mapPoint = [mMapView convertCoordinate: mMapView.centerCoordinate toPointToView: mMapView];
+        ZLog(@"Difference = %f",fabs(userPoint.x - mapPoint.x));
+        if (fabs(userPoint.x - mapPoint.x) > MAP_CENTER_RECTANGLE_SIZE || fabs(userPoint.y - mapPoint.y) > MAP_CENTER_RECTANGLE_SIZE){
+            [self loadPlacesForCurrentRegion];
+        }
     }
 }
 
@@ -317,7 +329,31 @@
                                                                           (topBarContainer.frame.size.height - 30) / 2,
                                                                           60.f,
                                                                           30.f)];
-
+    
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        fadeLabelSwitchLabel = [[TTFadeSwitch alloc] initWithFrame:CGRectMake(topBarContainer.frame.size.width - 75,
+                                                                              (topBarContainer.frame.size.height - 30) / 2,
+                                                                              60.f,
+                                                                              30.f)];
+        fadeLabelSwitchLabel.onLabel.font = [UIFont systemFontOfSize:16.f];
+        fadeLabelSwitchLabel.offLabel.font = [UIFont systemFontOfSize:16.f];
+        fadeLabelSwitchLabel.labelsEdgeInsets = UIEdgeInsetsMake(5.0, 20, 1.0, 20);
+        fadeLabelSwitchLabel.thumbInsetX = 0.0;
+        fadeLabelSwitchLabel.thumbOffsetY = 1.0;
+        
+    }
+    else {
+        fadeLabelSwitchLabel = [[TTFadeSwitch alloc] initWithFrame:CGRectMake(topBarContainer.frame.size.width - 135,
+                                                                              (topBarContainer.frame.size.height - 55) / 2,
+                                                                              126.f,
+                                                                              55.f)];
+        fadeLabelSwitchLabel.onLabel.font = [UIFont systemFontOfSize:33.f];
+        fadeLabelSwitchLabel.offLabel.font = [UIFont systemFontOfSize:33.f];
+        fadeLabelSwitchLabel.labelsEdgeInsets = UIEdgeInsetsMake(12.0, 20, 1.0, 22);
+        fadeLabelSwitchLabel.thumbInsetX = 5.0;
+        fadeLabelSwitchLabel.thumbOffsetY = 2.0;
+        
+    }
     fadeLabelSwitchLabel.thumbImage = [UIImage imageNamed:@"switchToggle"];
     fadeLabelSwitchLabel.trackMaskImage = [UIImage imageNamed:@"switchMask"];
     fadeLabelSwitchLabel.thumbHighlightImage = [UIImage imageNamed:@"switchToggle"];
@@ -325,16 +361,10 @@
     fadeLabelSwitchLabel.trackImageOff = [UIImage imageNamed:@"switchRed"];
     fadeLabelSwitchLabel.onString = @"ON";
     fadeLabelSwitchLabel.offString = @"OFF";
-    fadeLabelSwitchLabel.onLabel.font = [UIFont systemFontOfSize:16.f];
-    fadeLabelSwitchLabel.offLabel.font = [UIFont systemFontOfSize:16.f];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:fadeLabelSwitchLabel.onLabel];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:fadeLabelSwitchLabel.offLabel];
     fadeLabelSwitchLabel.onLabel.textColor = [UIColor whiteColor];
     fadeLabelSwitchLabel.offLabel.textColor = [UIColor colorWithRed:53.f/255.f green:103.f/255.f blue:132.f/255.f alpha:1];
-    fadeLabelSwitchLabel.labelsEdgeInsets = UIEdgeInsetsMake(5.0, 20, 1.0, 20);
-    fadeLabelSwitchLabel.thumbInsetX = 0.0;
-    fadeLabelSwitchLabel.thumbOffsetY = 1.0;
-    [fadeLabelSwitchLabel setOn:YES];
     [topBarContainer addSubview:fadeLabelSwitchLabel];
     __weak PTGMapViewController *weakSelf = self;
     [fadeLabelSwitchLabel setChangeHandler:^(BOOL on) {

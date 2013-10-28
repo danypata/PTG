@@ -33,15 +33,22 @@
     rightButton.frame = CGRectMake(0, 0, 22.f, 22.f);
     [rightButton setImage:[UIImage imageNamed:NAV_BAR_INFO_IMAGE_DEFAULT] forState:UIControlStateNormal];
     [rightButton setImage:[UIImage imageNamed:NAV_BAR_INFO_IMAGE_SELECTED] forState:UIControlStateHighlighted];
-  
+    
     if([[self.navigationController viewControllers] count] > 1) {
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [backButton setTitle:NSLocalizedString(@"Back", @"") forState:UIControlStateNormal];
-        UIImage *backImage = [UIImage imageNamed:@"back_button_bg"];// resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14.0f, 0, 20.0f)];
-        backButton.frame = CGRectMake(0, 0, 50.0f, 30.0f);
+        UIImage *backImage = [UIImage imageNamed:@"back_button_bg"];
         [backButton addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
-        backButton.titleLabel.font = [UIFont fontWithName:QLASSIK_BOLD_TB size:16];
-        backButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+        if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+            backButton.frame = CGRectMake(0, 0, 50.0f, 30.0f);
+            backButton.titleLabel.font = [UIFont fontWithName:QLASSIK_BOLD_TB size:16];
+            backButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+        }
+        else {
+            backButton.frame = CGRectMake(0, 0, 60.0f, 35.0f);
+            backButton.titleLabel.font = [UIFont fontWithName:QLASSIK_BOLD_TB size:20];
+            backButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+        }
         [backButton setBackgroundImage:backImage forState:UIControlStateNormal];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     }

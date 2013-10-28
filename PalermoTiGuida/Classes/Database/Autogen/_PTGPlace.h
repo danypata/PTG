@@ -5,6 +5,7 @@
 
 
 extern const struct PTGPlaceAttributes {
+	__unsafe_unretained NSString *categoryId;
 	__unsafe_unretained NSString *categoryType;
 	__unsafe_unretained NSString *city;
 	__unsafe_unretained NSString *descriptionText;
@@ -38,6 +39,7 @@ extern const struct PTGPlaceAttributes {
 extern const struct PTGPlaceRelationships {
 	__unsafe_unretained NSString *category;
 	__unsafe_unretained NSString *diaryItem;
+	__unsafe_unretained NSString *news;
 } PTGPlaceRelationships;
 
 extern const struct PTGPlaceFetchedProperties {
@@ -45,6 +47,8 @@ extern const struct PTGPlaceFetchedProperties {
 
 @class PTGCategory;
 @class PTGDiaryItem;
+@class PTGNews;
+
 
 
 
@@ -83,6 +87,16 @@ extern const struct PTGPlaceFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (PTGPlaceID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSString* categoryId;
+
+
+
+//- (BOOL)validateCategoryId:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -382,11 +396,22 @@ extern const struct PTGPlaceFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *news;
+
+- (NSMutableSet*)newsSet;
+
+
+
+
 
 #if TARGET_OS_IPHONE
 
 
 
+
+
+
+- (NSFetchedResultsController*)newNewsFetchedResultsControllerWithSortDescriptors:(NSArray*)sortDescriptors;
 
 
 #endif
@@ -395,9 +420,20 @@ extern const struct PTGPlaceFetchedProperties {
 
 @interface _PTGPlace (CoreDataGeneratedAccessors)
 
+- (void)addNews:(NSSet*)value_;
+- (void)removeNews:(NSSet*)value_;
+- (void)addNewsObject:(PTGNews*)value_;
+- (void)removeNewsObject:(PTGNews*)value_;
+
 @end
 
 @interface _PTGPlace (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSString*)primitiveCategoryId;
+- (void)setPrimitiveCategoryId:(NSString*)value;
+
+
 
 
 - (NSString*)primitiveCategoryType;
@@ -576,6 +612,11 @@ extern const struct PTGPlaceFetchedProperties {
 
 - (PTGDiaryItem*)primitiveDiaryItem;
 - (void)setPrimitiveDiaryItem:(PTGDiaryItem*)value;
+
+
+
+- (NSMutableSet*)primitiveNews;
+- (void)setPrimitiveNews:(NSMutableSet*)value;
 
 
 @end

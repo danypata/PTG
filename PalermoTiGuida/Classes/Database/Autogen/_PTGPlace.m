@@ -4,6 +4,7 @@
 #import "_PTGPlace.h"
 
 const struct PTGPlaceAttributes PTGPlaceAttributes = {
+	.categoryId = @"categoryId",
 	.categoryType = @"categoryType",
 	.city = @"city",
 	.descriptionText = @"descriptionText",
@@ -37,6 +38,7 @@ const struct PTGPlaceAttributes PTGPlaceAttributes = {
 const struct PTGPlaceRelationships PTGPlaceRelationships = {
 	.category = @"category",
 	.diaryItem = @"diaryItem",
+	.news = @"news",
 };
 
 const struct PTGPlaceFetchedProperties PTGPlaceFetchedProperties = {
@@ -71,6 +73,13 @@ const struct PTGPlaceFetchedProperties PTGPlaceFetchedProperties = {
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic categoryId;
+
+
 
 
 
@@ -279,6 +288,19 @@ const struct PTGPlaceFetchedProperties PTGPlaceFetchedProperties = {
 
 	
 
+@dynamic news;
+
+	
+- (NSMutableSet*)newsSet {
+	[self willAccessValueForKey:@"news"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"news"];
+  
+	[self didAccessValueForKey:@"news"];
+	return result;
+}
+	
+
 
 
 
@@ -288,6 +310,21 @@ const struct PTGPlaceFetchedProperties PTGPlaceFetchedProperties = {
 
 
 
+
+
+
+- (NSFetchedResultsController*)newNewsFetchedResultsControllerWithSortDescriptors:(NSArray*)sortDescriptors {
+	NSFetchRequest *fetchRequest = [NSFetchRequest new];
+	
+	fetchRequest.entity = [NSEntityDescription entityForName:@"PTGNews" inManagedObjectContext:self.managedObjectContext];
+	fetchRequest.predicate = [NSPredicate predicateWithFormat:@"place == %@", self];
+	fetchRequest.sortDescriptors = sortDescriptors;
+	
+	return [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+											   managedObjectContext:self.managedObjectContext
+												 sectionNameKeyPath:nil
+														  cacheName:nil];
+}
 
 
 #endif

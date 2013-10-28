@@ -22,9 +22,9 @@
     if(VALID_NOTEMPTY([dictionary objectForKey:placeKeyMainImage], NSString)) {
         place.mainImage = [dictionary objectForKey:placeKeyMainImage];
     }
+    place.distance = [PTGLocationUtils distanceStringFromString:[dictionary objectForKey:placeKeyDistance]];
     place.categoryType = [dictionary objectForKey:placeKeyCategoryType];
     place.street = [dictionary objectForKey:placeKeyStreet];
-    place.distance = [PTGLocationUtils distanceStringFromString:[dictionary objectForKey:placeKeyDistance]];
     [place copyPropertiesFromJSON:dictionary];
     return place;
     
@@ -58,7 +58,9 @@
                                                          success:^(NSString *requestURL, id JSON) {
                                                              successBlock(requestURL, [self placesFromJSONArray:[JSON objectForKey:@"places_nearme"] linkWithCategory:YES]);
                                                              
-                                                         } failure:failureBlock];
+                                                         } failure:^(NSString *requestURL, NSError *error) {
+                                                             failureBlock(requestURL, error);
+                                                         }];
 }
 
 
@@ -95,7 +97,12 @@
 }
 
 -(void)loadDetailsWithSuccess:(void(^)(PTGPlace *place))success failure:(void(^)(NSError *error))failureBlock {
-    NSString *url = [[PTGURLUtils placeUrl] stringByAppendingFormat:@"%@/%@",self.placeId, self.categoryType];
+    NSString *categoryType = self.categoryType;
+    if(!VALID_NOTEMPTY(categoryType, NSString)) {
+        PTGCategory *category = [PTGCategory findFirstByAttribute:@"categoryId" withValue:self.categoryId];
+        categoryType = category.type;
+    }
+    NSString *url = [[PTGURLUtils placeUrl] stringByAppendingFormat:@"%@/%@",self.placeId, categoryType];
     [[SMFWebService sharedInstance] sendJSONRequestWithURLString:url method:@"GET" parameters:nil withResponseOnMainThread:NO success:^(NSString *requestURL, id JSON) {
         if(VALID_NOTEMPTY(JSON, NSArray)) {
             [self copyPropertiesFromJSON:[JSON objectAtIndex:0]];
@@ -111,6 +118,9 @@
 
 -(void)copyPropertiesFromJSON:(id)json {
     json = [PTGJSONUtils clearJSON:json];
+    self.categoryType = [json objectForKey:placeKeyCategoryType];
+    self.street = [json objectForKey:placeKeyStreet];
+    self.distance = [PTGLocationUtils distanceStringFromString:[json objectForKey:placeKeyDistance]];
     self.streetNo = [json objectForKey:@"streetno"];
     self.zipCode = [json objectForKey:@"zip"];
     self.province = [json objectForKey:@"province"];
@@ -130,6 +140,7 @@
     self.placeBoardName = [json objectForKey:@"name_place_connect_board"];
     self.placePortId = [json objectForKey:@"id_place_connect_port"];
     self.placePortName = [json objectForKey:@"name_place_connect_port"];
+    self.categoryId = [json objectForKey:@"id_category"];
     NSMutableArray *array = [[NSMutableArray alloc] init];
     NSString *value = [json objectForKey:@"website"];
     if(VALID_NOTEMPTY(value, NSString)) {

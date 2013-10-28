@@ -106,7 +106,6 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
-		<string>UIRequiredDeviceCapabilities</string>
 	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>

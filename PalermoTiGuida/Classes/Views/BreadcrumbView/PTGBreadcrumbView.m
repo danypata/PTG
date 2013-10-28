@@ -19,6 +19,14 @@
 }
 -(void)setFontSize:(BreadcrumbFontSize)size {
     fontSize = size;
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        if(fontSize == kFontSizeLarge) {
+            fontSize = 42.f;
+        }
+        else {
+            fontSize = 28.f;
+        }
+    }
 }
 +(PTGBreadcrumbView *)setupViews {
     NSArray *views =[[NSBundle mainBundle] loadNibNamed:@"PTGBreadcrumbView" owner:nil options:nil];

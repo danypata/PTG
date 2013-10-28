@@ -8,6 +8,8 @@
 
 #import "PTGDescriptionView.h"
 #import "PTGCategory.h"
+#import "PTGCoreTextView.h"
+
 @implementation PTGDescriptionView
 @synthesize delegate;
 
@@ -24,37 +26,51 @@
     return [views objectAtIndex:0];
 }
 -(void)setDescriptionForPlace:(PTGPlace *)place {
-    descriptionTextField.text = place.descriptionText;
-    initialHeight = descriptionTextField.frame.size.height;
-    [descriptionTextField setNeedsLayout];
     if([place.categoryType integerValue] == 4) {
         buttonContainer.hidden = NO;
     }
     else {
         buttonContainer.hidden = YES;
     }
-    [descriptionTextField sizeToFit];
-    NSInteger lines = descriptionTextField.frame.size.height/ descriptionTextField.font.lineHeight;
-    ZLog(@"%d",lines);
+    textView = [[PTGCoreTextView alloc] initWithFrame:CGRectMake(bgImage.frame.origin.x + SPACING_TOP, SPACING_TOP,
+                                                                 bgImage.frame.size.width - 2* SPACING_TOP,
+                                                                 moreButton.frame.origin.y - 2* SPACING_TOP)];
+    initialHeight = textView.frame.size.height;
+    CGFloat pointSize = 0;
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        pointSize = 25.f;
+    }
+    else {
+        pointSize = 14.f;
+    }
+    textView.text = place.descriptionText;
+    
+    textView.textFont = [UIFont fontWithName:QLASSIK_BOLD_TB size:pointSize];
+    
+    NSInteger lines = [textView linesForFrame:CGRectMake(textView.frame.origin.x,
+                                                         textView.frame.origin.y,
+                                                         textView.frame.size.width, CGFLOAT_MAX)];
+    actualHeight = [textView heightForText] * lines;
     if(lines < 10) {
         moreButton.hidden = YES;
+        textView.frame = CGRectMake(textView.frame.origin.x,
+                                    textView.frame.origin.y,
+                                    textView.frame.size.width,
+                                    actualHeight + SPACING_TOP);
     }
     else {
         moreButton.hidden = NO;
     }
-    descriptionTextField.frame = CGRectMake(descriptionTextField.frame.origin.x,
-                                            descriptionTextField.frame.origin.y,
-                                            descriptionTextField.frame.size.width,
-                                            initialHeight);
+    [self addSubview:textView];
     [self setupFonts];
     [self positionViews];
 }
 
 -(void)positionViews {
-
-   
+    
+    
     moreButton.frame = CGRectMake(moreButton.frame.origin.x,
-                                  descriptionTextField.frame.origin.y + descriptionTextField.frame.size.height + SPACING_TOP,
+                                  textView.frame.origin.y + textView.frame.size.height + SPACING_TOP,
                                   moreButton.frame.size.width,
                                   moreButton.frame.size.height);
     
@@ -84,24 +100,26 @@
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:moreButton];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:portoButton];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:imbarcaoButton];
-    [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:descriptionTextField];
 }
 
 - (IBAction)moreButtonPressed:(id)sender {
+    textView.alpha = 0;
     [UIView animateWithDuration:0.5 animations:^{
-        CGFloat height = descriptionTextField.contentSize.height;
-        if(descriptionTextField.frame.size.height >= height) {
-            descriptionTextField.frame = CGRectMake(descriptionTextField.frame.origin.x,
-                                                    descriptionTextField.frame.origin.y,
-                                                    descriptionTextField.frame.size.width,
-                                                    initialHeight);
+        if(textView.frame.size.height >= initialHeight+10) {
+            textView.frame = CGRectMake(textView.frame.origin.x,
+                                        textView.frame.origin.y,
+                                        textView.frame.size.width,
+                                        initialHeight);
+
         }
         else {
-            descriptionTextField.frame = CGRectMake(descriptionTextField.frame.origin.x,
-                                                    descriptionTextField.frame.origin.y,
-                                                    descriptionTextField.frame.size.width,
-                                                    height);
+            textView.frame = CGRectMake(textView.frame.origin.x,
+                                        textView.frame.origin.y,
+                                        textView.frame.size.width,
+                                        actualHeight);
         }
+        [textView setNeedsDisplay];
+        textView.alpha = 1;
         [self positionViews];
         if([self.delegate respondsToSelector:@selector(shouldResizeScorllView)]) {
             [self.delegate shouldResizeScorllView];

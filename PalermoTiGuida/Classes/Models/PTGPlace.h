@@ -20,4 +20,7 @@ static const NSString *placeKeyDistance = @"distance";
 +(void)placesNearMeForUrl:(NSString *)url
                    succes:(void(^)(NSString *requestUrl, NSArray *products))successBlock
                   failure:(void(^)(NSString *requestUrl, NSError *error))failureBlock;
+
++(PTGPlace *)placeWithId:(NSString*) placeId allPlaces:(NSArray *)allPlaces;
++(PTGPlace *)placeFromDictionary:(NSDictionary *)dictionary oldPlace:(PTGPlace *)place;
 @end

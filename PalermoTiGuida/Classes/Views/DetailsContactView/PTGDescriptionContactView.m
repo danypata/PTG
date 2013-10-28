@@ -66,10 +66,10 @@
 - (void)addRemoveToDiary:(BOOL)add {
     if(add) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                    message:NSLocalizedString(@"Hai già visitato questo punto d'interesse?", nil)
-                                                   delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"SI", @"")
-                                          otherButtonTitles:NSLocalizedString(@"NO", @""), nil];
+                                                        message:NSLocalizedString(@"Hai già visitato questo punto d'interesse?", nil)
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"SI", @"")
+                                              otherButtonTitles:NSLocalizedString(@"NO", @""), nil];
         [alert show];
     }
     else {
@@ -119,14 +119,38 @@
 }
 
 -(void)addSwitch {
-    fadeLabelSwitchLabel = [[TTFadeSwitch alloc] initWithFrame:CGRectMake(switchImageView.frame.origin.x
-                                                                          + switchImageView.frame.size.width
-                                                                          - 75,
-                                                                          (switchImageView.frame.origin.y
-                                                                           + switchImageView.frame.size.height - 30) / 2,
-                                                                          60.f,
-                                                                          30.f)];
-    [buttonsView addSubview:fadeLabelSwitchLabel];
+   
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        fadeLabelSwitchLabel = [[TTFadeSwitch alloc] initWithFrame:CGRectMake(switchImageView.frame.origin.x
+                                                                              + switchImageView.frame.size.width
+                                                                              - 75,
+                                                                              (switchImageView.frame.origin.y
+                                                                               + switchImageView.frame.size.height - 30) / 2,
+                                                                              115.f,
+                                                                              50.f)];
+        fadeLabelSwitchLabel.onLabel.font = [UIFont systemFontOfSize:16.f];
+        fadeLabelSwitchLabel.offLabel.font = [UIFont systemFontOfSize:16.f];
+        fadeLabelSwitchLabel.labelsEdgeInsets = UIEdgeInsetsMake(5.0, 20, 1.0, 20);
+        fadeLabelSwitchLabel.thumbInsetX = 0.0;
+        fadeLabelSwitchLabel.thumbOffsetY = 1.0;
+
+    }
+    else {
+        
+        fadeLabelSwitchLabel = [[TTFadeSwitch alloc] initWithFrame:CGRectMake(switchImageView.frame.origin.x
+                                                                              + switchImageView.frame.size.width
+                                                                              - 135,
+                                                                              (switchImageView.frame.origin.y
+                                                                               + switchImageView.frame.size.height - 55) / 2,
+                                                                              126.f,
+                                                                              55.f)];
+        fadeLabelSwitchLabel.onLabel.font = [UIFont systemFontOfSize:33.f];
+        fadeLabelSwitchLabel.offLabel.font = [UIFont systemFontOfSize:33.f];
+        fadeLabelSwitchLabel.labelsEdgeInsets = UIEdgeInsetsMake(12.0, 20, 1.0, 22);
+        fadeLabelSwitchLabel.thumbInsetX = 5.0;
+        fadeLabelSwitchLabel.thumbOffsetY = 2.0;
+
+    }
     fadeLabelSwitchLabel.thumbImage = [UIImage imageNamed:@"switchToggle"];
     fadeLabelSwitchLabel.trackMaskImage = [UIImage imageNamed:@"switchMask"];
     fadeLabelSwitchLabel.thumbHighlightImage = [UIImage imageNamed:@"switchToggle"];
@@ -134,15 +158,12 @@
     fadeLabelSwitchLabel.trackImageOff = [UIImage imageNamed:@"switchRed"];
     fadeLabelSwitchLabel.onString = @"ON";
     fadeLabelSwitchLabel.offString = @"OFF";
-    fadeLabelSwitchLabel.onLabel.font = [UIFont systemFontOfSize:16.f];
-    fadeLabelSwitchLabel.offLabel.font = [UIFont systemFontOfSize:16.f];
+    [buttonsView addSubview:fadeLabelSwitchLabel];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:fadeLabelSwitchLabel.onLabel];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:fadeLabelSwitchLabel.offLabel];
     fadeLabelSwitchLabel.onLabel.textColor = [UIColor whiteColor];
     fadeLabelSwitchLabel.offLabel.textColor = [UIColor colorWithRed:53.f/255.f green:103.f/255.f blue:132.f/255.f alpha:1];
-    fadeLabelSwitchLabel.labelsEdgeInsets = UIEdgeInsetsMake(5.0, 20, 1.0, 20);
-    fadeLabelSwitchLabel.thumbInsetX = 0.0;
-    fadeLabelSwitchLabel.thumbOffsetY = 1.0;
+   
     if([PTGDiaryItem isDiaryForPlace:currentPlace]) {
         [fadeLabelSwitchLabel setOn:YES animated:NO];
     }

@@ -25,10 +25,12 @@ static NSString *placeByIdUrl                   = @"api/place_by_id/";
 static NSString *placeWithDistanceUrl           = @"api/place_by_id_distance/";
 static NSString *placesNearMeUrl                = @"api/place_near_me/";
 static NSString *placesSearch                   = @"api/places/search/";
+static NSString *newsCategoriesUrl              = @"api/categorynewssall";
+static NSString *newsByCategoryUrl              = @"api/news_by_category/";
 
-static NSString *mainImageIphoneRetina          = @"MainPictureiPhone_retina";
+static NSString *mainImageIphoneRetina          = @"MainPictureiPad_retina";
 static NSString *mainImageIphone                = @"MainPictureiPhone_iphone";
-static NSString *mainImageIpadRetina            = @"MainPictureiPad_retina";
+static NSString *mainImageIpadRetina            = @"Slide1iPad";
 
 static NSString *imageDetailsIphone             = @"Slide1iPhone";
 static NSString *imageDetailsIphoneRetina       = @"Slide1iPhone_retina";
@@ -46,6 +48,8 @@ static NSString *imageDetailsIpad               = @"Slide1iPad_retina";
 +(NSString *)categoryPlacesUrl;
 +(NSString *)placesSearchUrl;
 +(NSString *)placeUrl;
++(NSString *)categoriesNewsUrl;
++(NSString *)newsByCategoryUrl;
 +(NSString *)placeWithDistanceUrl;
 +(NSString *)placesNearMeUrlString;
 +(NSString *)mainImageUrlForId:(NSString *)imageId;

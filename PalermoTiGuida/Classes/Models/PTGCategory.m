@@ -58,6 +58,12 @@
 }
 
 +(void)loadCategoriesFromServerWithSuccess:(void (^)(NSArray *))successBlock failureBlock:(void (^)(NSString *requestUrl, NSError *))failureBlock {
+    NSArray *allCategories = [PTGCategory findAll];
+    NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
+    for(PTGCategory *category in allCategories) {
+        [moc deleteObject:category];
+    }
+    [moc saveToPersistentStoreAndWait];
     [[SMFWebService sharedInstance] sendJSONRequestWithURLString:[PTGURLUtils mainCategoryUrl]
                                                           method:@"GET"
                                                       parameters:nil
@@ -100,6 +106,11 @@
             
             NSString *url = [[PTGURLUtils categoryPlacesUrl] stringByAppendingString:self.categoryId];
             url =[url stringByAppendingFormat:@"/%f/%f",location.coordinate.latitude, location.coordinate.longitude];
+            NSManagedObjectContext *moc = self.managedObjectContext;
+            for(PTGPlace *place in self.places) {
+                [moc deleteObject:place];
+            }
+            [moc saveToPersistentStoreAndWait];
             [PTGPlace placesForUrl:url succes:^(NSString *requestUrl, NSArray *products) {
                 NSArray *finalProducts = [PTGPlace findAllWithPredicate:[NSPredicate predicateWithFormat:@"self in %@", [products valueForKey:@"objectID"]] inContext:self.managedObjectContext];
                 [self addPlaces:[NSSet setWithArray:finalProducts]];

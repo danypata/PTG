@@ -51,7 +51,6 @@
     }
     [brView setItems:self.breadcrumbs];
     [self.view addSubview:brView];
-    extraPlaceTableView.rowHeight = 64.f;
 }
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -75,6 +74,8 @@
     if(!cell) {
         cell = [PTGExtraCell setupViews];
         cell.delegate = self;
+        cell.backgroundColor = [UIColor clearColor];
+        cell.contentView.backgroundColor = [UIColor clearColor];
     }
     if(indexPath.row == 0) {
         [cell isFirstCell];

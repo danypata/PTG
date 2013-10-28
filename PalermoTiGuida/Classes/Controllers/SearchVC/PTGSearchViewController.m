@@ -11,6 +11,7 @@
 #import "PTGURLUtils.h"
 #import "PTGPlaceListViewController.h"
 #import "PTGLocationUtils.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PTGSearchViewController ()
 
@@ -39,6 +40,14 @@
     [super viewWillAppear:animated];
     UIView *lastView = [self.view viewWithTag:111];
     scrollView.contentSize = CGSizeMake(scrollView.contentSize.width, lastView.frame.origin.y + lastView.frame.size.height + 10);
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        searchTextField.layer.cornerRadius = 15;
+        searchTextField.layer.borderWidth = 2;
+        searchTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, searchTextField.frame.size.height)];
+        searchTextField.leftView = view;
+        searchTextField.leftViewMode = UITextFieldViewModeAlways;
+    }
 }
 
 -(void)setupFonts {
@@ -74,8 +83,8 @@
         [searchByCategoryButton setTitle:selectedCategory.name forState:UIControlStateNormal];
     }
     else {
-        selectedCategory = [datasource objectAtIndex:[pickerView selectedRowInComponent:0]];
-        [searchByTypeButton setTitle:selectedCategory.name forState:UIControlStateNormal];
+        selectedSubcategory = [datasource objectAtIndex:[pickerView selectedRowInComponent:0]];
+        [searchByTypeButton setTitle:selectedSubcategory.name forState:UIControlStateNormal];
     }
     
     [self togglePicker:YES];
@@ -167,8 +176,8 @@
 - (IBAction)searchByCategoryPressed:(id)sender {
     if(VALID(selectedCategory, PTGCategory)) {
         PTGPlaceListViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"PTGPlaceListViewController"];
-        vc.parentCategory = selectedCategory;
-        vc.breadcrumbs = @[NSLocalizedString(@"Cerca", @""), selectedCategory.name];
+        vc.parentCategory = selectedSubcategory;
+        vc.breadcrumbs = @[NSLocalizedString(@"Cerca", @""), selectedSubcategory.name];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

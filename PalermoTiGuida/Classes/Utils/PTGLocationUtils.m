@@ -60,8 +60,8 @@
 }
 
 +(NSString *)distanceStringFromString:(NSString *)string {
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    NSNumber *number =[formatter numberFromString:string];
+//    NSDecimalNumber  *formatter = [[NSNumberFormatter alloc] init];
+    NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:string];
     CGFloat distance = [number floatValue];
     return [NSString stringWithFormat:@"%.2fKm",distance];
 }

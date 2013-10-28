@@ -75,7 +75,7 @@
            withResponseOnMainThread:(BOOL)sendResponseOnMainThread
                             success:(void(^)(NSString *requestURL, id JSON))success
                             failure:(void(^)(NSString *requestURL, NSError *error)) failure {
-    [self cancelAllJSONRequests];
+
     dispatch_queue_t responseQueue = nil;
     if(sendResponseOnMainThread) {
         responseQueue = dispatch_get_main_queue();

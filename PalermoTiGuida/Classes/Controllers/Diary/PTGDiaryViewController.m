@@ -68,12 +68,12 @@
     PTGDiaryHeaderView *header = [PTGDiaryHeaderView initializeViews];
     NSString *string = @"";
     if(section == 0) {
-        string = [NSString stringWithFormat:@"%d elementi registrati", [toBeVisited count]];
+        string = [NSString stringWithFormat:@"%d %@",[toBeVisited count], NSLocalizedString(@"elementi registrati", @"")];
         header.bigLabel.text = NSLocalizedString(@"De visitare", @"");
     }
     else {
         header.bigLabel.text = NSLocalizedString(@"Visitati", @"");
-        string = [NSString stringWithFormat:@"%d elementi registrati", [visitedPlaces count]];
+        string = [NSString stringWithFormat:@"%d %@",[visitedPlaces count], NSLocalizedString(@"elementi registrati",@"")];
     }
     header.smallLabel.text = string;
     [header setupFonts];

@@ -41,18 +41,22 @@
 }
 
 -(void)setupDataSource {
-        titleLabel.text = NSLocalizedString(titleLabel.text, @"");
-        [ICFontUtils applyFont:QLASSIK_TB forView:titleLabel];
-        parrentCategories = [NSArray arrayWithArray:[PTGCategory firstLevelCategories]];
-        tableView.rowHeight = 30.f;
-        selectedSection = NSNotFound;
-        sectionInfo = [NSMutableArray new];
-        for(PTGCategory *cat in parrentCategories) {
-            [sectionInfo addObject:[NSNull null]];
-        }
-        self.selectedFilters = [NSMutableArray new];
-        [tableView reloadData];
-
+    titleLabel.text = NSLocalizedString(titleLabel.text, @"");
+    [ICFontUtils applyFont:QLASSIK_TB forView:titleLabel];
+    parrentCategories = [NSArray arrayWithArray:[PTGCategory firstLevelCategories]];
+    selectedSection = NSNotFound;
+    sectionInfo = [NSMutableArray new];
+    for(PTGCategory *cat in parrentCategories) {
+        [sectionInfo addObject:[NSNull null]];
+    }
+    self.selectedFilters = [NSMutableArray new];
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        sectionHeight = 40.f;
+    }
+    else {
+        sectionHeight = 82.f;
+    }
+    [tableView reloadData];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -69,7 +73,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 40.f;
+        return sectionHeight;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -113,7 +117,7 @@
     if([self.delegate respondsToSelector:@selector(filterResultsUsingCategories:)]) {
         [self.delegate filterResultsUsingCategories:self.selectedFilters];
     }
-
+    
 }
 
 -(void)openSectionAtIndex:(NSInteger)index {

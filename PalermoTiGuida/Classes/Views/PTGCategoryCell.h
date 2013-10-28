@@ -11,7 +11,7 @@
 @interface PTGCategoryCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *cellBgImage;
 @property (weak, nonatomic) IBOutlet UILabel *categoryNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *countLabel;
+@property (strong, nonatomic) IBOutlet UIButton *countButton;
 
 
 +(PTGCategoryCell *)setupViews;

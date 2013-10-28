@@ -7,6 +7,7 @@
 //
 
 #import "PTGBaseTabBarViewController.h"
+#import "PTGNewsCategory.h"
 
 @interface PTGBaseTabBarViewController ()
 
@@ -25,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tabBar.backgroundImage = [UIImage imageNamed:TAB_BAR_BG];
+    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         [self setImagesFromiOS7];
     } else {
@@ -34,6 +35,17 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor colorWithRed:74.f/255.f green:87.f/255 blue:91.f/255.f alpha:1]} forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor colorWithRed:74.f/255.f green:87.f/255 blue:91.f/255.f alpha:1]} forState:UIControlStateSelected];
     [self setTitles];
+    [PTGNewsCategory newsCategoriesWithSuccess:^(NSInteger newNews) {
+        if(newNews != 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                ((UITabBarItem *)[self.tabBar.items objectAtIndex:4]).badgeValue = [NSString stringWithFormat:@"%d",newNews];
+            });
+            
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+    
 }
 
 -(void)setTitles {

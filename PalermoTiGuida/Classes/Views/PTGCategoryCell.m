@@ -37,13 +37,15 @@
 -(void)isFirstCell {
     [self setupFont];
     self.cellBgImage.image = [UIImage imageNamed:@"table_top_cell_bg"];
-    self.cellBgImage.highlightedImage = [UIImage imageNamed:@"table_top_cell_selected"];
+    self.cellBgImage.layer.masksToBounds = YES;
+    self.cellBgImage.clipsToBounds  = YES;
+    self.cellBgImage.highlightedImage = [[UIImage imageNamed:@"table_top_cell_selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(30, 26, 30, 26)];
 }
 
 -(void)isMiddleCell {
     [self setupFont];
     self.cellBgImage.image = [UIImage imageNamed:@"table_middle_cell_bg"];
-    self.cellBgImage.highlightedImage = [UIImage imageNamed:@"table_midle_cell_selected"];
+    self.cellBgImage.highlightedImage = [[UIImage imageNamed:@"table_midle_cell_selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 26, 10, 26)];
 }
 
 -(void)setupFont {
@@ -53,7 +55,7 @@
 -(void)isLastCell {
     [self setupFont];
     self.cellBgImage.image = [UIImage imageNamed:@"table_bottom_cell"];
-    self.cellBgImage.highlightedImage = [UIImage imageNamed:@"table_bottom_cell_selected"];
+    self.cellBgImage.highlightedImage = [[UIImage imageNamed:@"table_bottom_cell_selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 26, 10, 26)];;
 }
 
 +(PTGCategoryCell *)setupViews {

@@ -15,14 +15,6 @@
                     <rect key="frame" x="9" y="0.0" width="302" height="272"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" id="Vi3-wi-xgv">
-                    <rect key="frame" x="9" y="0.0" width="302" height="155"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
-                </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="v3J-sK-koV">
                     <rect key="frame" x="180" y="163" width="120" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -80,7 +72,6 @@
             <connections>
                 <outlet property="bgImage" destination="FnS-8a-pSD" id="QNe-eN-W5a"/>
                 <outlet property="buttonContainer" destination="tsU-Sp-Zn0" id="BrR-WQ-hvJ"/>
-                <outlet property="descriptionTextField" destination="Vi3-wi-xgv" id="42w-GR-L5f"/>
                 <outlet property="imbarcaoButton" destination="smH-Qx-mtq" id="QGD-TZ-W2k"/>
                 <outlet property="mainImageView" destination="FnS-8a-pSD" id="TOk-MM-Agm"/>
                 <outlet property="moreButton" destination="v3J-sK-koV" id="LSJ-sy-t5x"/>

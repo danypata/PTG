@@ -45,6 +45,12 @@
 +(NSString *)placeUrl {
     return [[self baseUrlString] stringByAppendingString:placeByIdUrl];
 }
++(NSString *)categoriesNewsUrl{
+    return [[self baseUrlString] stringByAppendingString:newsCategoriesUrl];
+}
++(NSString *)newsByCategoryUrl {
+    return [[self baseUrlString] stringByAppendingString:newsByCategoryUrl];
+}
 +(NSString *)placeWithDistanceUrl {
     return [[self baseUrlString] stringByAppendingString:placeWithDistanceUrl];
 }
@@ -55,14 +61,14 @@
     NSString *imageType = @"";
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2.0){
-            imageType = mainImageIpadRetina;
+            imageType = mainImageIphoneRetina;
         }
         else {
             imageType = mainImageIphone;
         }
     }
     else {
-        imageType = mainImageIphoneRetina;
+        imageType = mainImageIpadRetina;
     }
     ZLog(@"%@",[[self baseUrlString] stringByAppendingFormat:@"%@maincategory/%@-%@.jpg", imagePath,imageId,imageType ]);
     return [[self baseUrlString] stringByAppendingFormat:@"%@maincategory/%@-%@.jpg", imagePath,imageId,imageType ];

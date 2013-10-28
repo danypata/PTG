@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PTGBaseViewController.h"
-@interface PTGNewsViewController : PTGBaseViewController
+@interface PTGNewsViewController : PTGBaseViewController <UITableViewDataSource, UITableViewDelegate>{
+     IBOutlet UITableView *newsTableView;
+    
+    NSMutableArray *normalCategories;
+    NSMutableArray *specialCategories;
+}
 
 @end

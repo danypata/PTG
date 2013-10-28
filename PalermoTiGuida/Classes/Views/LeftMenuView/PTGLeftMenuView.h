@@ -22,6 +22,7 @@
     NSArray *parrentCategories;
     NSInteger selectedSection;
     NSMutableArray *sectionInfo;
+    CGFloat sectionHeight;
 }
 @property(nonatomic, strong)    NSMutableArray *selectedFilters;
 @property(nonatomic, assign) id<PTGLeftMenuViewDelegate>delegate;

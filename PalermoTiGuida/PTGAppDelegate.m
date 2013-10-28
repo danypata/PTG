@@ -12,8 +12,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:NAV_BAR_BG_IMAGE] forBarMetrics:UIBarMetricsDefault];
+    UIImage *navBarImg = [[UIImage imageNamed:NAV_BAR_BG_IMAGE] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    [[UINavigationBar appearance] setBackgroundImage:navBarImg forBarMetrics:UIBarMetricsDefault];
     [[UITabBar appearance] setSelectionIndicatorImage:[UIImage new]];
+    UIImage *image =[[UIImage imageNamed:@"tab_bar_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+    [[UITabBar appearance] setBackgroundImage:image];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"back_button_bg"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"back_button_bg"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
 
