@@ -22,11 +22,12 @@
     PTGCustomMapView *customMapView;
     NSMutableArray *backupAnnotations;
     TTFadeSwitch *fadeLabelSwitchLabel;
+    CLLocationCoordinate2D oldValues;
 }
 
 
 
-@property(nonatomic, strong) NSArray *places;
+@property(nonatomic, strong) NSMutableArray *places;
 
 
 

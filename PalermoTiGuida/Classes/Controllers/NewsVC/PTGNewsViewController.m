@@ -11,6 +11,7 @@
 #import "PTGNewsCategory.h"
 #import "PTGBreadcrumbView.h"
 #import "PTGNewsListViewController.h"
+#import "PTGBaseTabBarViewController.h"
 
 @interface PTGNewsViewController ()
 
@@ -50,6 +51,11 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [newsTableView reloadData];
 }
 
 
@@ -129,6 +135,9 @@
     else {
         category = [specialCategories objectAtIndex:indexPath.row];
     }
+    category.newNews = [NSNumber numberWithInteger:0];
+    [category.managedObjectContext saveToPersistentStoreAndWait];
+    [((PTGBaseTabBarViewController *)self.tabBarController) updateNewsBadge];
     vc.breadCrumbs = @[NSLocalizedString(@"News", @""), category.name];
     vc.parentCategory = category;
     [self.navigationController pushViewController:vc animated:YES];

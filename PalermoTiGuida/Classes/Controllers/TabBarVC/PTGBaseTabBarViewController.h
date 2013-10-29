@@ -10,6 +10,10 @@
 
 #define TAB_BAR_BG  @"tab_bar_bg"
 
-@interface PTGBaseTabBarViewController : UITabBarController
+@interface PTGBaseTabBarViewController : UITabBarController {
+    
+}
+
+-(void)updateNewsBadge;
 
 @end

@@ -12,12 +12,12 @@
 #define KM 1000
 @interface PTGLocationUtils : NSObject<CLLocationManagerDelegate> {
     CLLocationManager *manager;
-    CLLocationCoordinate2D oldCoordinates;
-    void (^completionBlock)(CLLocation *location);
+    CLLocation *location;
 }
 
 
 +(PTGLocationUtils *)sharedInstance;
 -(void)getLocationWithCompletionBlock:(void(^)(CLLocation *location))block;
 +(NSString *)distanceStringFromString:(NSString *)string;
+-(void)startUpdating;
 @end

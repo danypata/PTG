@@ -11,6 +11,7 @@
 #import "PTGNewsListCell.h"
 #import "PTGCategoryCell.h"
 #import "PTGNewsDetailsViewController.h"
+#import "PTGBaseTabBarViewController.h"
 
 @interface PTGNewsListViewController ()
 
@@ -45,13 +46,21 @@
     if(VALID(self.parentCategory, PTGNewsCategory)) {
         [self.parentCategory loadNewsWithSuccess:^(BOOL done) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                ZLog(@"Reloading");
                 [newsTableView reloadData];
+                ZLog(@"DoneLoading");
+                
             });
         } failure:^(NSError *error) {
             
         }];
     }
 }
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    ZLog(@"Gone");
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -182,10 +191,14 @@
     else {
         if(indexPath.section == 0) {
             PTGNewsCategory *category = [[self.parentCategory.children allObjects] objectAtIndex:indexPath.row];
+            category.newNews = [NSNumber numberWithInt:0];
+            [category.managedObjectContext saveToPersistentStoreAndWait];
+            
             PTGNewsListViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([self class])];
             vc.parentCategory = category;
             category.newNews = [NSNumber numberWithInteger:0];
             [category.managedObjectContext saveToPersistentStoreAndWait];
+            [((PTGBaseTabBarViewController *)self.tabBarController) updateNewsBadge];
             NSMutableArray *aray = [NSMutableArray arrayWithArray:self.breadCrumbs];
             [aray addObject:self.parentCategory.name];
             vc.breadCrumbs = aray;

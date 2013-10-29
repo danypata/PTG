@@ -136,9 +136,28 @@
         }
     }
 }
+-(void)remainingAnnotations {
+    NSArray *places = [mapView.annotations valueForKey:@"place"];
+    NSArray *titles = [places valueForKey:@"name"];
+    NSArray *newTitles = [self.places valueForKey:@"name"];
+    NSMutableArray *remainingPlaces = [NSMutableArray new];
+    for(NSString *newTitile in newTitles) {
+        if(![titles containsObject:newTitile]) {
+            [remainingPlaces addObject:[self.places objectAtIndex:[newTitles indexOfObject:newTitile]]];
+        }
+    }
+    self.places= [NSMutableArray arrayWithArray:remainingPlaces];
+    
+    
+}
 
 -(void)addAnnotations {
-    [self removeAnnotations];
+    if([leftMenuview.selectedFilters count] == 0) {
+        [self remainingAnnotations];
+    }
+    else {
+        [mapView removeAnnotations:mapView.annotations];
+    }
     for(PTGPlace *place in self.places) {
         [UIImageView downloadImageWithURLString:[[PTGURLUtils pinImageUrlString] stringByAppendingFormat:@"%@.png",place.category.categoryId]  successBlock:^(UIImage *image) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -261,10 +280,9 @@
     [PTGPlace placesNearMeForUrl:url succes:^(NSString *requestUrl, NSArray *products) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self removeActivityIndicator];
-            self.places = [NSArray arrayWithArray:products];
+            self.places = [NSMutableArray arrayWithArray:products];
             backupAnnotations = [NSMutableArray arrayWithArray:self.places];
             [self filterResultsUsingCategories:leftMenuview.selectedFilters];
-            [self addAnnotations];
         });
     } failure:^(NSString *requestUrl, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -284,11 +302,22 @@
         CLLocation * ul = mMapView.userLocation.location;
         CGPoint userPoint = [mMapView convertCoordinate: ul.coordinate toPointToView: mMapView];
         CGPoint mapPoint = [mMapView convertCoordinate: mMapView.centerCoordinate toPointToView: mMapView];
-        ZLog(@"Difference = %f",fabs(userPoint.x - mapPoint.x));
         if (fabs(userPoint.x - mapPoint.x) > MAP_CENTER_RECTANGLE_SIZE || fabs(userPoint.y - mapPoint.y) > MAP_CENTER_RECTANGLE_SIZE){
-            [self loadPlacesForCurrentRegion];
+//
         }
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:oldValues.latitude longitude:oldValues.longitude];
+        CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:mapView.region.center.latitude longitude:mapView.region.center.longitude];
+        if([location distanceFromLocation:newLocation] > 1000) {
+           [self loadPlacesForCurrentRegion];
+        }
+        oldValues = mapView.region.center;
+        ZLog(@"Distance %f", [location distanceFromLocation:newLocation]);
     }
+    ZLog(@"Map Center %f %f", mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude);
+    
+    
+
+    
 }
 
 -(double)getRadius {
@@ -311,15 +340,15 @@
 -(void)filterResultsUsingCategories:(NSArray *)categories {
     NSArray *ids = [categories valueForKey:@"categoryId"];
     if(VALID_NOTEMPTY(ids, NSArray)) {
-        self.places = [backupAnnotations filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PTGPlace *evaluatedObject, NSDictionary *bindings) {
+        self.places = [[backupAnnotations filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PTGPlace *evaluatedObject, NSDictionary *bindings) {
             return [ids containsObject:evaluatedObject.category.categoryId];
-        }]];
-        [self addAnnotations];
+        }]] mutableCopy];
         [fadeLabelSwitchLabel setOn:NO];
     }
     else {
         [fadeLabelSwitchLabel setOn:YES];
     }
+     [self addAnnotations];
 }
 
 

@@ -103,7 +103,6 @@
 
 -(void)loadNewsWithSuccess:(void(^)(BOOL done))successBlock failure:(void(^)(NSError *error))failureBlock {
     [[PTGLocationUtils sharedInstance] getLocationWithCompletionBlock:^(CLLocation *location) {
-        [[SMFWebService sharedInstance] cancelAllJSONRequests];
         NSString *url = [[PTGURLUtils newsByCategoryUrl] stringByAppendingFormat:@"%@/%f/%f", self.newsCategoryId, location.coordinate.latitude, location.coordinate.longitude];
         [[SMFWebService sharedInstance] sendJSONRequestWithURLString:url
                                                               method:@"GET"
@@ -111,6 +110,7 @@
                                             withResponseOnMainThread:NO
                                                              success:^(NSString *requestURL, id JSON) {
                                                                  self.newNews = [NSNumber numberWithInteger:0];
+                                                                 ZLog(@"recived datta");
                                                                  [self addNewsFromJSON:JSON];
                                                                  successBlock(YES);
                                                              } failure:^(NSString *requestURL, NSError *error) {

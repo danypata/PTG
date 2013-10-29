@@ -26,41 +26,29 @@
     static PTGLocationUtils *instance = nil;
     if(!instance) {
         instance = [[PTGLocationUtils alloc] init];
+    
     }
     return instance;
 }
 
+-(void)startUpdating {
+    [manager startMonitoringSignificantLocationChanges];
+}
 
 -(void)getLocationWithCompletionBlock:(void(^)(CLLocation *location))block {
-    oldCoordinates.longitude =0;
-    oldCoordinates.latitude = 0;
-    completionBlock = block;
-    [manager startUpdatingLocation];
-
+    block(location);
 
 }
 
 -(void)locationManager:(CLLocationManager *)mManager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    [manager stopUpdatingLocation];
-    manager.delegate = nil;
-    CLLocationCoordinate2D coord = newLocation.coordinate;
-    if(coord.latitude != oldCoordinates.latitude && coord.longitude != oldCoordinates.longitude) {
-        oldCoordinates = coord;
-        completionBlock(newLocation);
-    }
+    location = newLocation;
 }
 
 -(void)locationManager:(CLLocationManager *)mManager didUpdateLocations:(NSArray *)locations {
-    CLLocationCoordinate2D coord = ((CLLocation *)[locations objectAtIndex:0]).coordinate;
-    if(coord.latitude != oldCoordinates.latitude && coord.longitude != oldCoordinates.longitude) {
-        oldCoordinates = coord;
-        completionBlock([locations lastObject]);
-    }
-    [manager stopUpdatingLocation];
+       location = [locations lastObject];
 }
 
 +(NSString *)distanceStringFromString:(NSString *)string {
-//    NSDecimalNumber  *formatter = [[NSNumberFormatter alloc] init];
     NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:string];
     CGFloat distance = [number floatValue];
     return [NSString stringWithFormat:@"%.2fKm",distance];

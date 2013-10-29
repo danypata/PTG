@@ -32,4 +32,5 @@
     annotationCoord.longitude = longit;
     _coordinate = annotationCoord;
 }
+
 @end

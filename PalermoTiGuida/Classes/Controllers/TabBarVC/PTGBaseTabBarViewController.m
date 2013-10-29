@@ -8,7 +8,7 @@
 
 #import "PTGBaseTabBarViewController.h"
 #import "PTGNewsCategory.h"
-
+#import "PTGLocationUtils.h"
 @interface PTGBaseTabBarViewController ()
 
 @end
@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[PTGLocationUtils sharedInstance] startUpdating];
     [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         [self setImagesFromiOS7];
@@ -109,6 +110,20 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
+}
+
+-(void)updateNewsBadge {
+    NSArray *all = [PTGNewsCategory findAll];
+    NSInteger badgeNumber = 0;
+    for(PTGNewsCategory *news in all) {
+        badgeNumber += [news.newNews integerValue];
+    }
+    if(badgeNumber != 0) {
+        ((UITabBarItem *)[self.tabBar.items objectAtIndex:4]).badgeValue = [NSString stringWithFormat:@"%d",badgeNumber];
+    }
+    else {
+        ((UITabBarItem *)[self.tabBar.items objectAtIndex:4]).badgeValue = nil;
+    }
 }
 
 @end

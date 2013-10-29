@@ -156,6 +156,7 @@
 
 
 - (IBAction)showCategoryPicker:(id)sender {
+    [searchTextField resignFirstResponder];
     datasource = [PTGCategory firstLevelCategories];
     selectedCategory = nil;
     [pickerView reloadAllComponents];
@@ -163,6 +164,7 @@
 }
 
 - (IBAction)showTypesPicker:(id)sender {
+    [searchTextField resignFirstResponder];
     if(VALID(selectedCategory, PTGCategory)) {
         datasource = [selectedCategory allSubcategories];
         [pickerView reloadAllComponents];
