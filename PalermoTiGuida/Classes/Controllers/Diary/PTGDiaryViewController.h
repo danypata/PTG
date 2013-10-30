@@ -13,6 +13,9 @@
     IBOutlet UITableView *diaryTableView;
     NSMutableArray *visitedPlaces;
     NSMutableArray *toBeVisited;
+    CGFloat sectionHeight;
+    CGFloat noCellHeight;
+    CGFloat defaultCellHeight;
     
 }
 

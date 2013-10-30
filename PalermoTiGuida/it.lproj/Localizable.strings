@@ -1,7 +1,70 @@
-/* 
-  Localizable.strings
-  PalermoTiGuida
+/* Localized versions of Info.plist keys */
 
-  Created by dan.patacean on 28/10/13.
-  Copyright (c) 2013 Dan. All rights reserved.
-*/
+"Guida"                 = "Guida";
+"Around Me"             = "Around Me";
+"Cerca"                 = "Cerca";
+"Extra"                 = "Extra";
+"News"                  = "News";
+"Back"                  = "Indietro";
+"Telefono:"             = "Telefono:";
+"Fax:"                  = "Fax:";
+
+"Hai già visitato questo punto d'interesse?" = "Hai già visitato questo punto d'interesse?";
+"SI" = "SI";
+"NO" ="NO";
+"Dalle " = "Dalle ";
+" alle " = " alle ";
+"Orari di apertura: " = "Orari di apertura: ";
+" e dalle" = " e dalle";
+" alle" = " alle";
+"elementi registrati" = "elementi registrati";
+"De visitare" = "De visitare";
+"Visitati" = "Visitati";
+"elementi registrati" = "elementi registrati";
+"Dal" = "Dal";
+"al" = "al";
+"News ed Eventi" = "News ed Eventi";
+"News" = "News";
+"Annulla" = "Annulla";
+"Conferma" = "Conferma";
+"Keyword to short!" ="Chiave a breve!";
+"Got It" = "Capito";
+"Please enter a longer keyword. The keyword must have at least 4 characters."="Si prega di inserire una parola chiave più lungo. La parola chiave deve avere almeno 4 caratteri.";
+"No search results!" = "Nessun risultato di ricerca!";
+"We didn't found any place matching "="Non abbiamo trovato alcun amore di corrispondenza ";
+"Cerca" = "Cerca";
+
+"In quest’area del diario potrai tenere come promemoria tutti quei punti d’interesse che  ancora non hai visitato, ma che conti di vedere. Ti basterà attivare il “Metti in diario” nella schermata del monumento. PALERMOtiGUIDA ti chiederà se hai già visitato o meno il punto d’interesse"  = "In quest’area del diario potrai tenere come promemoria tutti quei punti d’interesse che  ancora non hai visitato, ma che conti di vedere. Ti basterà attivare il “Metti in diario” nella schermata del monumento. PALERMOtiGUIDA ti chiederà se hai già visitato o meno il punto d’interesse";
+
+"In quest’area del diario potrai tenere come promemoria tutti quei punti d’interesse che hai già visitato. Ti basterà attivare il “Metti in diario” nella schermata del monumento. PALERMOtiGUIDA ti chiederà se hai già visitato o meno il punto d’interesse" = "In quest’area del diario potrai tenere come promemoria tutti quei punti d’interesse che hai già visitato. Ti basterà attivare il “Metti in diario” nella schermata del monumento. PALERMOtiGUIDA ti chiederà se hai già visitato o meno il punto d’interesse";
+
+
+"Trova Porto" = "Trova Porto";
+"Trova Imbarcao" = "Trova Imbarcao";
+"leggi ancora" = "leggi ancora";
+"Metti in diario" = "Metti in diario";
+"Contatti" = "Contatti";
+"Condividi" = "Condividi";
+"Localizza" = "Localizza";
+"Presso:" = "Presso:";
+"Distanta da te:" = "Distanta da te:";
+"Dove ti porto ?" = "Dove ti porto ?";
+"Tipologia:" = "Tipologia:";
+"ELIMINA" = "ELIMINA";
+"Visualizza tutti i punti d’interesse" = "Visualizza tutti i punti d’interesse";
+"PALERMOtiGUIDA è un progetto ideato da" = "PALERMOtiGUIDA è un progetto ideato da";
+"Per contatti:" = "Per contatti:";
+"App development & design" = "App development & design";
+"News del:" = "News del:";
+"Validità:" = "Validità:";
+"Dettagli:" = "Dettagli:";
+"Cerca il tuo punto d’interesse" = "Cerca il tuo punto d’interesse";
+"Inserisci il nome del punto d’interesse" = "Inserisci il nome del punto d’interesse";
+"Inserisci il testo" = "Inserisci il testo";
+"Cerca per tipologia" = "Cerca per tipologia";
+"Seleziona categoria" = "Seleziona categoria";
+"Seleziona tipologia" = "Seleziona tipologia";
+"Anullar" = "Anullar";
+"Localiza nella mapa" = "Localiza nella mapa";
+"Descrizione" = "Descrizione";
+

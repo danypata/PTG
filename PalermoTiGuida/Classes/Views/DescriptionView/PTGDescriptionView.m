@@ -100,6 +100,9 @@
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:moreButton];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:portoButton];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:imbarcaoButton];
+    [moreButton setTitle:NSLocalizedString(moreButton.titleLabel.text, @"") forState:UIControlStateNormal];
+    [portoButton setTitle:NSLocalizedString(portoButton.titleLabel.text, @"") forState:UIControlStateNormal];
+    [imbarcaoButton setTitle:NSLocalizedString(imbarcaoButton.titleLabel.text, @"") forState:UIControlStateNormal];
 }
 
 - (IBAction)moreButtonPressed:(id)sender {

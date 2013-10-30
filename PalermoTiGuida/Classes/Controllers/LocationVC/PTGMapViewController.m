@@ -137,7 +137,13 @@
     }
 }
 -(void)remainingAnnotations {
-    NSArray *places = [mapView.annotations valueForKey:@"place"];
+    NSMutableArray *places = [NSMutableArray new];
+    for(PTGMapAnnotation *annotation in mapView.annotations) {
+        if(![annotation isKindOfClass:[MKUserLocation class]]) {
+            [places addObject:annotation.place];
+        }
+    }
+
     NSArray *titles = [places valueForKey:@"name"];
     NSArray *newTitles = [self.places valueForKey:@"name"];
     NSMutableArray *remainingPlaces = [NSMutableArray new];
@@ -146,7 +152,7 @@
             [remainingPlaces addObject:[self.places objectAtIndex:[newTitles indexOfObject:newTitile]]];
         }
     }
-    self.places= [NSMutableArray arrayWithArray:remainingPlaces];
+    self.places= [NSArray arrayWithArray:remainingPlaces];
     
     
 }
@@ -280,7 +286,7 @@
     [PTGPlace placesNearMeForUrl:url succes:^(NSString *requestUrl, NSArray *products) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self removeActivityIndicator];
-            self.places = [NSMutableArray arrayWithArray:products];
+            self.places = [NSArray arrayWithArray:products];
             backupAnnotations = [NSMutableArray arrayWithArray:self.places];
             [self filterResultsUsingCategories:leftMenuview.selectedFilters];
         });

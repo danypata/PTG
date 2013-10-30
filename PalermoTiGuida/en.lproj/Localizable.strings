@@ -1,7 +1,115 @@
-/* 
-  Localizable.strings
-  PalermoTiGuida
+/* Localized versions of Info.plist keys */
 
-  Created by dan.patacean on 28/10/13.
-  Copyright (c) 2013 Dan. All rights reserved.
-*/
+"Guida"                 = "Guide";
+"Around Me"             = "Around Me";
+"Cerca"                 = "Search";
+"Extra"                 = "Extra";
+"News"                  = "News";
+"Back"                  = "Back";
+"Telefono:"             = "Phone:";
+"Fax:"                  = "Fax:";
+
+"Hai già visitato questo punto d'interesse?" = "Hai già visitato questo punto d'interesse?";
+
+"SI" = "YES";
+
+"NO" ="NO";
+
+"Dalle " = "From ";
+
+" alle " = " to ";
+
+"Orari di apertura: " = "Opening hours: ";
+
+" e dalle" = " and from";
+
+" alle" = " to";
+
+"elementi registrati" = "recorded items";
+
+"De visitare" = "To visit";
+
+"Visitati" = "Visited";
+
+"Dal" = "From";
+
+"al" = "To";
+
+"News ed Eventi" = "News and Events";
+
+"News" = "News";
+
+"Annulla" = "Cancel";
+
+"Conferma" = "Confirm";
+
+"Keyword to short!" ="Keyword to short!";
+
+"Got It" = "Got It";
+
+"Please enter a longer keyword. The keyword must have at least 4 characters."="Please enter a longer keyword. The keyword must have at least 4 characters.";
+
+"No search results!" = "No search results!";
+
+"We didn't found any place matching "="We didn't found any place matching ";
+
+"In quest’area del diario potrai tenere come promemoria tutti quei punti d’interesse che  ancora non hai visitato, ma che conti di vedere. Ti basterà attivare il “Metti in diario” nella schermata del monumento. PALERMOtiGUIDA ti chiederà se hai già visitato o meno il punto d’interesse"  = "In this section of the agenda you can hold as  reminder  all not yet visited points of interest, which you intend to visit. You should only activate ‘Put in the agenda’ in the screenshot of the relevant monument. PALERMOtiGUIDA will ask you if you have already visited the point of interest.";
+
+"In quest’area del diario potrai tenere come promemoria tutti quei punti d’interesse che hai già visitato. Ti basterà attivare il “Metti in diario” nella schermata del monumento. PALERMOtiGUIDA ti chiederà se hai già visitato o meno il punto d’interesse" = "In this section of the agenda you can hold as  reminder  all visited points of interest. You should only activate ‘Put in the agenda’ in the screenshot of the relevant monument. PALERMOtiGUIDA will ask you if you have already visited or not the point of interest";
+
+
+"Trova Porto" = "Find the port";
+
+"Trova Imbarcao" = "Find the boarding point";
+
+"leggi ancora" = "show more";
+
+"Metti in diario" = "Add to diary";
+
+"Contatti" = "Contacts";
+
+"Condividi" = "Share";
+
+"Localizza" = "Find on the map";
+
+"Presso:" = "By:";
+
+"Distanta da te:" = "Far from you:";
+
+"Dove ti porto ?" = "Where should I carry you?";
+
+"Tipologia:" = "Type:";
+
+"ELIMINA" = "Delete";
+
+"Visualizza tutti i punti d’interesse" = "View all points of interest";
+
+"PALERMOtiGUIDA è un progetto ideato da" = "The project PALERMOtiGUIDA is created by";
+
+"Per contatti:" = "For contacts:";
+
+"App development & design" = "App development & design";
+
+"News del:" = "News dated:";
+
+"Validità:" = "Validity:";
+
+"Dettagli:" = "Details:";
+
+"Cerca il tuo punto d’interesse" = "Find your point of interest";
+
+"Inserisci il nome del punto d’interesse" = "Insert your point of interest";
+
+"Inserisci il testo" = "Enter the text";
+
+"Cerca per tipologia" = "Look by type";
+
+"Seleziona categoria" = "Select a category";
+
+"Seleziona tipologia" = "Select a type";
+
+"Anullar" = "Cancel";
+
+"Localiza nella mapa" = "Find it on the map";
+
+"Descrizione" = "Description";

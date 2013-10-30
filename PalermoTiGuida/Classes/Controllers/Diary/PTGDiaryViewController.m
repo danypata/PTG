@@ -29,6 +29,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        defaultCellHeight = 64.f;
+        sectionHeight = 60.f;
+        noCellHeight = 150.f;
+    }
+    else {
+        defaultCellHeight = 125.f;
+        sectionHeight = 104.f;
+        noCellHeight = 291.f;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -81,20 +91,20 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 60;
+    return sectionHeight;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
         if([toBeVisited count] == 0) {
-            return  150;
+            return  noCellHeight;
         }
-        return 64;
+        return defaultCellHeight;
     }
     else {
         if([visitedPlaces count] == 0) {
-            return 150;
+            return noCellHeight;
         }
-        return 64;
+        return defaultCellHeight;
     }
 }
 
@@ -107,8 +117,9 @@
             if(!cell) {
                 cell = [PTGNoDataCell initializeVies];
                 [cell setupFonts];
+                cell.backgroundColor = [UIColor clearColor];
             }
-            cell.textView.text = NSLocalizedString(@"In quest’area del diario potrai tenere come                                                    promemoria tutti quei punti d’interesse che ancora non hai visitato, ma che conti di vedere.\n Ti basterà attivare il “Metti in diario” nella schermata del monumento. APPalermo ti chiederà se hai già visitato o meno il punto d’interesse.", @"");
+            cell.textView.text = NSLocalizedString(@"In quest’area del diario potrai tenere come promemoria tutti quei punti d’interesse che  ancora non hai visitato, ma che conti di vedere. Ti basterà attivare il “Metti in diario” nella schermata del monumento. PALERMOtiGUIDA ti chiederà se hai già visitato o meno il punto d’interesse", @"");
             return cell;
         }
         else {
@@ -118,6 +129,7 @@
                 PTGCustomDeleteButton *button = [PTGCustomDeleteButton initializeVies];
                 [button setupGestures];
                 button.delegate = self;
+                cell.backgroundColor = [UIColor clearColor];
                 button.cellIndex = indexPath;
                 button.frame = CGRectMake(-button.frame.size.width +15,
                                           (cell.frame.size.height - button.frame.size.height) / 2,
@@ -138,8 +150,9 @@
             if(!cell) {
                 cell = [PTGNoDataCell initializeVies];
                 [cell setupFonts];
+                cell.backgroundColor = [UIColor clearColor];
             }
-            cell.textView.text = NSLocalizedString(@"In quest’area del diario potrai tenere come                                                    promemoria tutti quei punti d’interesse che ancora non hai visitato, ma che conti di vedere. \n Ti basterà attivare il “Metti in diario” nella schermata del monumento. APPalermo ti chiederà se hai già visitato o meno il punto d’interesse.", @"");
+            cell.textView.text = NSLocalizedString(@"In quest’area del diario potrai tenere come promemoria tutti quei punti d’interesse che hai già visitato. Ti basterà attivare il “Metti in diario” nella schermata del monumento. PALERMOtiGUIDA ti chiederà se hai già visitato o meno il punto d’interesse", @"");
             return cell;
 
         }
@@ -151,6 +164,7 @@
                 PTGCustomDeleteButton *button = [PTGCustomDeleteButton initializeVies];
                 [button setupGestures];
                 button.cellIndex = indexPath;
+                cell.backgroundColor = [UIColor clearColor];
                 button.delegate = self;
                 button.frame = CGRectMake(-button.frame.size.width +10,
                                           (cell.frame.size.height - button.frame.size.height) / 2,

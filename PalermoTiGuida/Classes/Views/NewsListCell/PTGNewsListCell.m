@@ -38,7 +38,10 @@
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:dayLabel];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:monthLabel];
     self.backgroundView.backgroundColor = [UIColor clearColor];
-
+    
+    streetStaticLabel.text = NSLocalizedString(streetStaticLabel.text, @"");
+    distanceStaticLabel.text = NSLocalizedString(distanceStaticLabel.text, @"");
+    
     
     CGSize size = [streetStaticLabel.text sizeWithFont:streetStaticLabel.font];
     [self repositionLabel:streetLabel forSize:size anchorLabel:streetStaticLabel];

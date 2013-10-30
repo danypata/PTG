@@ -120,7 +120,9 @@
     json = [PTGJSONUtils clearJSON:json];
     self.categoryType = [json objectForKey:placeKeyCategoryType];
     self.street = [json objectForKey:placeKeyStreet];
-    self.distance = [PTGLocationUtils distanceStringFromString:[json objectForKey:placeKeyDistance]];
+    if(VALID_NOTEMPTY([json objectForKey:placeKeyDistance], NSString)) {
+        self.distance = [PTGLocationUtils distanceStringFromString:[json objectForKey:placeKeyDistance]];
+    }
     self.streetNo = [json objectForKey:@"streetno"];
     self.zipCode = [json objectForKey:@"zip"];
     self.province = [json objectForKey:@"province"];

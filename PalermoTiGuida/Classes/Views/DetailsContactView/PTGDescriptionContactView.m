@@ -60,6 +60,7 @@
                             self.frame.size.width,
                             buttonsView.frame.size.height + buttonsView.frame.origin.y);
     [self addSwitch];
+    [self setupFonts];
     
 }
 
@@ -82,6 +83,10 @@
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:twitterButton];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:switchLabel];
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:headerTitleLabel];
+    headerTitleLabel.text = NSLocalizedString(headerTitleLabel.text, @"");
+    switchLabel.text = NSLocalizedString(switchLabel.text, @"");
+    [facebookButton setTitle:NSLocalizedString(facebookButton.titleLabel.text, @"") forState:UIControlStateNormal];
+    [twitterButton setTitle:NSLocalizedString(twitterButton.titleLabel.text, @"") forState:UIControlStateNormal];
 }
 - (IBAction)facebookButtonTapped:(id)sender {
 }

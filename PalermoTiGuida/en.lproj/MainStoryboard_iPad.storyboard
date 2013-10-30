@@ -201,6 +201,7 @@
                         <outlet property="restaurantButton" destination="DLa-G0-rHs" id="Sjo-if-icE"/>
                         <outlet property="sleepingButton" destination="Jgd-HJ-4zh" id="xt0-by-n7F"/>
                         <segue destination="Vbz-8b-QS3" kind="push" identifier="SubcategorySegue" id="Zwq-ag-Ue4"/>
+                        <segue destination="i01-QV-cmr" kind="push" identifier="Diary" id="O9o-uk-cN7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FI6-5q-DJI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -299,6 +300,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8bb-U8-TLh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4222" y="-1636"/>
+        </scene>
+        <!--Diary View Controller-->
+        <scene sceneID="ECd-G3-G9S">
+            <objects>
+                <viewController id="i01-QV-cmr" customClass="PTGDiaryViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="szM-hi-shY">
+                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="striped_bg.png" id="bVE-dt-EkD">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="911"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="125" sectionHeaderHeight="58" sectionFooterHeight="22" id="kjd-5l-spK">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="911"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="i01-QV-cmr" id="OQ0-j2-GJQ"/>
+                                    <outlet property="delegate" destination="i01-QV-cmr" id="b5s-Me-Kzj"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="7fU-YA-gJD"/>
+                    <connections>
+                        <outlet property="diaryTableView" destination="kjd-5l-spK" id="9Ar-Oz-Rpn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="30l-3l-ckL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4233" y="-268"/>
         </scene>
         <!--Place Details View Controller-->
         <scene sceneID="bKd-rj-M6M">
@@ -462,7 +498,7 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="X18-fb-VnY">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="X18-fb-VnY">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="911"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
@@ -862,8 +898,8 @@
                                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distante da te:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s1g-eP-4Yk">
-                                                <rect key="frame" x="183" y="79" width="200" height="28"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distanta da te:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s1g-eP-4Yk">
+                                                <rect key="frame" x="183" y="79" width="200" height="31"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <color key="textColor" red="0.0" green="0.68627450980000004" blue="1" alpha="1" colorSpace="deviceRGB"/>

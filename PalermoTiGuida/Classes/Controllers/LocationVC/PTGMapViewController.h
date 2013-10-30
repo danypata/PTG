@@ -27,7 +27,7 @@
 
 
 
-@property(nonatomic, strong) NSMutableArray *places;
+@property(nonatomic, strong) NSArray *places;
 
 
 

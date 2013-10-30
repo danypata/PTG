@@ -107,17 +107,20 @@
 -(void)tableView:(UITableView *)mTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PTGCategory *category = [parrentCategories objectAtIndex:indexPath.section];
     PTGCategory *subCategory = [[category.children allObjects] objectAtIndex:indexPath.row];
-    if([self.selectedFilters containsObject:subCategory]) {
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
-        [self.selectedFilters removeObject:subCategory];
-    }
-    else {
-        [self.selectedFilters addObject:subCategory];
-    }
+    [self.selectedFilters addObject:subCategory];
     if([self.delegate respondsToSelector:@selector(filterResultsUsingCategories:)]) {
         [self.delegate filterResultsUsingCategories:self.selectedFilters];
     }
-    
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    PTGCategory *category = [parrentCategories objectAtIndex:indexPath.section];
+    PTGCategory *subCategory = [[category.children allObjects] objectAtIndex:indexPath.row];
+    [self.selectedFilters removeObject:subCategory];
+    if([self.delegate respondsToSelector:@selector(filterResultsUsingCategories:)]) {
+        [self.delegate filterResultsUsingCategories:self.selectedFilters];
+    }
+
 }
 
 -(void)openSectionAtIndex:(NSInteger)index {

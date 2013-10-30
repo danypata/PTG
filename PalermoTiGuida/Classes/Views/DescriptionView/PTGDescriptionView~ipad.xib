@@ -56,7 +56,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="38"/>
                             <size key="titleShadowOffset" width="0.0" height="-1"/>
-                            <state key="normal" title="Trova imbarcao" backgroundImage="black_button_bg.png">
+                            <state key="normal" title="Trova Imbarcao" backgroundImage="black_button_bg.png">
                                 <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
