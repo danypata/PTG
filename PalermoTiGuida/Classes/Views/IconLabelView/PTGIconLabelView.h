@@ -24,5 +24,6 @@ typedef enum {
 
 +(PTGIconLabelView*)initializeViews;
 -(void)setText:(NSString *)text forIconType:(IconLabelIconType)type;
-
+-(CGRect)labelFrame;
+-(void)addGestureForType:(IconLabelIconType)type;
 @end

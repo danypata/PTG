@@ -33,7 +33,7 @@
                                        +10,
                                        self.smallLabel.frame.origin.y,
                                        self.smallLabel.frame.size.width,
-                                       self.smallLabel.frame.size.height);
+                                       self.smallLabel.frame.size.height + 4);
     
 }
 

@@ -63,14 +63,15 @@
     label.font = font;
     [label sizeToFit];
     label.frame = CGRectMake(label.frame.origin.x,
-                             (self.frame.size.height - label.frame.size.height) / 2,
+                             (self.frame.size.height - label.frame.size.height - 4) / 2,
                              label.frame.size.width,
-                             label.frame.size.height);
+                             label.frame.size.height + 4);
     currentOffset +=label.frame.size.width;
     [self addSubview:label];
     if(!lastItem) {
         label.textColor = DEFAULT_COLOUR;
-        label.shadowColor = [UIColor colorWithRed:210.f/255.f green:244.f/255.f blue:255.f/255.f alpha:0.75];
+        label.shadowColor = [UIColor colorWithRed:158.f/255.f green:212.f/255.f blue:229.f/255.f alpha:0.75];
+        label.shadowOffset = CGSizeMake(0, 1);
     }
     else {
         label.textColor = [UIColor whiteColor];

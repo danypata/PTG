@@ -63,6 +63,13 @@
     [ICFontUtils applyFont:QLASSIK_TB forView:freeTimeButton];
     [ICFontUtils applyFont:QLASSIK_TB forView:restaurantButton];
     [ICFontUtils applyFont:QLASSIK_TB forView:sleepingButton];
+    
+    [mapButton setTitle:NSLocalizedString(mapButton.titleLabel.text, @"") forState:UIControlStateNormal];
+    [notesButton setTitle:NSLocalizedString(notesButton.titleLabel.text, @"") forState:UIControlStateNormal];
+    [greenHouseButton setTitle:NSLocalizedString(greenHouseButton.titleLabel.text, @"") forState:UIControlStateNormal];
+    [freeTimeButton setTitle:NSLocalizedString(freeTimeButton.titleLabel.text, @"") forState:UIControlStateNormal];
+    [restaurantButton setTitle:NSLocalizedString(restaurantButton.titleLabel.text, @"") forState:UIControlStateNormal];
+    [sleepingButton setTitle:NSLocalizedString(sleepingButton.titleLabel.text, @"") forState:UIControlStateNormal];
 }
 -(void)removeImageView:(UIImageView *)imageView {
     [UIView animateWithDuration:0.5 animations:^{

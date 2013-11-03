@@ -11,17 +11,16 @@
 @implementation PTGURLUtils
 
 +(NSString *)baseUrlString {
+    return baseUrl;
+}
+
++(NSString *)languageExtension {
     NSString *currentLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
-    if([currentLanguage isEqualToString:@"en"]) {
-        return enBaseUrl;
+    if([currentLanguage isEqualToString:@"en"] || [currentLanguage isEqualToString:@"it"] || [currentLanguage isEqualToString:@"ru"]) {
+        return [NSString stringWithFormat:@"api/%@/",currentLanguage];
     }
-    else if([currentLanguage isEqualToString:@"it"]) {
-        return itBaseUrl;
-    }
-    else if([currentLanguage isEqualToString:@"ru"]) {
-        return ruBaseUrl;
-    }
-    return enBaseUrl;
+    return @"api/en";
+    
 }
 
 +(NSString *)pinImageUrlString {
@@ -29,33 +28,39 @@
 }
 
 +(NSString *)mainCategoryUrl {
-     return [[self baseUrlString] stringByAppendingString:categoryUrl];
+    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], categoryUrl];
 }
 
 +(NSString *)subcategoryUrl {
-    return [[self baseUrlString] stringByAppendingString:subcategoryUrl];
+    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], subcategoryUrl];
 }
 
 +(NSString *)categoryPlacesUrl {
-    return [[self baseUrlString] stringByAppendingString:placesUrl];
+#warning TODO: change when available
+//    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], placesUrl];
+        return [[self baseUrlString] stringByAppendingFormat:@"api/%@", placesUrl];
 }
 +(NSString *)placesSearchUrl {
-    return [[self baseUrlString] stringByAppendingString:placesSearch];
+    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], placesSearch];
 }
 +(NSString *)placeUrl {
-    return [[self baseUrlString] stringByAppendingString:placeByIdUrl];
+    #warning TODO: change when available
+//    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], placeByIdUrl];
+    return [[self baseUrlString] stringByAppendingFormat:@"api/%@", placeByIdUrl];
 }
 +(NSString *)categoriesNewsUrl{
-    return [[self baseUrlString] stringByAppendingString:newsCategoriesUrl];
+    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], newsCategoriesUrl];
+    
 }
 +(NSString *)newsByCategoryUrl {
+    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], newsByCategoryUrl];
     return [[self baseUrlString] stringByAppendingString:newsByCategoryUrl];
 }
 +(NSString *)placeWithDistanceUrl {
-    return [[self baseUrlString] stringByAppendingString:placeWithDistanceUrl];
+    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], placeWithDistanceUrl];
 }
 +(NSString *)placesNearMeUrlString {
-    return [[self baseUrlString] stringByAppendingString:placesNearMeUrl];
+    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], placesNearMeUrl];
 }
 +(NSString *)mainImageUrlForId:(NSString *)imageId {
     NSString *imageType = @"";

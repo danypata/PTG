@@ -37,19 +37,21 @@
     if([[self.navigationController viewControllers] count] > 1) {
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [backButton setTitle:NSLocalizedString(@"Back", @"") forState:UIControlStateNormal];
-        UIImage *backImage = [UIImage imageNamed:@"back_button_bg"];
+        UIImage *backImage = [[UIImage imageNamed:@"back_button_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 5)];
+        UIImage *backSelected = [[UIImage imageNamed:@"back_button_bg_selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 5)];
         [backButton addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
         if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-            backButton.frame = CGRectMake(0, 0, 50.0f, 30.0f);
+            backButton.frame = CGRectMake(0, 0, 50.0f, 33.0f);
             backButton.titleLabel.font = [UIFont fontWithName:QLASSIK_BOLD_TB size:16];
             backButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
         }
         else {
-            backButton.frame = CGRectMake(0, 0, 60.0f, 35.0f);
-            backButton.titleLabel.font = [UIFont fontWithName:QLASSIK_BOLD_TB size:20];
+            backButton.frame = CGRectMake(0, 0, 90.0f, 33.0f);
+            backButton.titleLabel.font = [UIFont fontWithName:QLASSIK_BOLD_TB size:16];
             backButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
         }
         [backButton setBackgroundImage:backImage forState:UIControlStateNormal];
+        [backButton setBackgroundImage:backSelected forState:UIControlStateHighlighted];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     }
     

@@ -38,10 +38,10 @@
     initialHeight = textView.frame.size.height;
     CGFloat pointSize = 0;
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        pointSize = 25.f;
+        pointSize = 26.f;
     }
     else {
-        pointSize = 14.f;
+        pointSize = 15.f;
     }
     textView.text = place.descriptionText;
     
@@ -68,20 +68,41 @@
 
 -(void)positionViews {
     
+    if(!moreButton.hidden) {
+        moreButton.frame = CGRectMake(moreButton.frame.origin.x,
+                                      textView.frame.origin.y + textView.frame.size.height + SPACING_TOP,
+                                      moreButton.frame.size.width,
+                                      moreButton.frame.size.height);
+    }
+    else {
+        moreButton.frame = CGRectMake(moreButton.frame.origin.x,
+                                      textView.frame.origin.y + textView.frame.size.height + SPACING_TOP,
+                                      moreButton.frame.size.width,
+                                      0);
+
+    }
     
-    moreButton.frame = CGRectMake(moreButton.frame.origin.x,
-                                  textView.frame.origin.y + textView.frame.size.height + SPACING_TOP,
-                                  moreButton.frame.size.width,
-                                  moreButton.frame.size.height);
-    
-    buttonContainer.frame = CGRectMake(buttonContainer.frame.origin.x,
-                                       moreButton.frame.origin.y + moreButton.frame.size.height + SPACING_TOP,
-                                       buttonContainer.frame.size.width,
-                                       buttonContainer.frame.size.height);
+    if(moreButton.hidden) {
+        buttonContainer.frame = CGRectMake(buttonContainer.frame.origin.x,
+                                           textView.frame.origin.y + textView.frame.size.height + SPACING_TOP,
+                                           buttonContainer.frame.size.width,
+                                           buttonContainer.frame.size.height);
+
+    }
+    else {
+        buttonContainer.frame = CGRectMake(buttonContainer.frame.origin.x,
+                                           moreButton.frame.origin.y + moreButton.frame.size.height + SPACING_TOP,
+                                           buttonContainer.frame.size.width,
+                                           buttonContainer.frame.size.height);
+
+    }
     
     CGFloat height = buttonContainer.frame.size.height + buttonContainer.frame.origin.y;
     if(buttonContainer.hidden == YES) {
         height = moreButton.frame.size.height + moreButton.frame.origin.y;
+    }
+    if(moreButton.hidden) {
+        height = textView.frame.origin.y + textView.frame.size.height;
     }
     self.frame = CGRectMake(self.frame.origin.x,
                             self.frame.origin.y,
@@ -91,7 +112,7 @@
     bgImage.frame = CGRectMake(bgImage.frame.origin.x,
                                bgImage.frame.origin.y,
                                bgImage.frame.size.width,
-                               self.frame.size.height + SPACING_TOP);
+                               self.frame.size.height);
     
     
 }
@@ -113,6 +134,7 @@
                                         textView.frame.origin.y,
                                         textView.frame.size.width,
                                         initialHeight);
+         [moreButton setTitle:NSLocalizedString(@"leggi ancora", @"") forState:UIControlStateNormal];
 
         }
         else {
@@ -120,6 +142,7 @@
                                         textView.frame.origin.y,
                                         textView.frame.size.width,
                                         actualHeight);
+             [moreButton setTitle:NSLocalizedString(@"riduci", @"") forState:UIControlStateNormal];
         }
         [textView setNeedsDisplay];
         textView.alpha = 1;

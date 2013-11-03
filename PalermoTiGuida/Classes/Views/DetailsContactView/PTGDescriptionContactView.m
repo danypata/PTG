@@ -13,6 +13,7 @@
 #import "PTGDiaryItem.h"
 
 @implementation PTGDescriptionContactView
+@synthesize delegate;
 
 +(PTGDescriptionContactView *)initializeViews {
     NSArray *views = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil];
@@ -89,42 +90,59 @@
     [twitterButton setTitle:NSLocalizedString(twitterButton.titleLabel.text, @"") forState:UIControlStateNormal];
 }
 - (IBAction)facebookButtonTapped:(id)sender {
+    if([self.delegate respondsToSelector:@selector(shouldShareOnFacebook)]) {
+        [self.delegate shouldShareOnFacebook];
+    }
 }
 
 - (IBAction)twitterButtonTapped:(id)sender {
+    if([self.delegate respondsToSelector:@selector(shouldShareOnTwitter)]) {
+        [self.delegate shouldShareOnTwitter];
+    }
 }
 
 -(void)addLabelsFromArray:(NSArray *)array withStartingString:(NSString *)string iconType:(IconLabelIconType)type {
     if(VALID_NOTEMPTY(array, NSArray)) {
-        NSString *firstString = [string stringByAppendingString:[array objectAtIndex:0]];
-        PTGIconLabelView *firstLabel = [PTGIconLabelView initializeViews];
-        [firstLabel setText:firstString forIconType:type];
-        CGRect labelFrame = firstLabel.frame;
-        labelFrame.origin.y = yOffset;
-        labelFrame.origin.x = bgImage.frame.origin.x + DEFAULT_MARGIN;
-        firstLabel.frame = labelFrame;
-        yOffset +=labelFrame.size.height;
-        [self addSubview:firstLabel];
-        CGRect lastValidFrame = firstLabel.frame;
-        PTGIconLabelView *loopLabel =nil;
-        for(int i=1; i< [array count]; ++i) {
-            firstString = [array objectAtIndex:i];
-            loopLabel = [PTGIconLabelView initializeViews];
-            [loopLabel setText:firstString forIconType:kIconTypeDisabled];
-            labelFrame = loopLabel.frame;
-            labelFrame.origin.y = yOffset;
-            labelFrame.origin.x += lastValidFrame.origin.x + lastValidFrame.size.width - loopLabel.frame.origin.x - loopLabel.frame.size.width;
-            loopLabel.frame = labelFrame;
-            yOffset +=labelFrame.size.height;
-            [self addSubview:loopLabel];
+        CGRect lastFrame = CGRectMake(bgImage.frame.origin.x + DEFAULT_MARGIN, yOffset, 0, 0);
+        BOOL showIcon = YES;
+        if(VALID_NOTEMPTY(string, NSString)) {
+            PTGIconLabelView *label = [PTGIconLabelView initializeViews];
+            [label setText:string forIconType:type];
+            lastFrame.size.width = label.frame.size.width;
+            lastFrame.size.height = label.frame.size.height;
+            label.frame = lastFrame;
+            [self addSubview:label];
+            lastFrame.origin.x += lastFrame.size.width;
+            showIcon = NO;
         }
-        yOffset+=DEFAULT_MARGIN;
-        
+        PTGIconLabelView *firstLabel = [PTGIconLabelView initializeViews];
+        [firstLabel setText:[array firstObject] forIconType:((showIcon == YES) ? type : kIconTypeDisabled)];
+        [firstLabel addGestureForType:type];
+        lastFrame.size.width = firstLabel.frame.size.width;
+        lastFrame.size.height = firstLabel.frame.size.height;
+        firstLabel.frame = lastFrame;
+        lastFrame.origin.y +=lastFrame.size.height;
+        [self addSubview:firstLabel];
+        lastFrame.origin.x += [firstLabel labelFrame].origin.x;
+        for(int i= 1; i<[array count]; i++) {
+            firstLabel = [PTGIconLabelView initializeViews];
+            [firstLabel setText:[array objectAtIndex:i] forIconType:kIconTypeDisabled];
+            lastFrame.size.width = firstLabel.frame.size.width;
+            lastFrame.size.height = firstLabel.frame.size.height;
+            firstLabel.frame = lastFrame;
+            lastFrame.origin.y +=lastFrame.size.height;
+            [self addSubview:firstLabel];
+            [firstLabel addGestureForType:type];
+        }
+        yOffset = lastFrame.origin.y + lastFrame.size.height;
     }
+    
+    
+    
 }
 
 -(void)addSwitch {
-   
+    
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         fadeLabelSwitchLabel = [[TTFadeSwitch alloc] initWithFrame:CGRectMake(switchImageView.frame.origin.x
                                                                               + switchImageView.frame.size.width
@@ -138,7 +156,7 @@
         fadeLabelSwitchLabel.labelsEdgeInsets = UIEdgeInsetsMake(5.0, 20, 1.0, 20);
         fadeLabelSwitchLabel.thumbInsetX = 0.0;
         fadeLabelSwitchLabel.thumbOffsetY = 1.0;
-
+        
     }
     else {
         
@@ -154,7 +172,7 @@
         fadeLabelSwitchLabel.labelsEdgeInsets = UIEdgeInsetsMake(12.0, 20, 1.0, 22);
         fadeLabelSwitchLabel.thumbInsetX = 5.0;
         fadeLabelSwitchLabel.thumbOffsetY = 2.0;
-
+        
     }
     fadeLabelSwitchLabel.thumbImage = [UIImage imageNamed:@"switchToggle"];
     fadeLabelSwitchLabel.trackMaskImage = [UIImage imageNamed:@"switchMask"];
@@ -168,7 +186,7 @@
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:fadeLabelSwitchLabel.offLabel];
     fadeLabelSwitchLabel.onLabel.textColor = [UIColor whiteColor];
     fadeLabelSwitchLabel.offLabel.textColor = [UIColor colorWithRed:53.f/255.f green:103.f/255.f blue:132.f/255.f alpha:1];
-   
+    
     if([PTGDiaryItem isDiaryForPlace:currentPlace]) {
         [fadeLabelSwitchLabel setOn:YES animated:NO];
     }
@@ -243,4 +261,6 @@
         [PTGDiaryItem diaryItemWithPlace:currentPlace visited:NO];
     }
 }
+
+
 @end

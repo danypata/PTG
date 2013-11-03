@@ -413,6 +413,16 @@
 		B68A676A1811DBE700C894D0 /* PTGLeftMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B68A67691811DBE700C894D0 /* PTGLeftMenuCell.xib */; };
 		B68A676C1811DD0500C894D0 /* left_menu_cell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B68A676B1811DD0500C894D0 /* left_menu_cell@2x.png */; };
 		B68A676E1811DD2A00C894D0 /* left_menu_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = B68A676D1811DD2A00C894D0 /* left_menu_cell.png */; };
+		B6ACA37E1826F46400BD55EB /* back_button_bg_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B6ACA37D1826F46400BD55EB /* back_button_bg_selected.png */; };
+		B6ACA3801826F46A00BD55EB /* back_button_bg_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6ACA37F1826F46A00BD55EB /* back_button_bg_selected@2x.png */; };
+		B6ACA3871827054400BD55EB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6ACA3851827054400BD55EB /* FacebookSDK.framework */; };
+		B6ACA3881827054400BD55EB /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B6ACA3861827054400BD55EB /* FacebookSDKResources.bundle */; };
+		B6ACA38D18270A6800BD55EB /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6ACA38C18270A6800BD55EB /* Twitter.framework */; };
+		B6ACA38F18270A6D00BD55EB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6ACA38E18270A6D00BD55EB /* MessageUI.framework */; };
+		B6ACA39118270D4D00BD55EB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B6ACA39018270D4D00BD55EB /* libsqlite3.dylib */; };
+		B6ACA39318270DA700BD55EB /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6ACA39218270DA700BD55EB /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B6ACA39518270DBA00BD55EB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6ACA39418270DBA00BD55EB /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B6ACA39718270DD000BD55EB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6ACA39618270DD000BD55EB /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B6B0086C180C8F3E009054CD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6B0086B180C8F3E009054CD /* CoreLocation.framework */; };
 		B6B00870180C92FF009054CD /* PTGLocationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B0086F180C92FF009054CD /* PTGLocationUtils.m */; };
 		B6B00872180CA77F009054CD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6B00871180CA77F009054CD /* MapKit.framework */; };
@@ -936,6 +946,7 @@
 		B60F3CD7181F18510035ABDF /* PTGNewsListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PTGNewsListCell~ipad.xib"; sourceTree = "<group>"; };
 		B6166FE718206537008B4E93 /* PTGCustomMapView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PTGCustomMapView~ipad.xib"; sourceTree = "<group>"; };
 		B6166FE918207172008B4E93 /* PTGDiaryHeaderView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PTGDiaryHeaderView~ipad.xib"; sourceTree = "<group>"; };
+		B61E69FD1822F48700F21E35 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B63CD4E71812C99300990B96 /* text_view_diary_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text_view_diary_bg.png; sourceTree = "<group>"; };
 		B63CD4E91812C99C00990B96 /* text_view_diary_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text_view_diary_bg@2x.png"; sourceTree = "<group>"; };
 		B649CF23181598B6004EB64A /* home_blue_button@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_blue_button@2x~ipad.png"; sourceTree = "<group>"; };
@@ -1026,6 +1037,16 @@
 		B68A67691811DBE700C894D0 /* PTGLeftMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTGLeftMenuCell.xib; sourceTree = "<group>"; };
 		B68A676B1811DD0500C894D0 /* left_menu_cell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_menu_cell@2x.png"; sourceTree = "<group>"; };
 		B68A676D1811DD2A00C894D0 /* left_menu_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_menu_cell.png; sourceTree = "<group>"; };
+		B6ACA37D1826F46400BD55EB /* back_button_bg_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button_bg_selected.png; sourceTree = "<group>"; };
+		B6ACA37F1826F46A00BD55EB /* back_button_bg_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button_bg_selected@2x.png"; sourceTree = "<group>"; };
+		B6ACA3851827054400BD55EB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		B6ACA3861827054400BD55EB /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		B6ACA38C18270A6800BD55EB /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		B6ACA38E18270A6D00BD55EB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		B6ACA39018270D4D00BD55EB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		B6ACA39218270DA700BD55EB /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		B6ACA39418270DBA00BD55EB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		B6ACA39618270DD000BD55EB /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B6B0086B180C8F3E009054CD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B6B0086E180C92FF009054CD /* PTGLocationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTGLocationUtils.h; sourceTree = "<group>"; };
 		B6B0086F180C92FF009054CD /* PTGLocationUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTGLocationUtils.m; sourceTree = "<group>"; };
@@ -1112,6 +1133,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6ACA39718270DD000BD55EB /* AdSupport.framework in Frameworks */,
+				B6ACA39518270DBA00BD55EB /* Social.framework in Frameworks */,
+				B6ACA39318270DA700BD55EB /* Accounts.framework in Frameworks */,
+				B6ACA39118270D4D00BD55EB /* libsqlite3.dylib in Frameworks */,
+				B6ACA38F18270A6D00BD55EB /* MessageUI.framework in Frameworks */,
+				B6ACA38D18270A6800BD55EB /* Twitter.framework in Frameworks */,
 				B60080DE181BD9D2004FB088 /* CoreText.framework in Frameworks */,
 				B6CD2F47181441010085AC57 /* libz.dylib in Frameworks */,
 				B6E9F8ED180F5236009BF18E /* QuartzCore.framework in Frameworks */,
@@ -1125,6 +1152,7 @@
 				37361C0A18088EA100BC9942 /* UIKit.framework in Frameworks */,
 				37361C0C18088EA100BC9942 /* Foundation.framework in Frameworks */,
 				37361C0E18088EA100BC9942 /* CoreGraphics.framework in Frameworks */,
+				B6ACA3871827054400BD55EB /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1144,6 +1172,8 @@
 		371A91431809DDA8006A6573 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				B6ACA3851827054400BD55EB /* FacebookSDK.framework */,
+				B6ACA3861827054400BD55EB /* FacebookSDKResources.bundle */,
 				B60B4086181717C200C61971 /* TTSwitch */,
 				B6CD2F3C181440120085AC57 /* TestFlightSDK2.0.2 */,
 				B6E9F8E3180F4F29009BF18E /* BMXSwitch */,
@@ -1319,6 +1349,12 @@
 		37361C0818088EA100BC9942 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B6ACA39618270DD000BD55EB /* AdSupport.framework */,
+				B6ACA39418270DBA00BD55EB /* Social.framework */,
+				B6ACA39218270DA700BD55EB /* Accounts.framework */,
+				B6ACA39018270D4D00BD55EB /* libsqlite3.dylib */,
+				B6ACA38E18270A6D00BD55EB /* MessageUI.framework */,
+				B6ACA38C18270A6800BD55EB /* Twitter.framework */,
 				B60080DD181BD9D2004FB088 /* CoreText.framework */,
 				B6CD2F46181441010085AC57 /* libz.dylib */,
 				B6E9F8EC180F5236009BF18E /* QuartzCore.framework */,
@@ -1502,6 +1538,7 @@
 		37361C661808A3FE00BC9942 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
+				B6ACA37F1826F46A00BD55EB /* back_button_bg_selected@2x.png */,
 				B600817B181D551A004FB088 /* news_badge@2x.png */,
 				B6639F3618183E5700A5094E /* search_button_highlighted@2x.png */,
 				B60B409E1817235500C61971 /* small_image_frame@2x.png */,
@@ -1599,6 +1636,7 @@
 		37361C671808A40600BC9942 /* Default */ = {
 			isa = PBXGroup;
 			children = (
+				B6ACA37D1826F46400BD55EB /* back_button_bg_selected.png */,
 				B600817D181D5521004FB088 /* news_badge.png */,
 				B6639F3818183E5D00A5094E /* search_button_highlighted.png */,
 				B60B40A01817236600C61971 /* small_image_frame.png */,
@@ -2357,6 +2395,7 @@
 				en,
 				it,
 				"ru-RU",
+				ru,
 			);
 			mainGroup = 37361BFA18088EA000BC9942;
 			productRefGroup = 37361C0618088EA100BC9942 /* Products */;
@@ -2539,6 +2578,7 @@
 				371A90651809D05A006A6573 /* tab_bar_location_button_default.png in Resources */,
 				B6EEBE4C1819D39300204E7C /* home_blue_button_icon~ipad.png in Resources */,
 				371A90661809D05A006A6573 /* tab_bar_location_icon.png in Resources */,
+				B6ACA37E1826F46400BD55EB /* back_button_bg_selected.png in Resources */,
 				371A90671809D05A006A6573 /* tab_bar_news_button_default.png in Resources */,
 				B6008157181C0189004FB088 /* notes_delete_button_bg@2x~ipad.png in Resources */,
 				B649CF9D1815A562004EB64A /* table_top_cell_selected.png in Resources */,
@@ -2700,6 +2740,7 @@
 				371A913B1809D06D006A6573 /* table_view_arrow@2x.png in Resources */,
 				B649CFA71815B149004EB64A /* table_bottom_cell@2x copy.png in Resources */,
 				371A913D1809D06D006A6573 /* table_view_location_pin@2x.png in Resources */,
+				B6ACA3801826F46A00BD55EB /* back_button_bg_selected@2x.png in Resources */,
 				B649CFB01815C510004EB64A /* info_icon.png in Resources */,
 				371A91401809D06D006A6573 /* twitter_button_bg@2x.png in Resources */,
 				B6EEBE411819D09100204E7C /* tab_bar_home_default_icon~ipad.png in Resources */,
@@ -2710,6 +2751,7 @@
 				371A91421809D06D006A6573 /* web_logo@2x.png in Resources */,
 				B6008150181C0189004FB088 /* left_menu_cell@2x~ipad.png in Resources */,
 				378C8FB8180AC23000D7BC9C /* Default@2x.png in Resources */,
+				B6ACA3881827054400BD55EB /* FacebookSDKResources.bundle in Resources */,
 				B60F3CD3181F0D120035ABDF /* app_logo@2x~ipad.png in Resources */,
 				378C8FBA180AC23D00D7BC9C /* Default-568h@2x.png in Resources */,
 				B67A31BE1811D0C7003D886C /* menu_button@2x.png in Resources */,
@@ -2925,6 +2967,7 @@
 				B60081A9181DD893004FB088 /* en */,
 				B60081AC181DD920004FB088 /* it */,
 				B60081AF181DD937004FB088 /* ru-RU */,
+				B61E69FD1822F48700F21E35 /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2992,6 +3035,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Vetim Kqiku (QEEJFP946B)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/danpatacean/Desktop/MyProj/PalermoTiGuida/PalermoTiGuida/Classes/Vendors,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PalermoTiGuida/PalermoTiGuida-Prefix.pch";
 				INFOPLIST_FILE = "PalermoTiGuida/PalermoTiGuida-Info.plist";
@@ -3010,6 +3057,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Vetim Kqiku (QEEJFP946B)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/danpatacean/Desktop/MyProj/PalermoTiGuida/PalermoTiGuida/Classes/Vendors,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PalermoTiGuida/PalermoTiGuida-Prefix.pch";
 				INFOPLIST_FILE = "PalermoTiGuida/PalermoTiGuida-Info.plist";

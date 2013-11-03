@@ -166,7 +166,10 @@
 - (IBAction)showTypesPicker:(id)sender {
     [searchTextField resignFirstResponder];
     if(VALID(selectedCategory, PTGCategory)) {
-        datasource = [selectedCategory allSubcategories];
+        if([selectedCategory.categoryId integerValue] == 36) {
+            NSArray *ids = [selectedCategory.childCategories valueForKey:@"categoryId"];
+            datasource =@[[selectedCategory.childCategories objectAtIndex:[ids indexOfObject:@"38"]]];
+        }
         [pickerView reloadAllComponents];
         [self togglePicker:NO];
     }

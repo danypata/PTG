@@ -9,6 +9,13 @@
 "Telefono:"             = "Telefono:";
 "Fax:"                  = "Fax:";
 
+"Scopri l'isola" = "Scopri l'isola";
+"Il mio diario" = "Il mio diario";
+"Cosa Vedere" = "Cosa Vedere";
+"Tempo libero" = "Tempo libero";
+"Dove mangiare" = "Dove mangiare";
+"Dove dormire" ="Dove dormire";
+"riduci" = "riduci";
 "Hai già visitato questo punto d'interesse?" = "Hai già visitato questo punto d'interesse?";
 "SI" = "SI";
 "NO" ="NO";
@@ -18,7 +25,7 @@
 " e dalle" = " e dalle";
 " alle" = " alle";
 "elementi registrati" = "elementi registrati";
-"De visitare" = "De visitare";
+"De visitare" = "Da visitare";
 "Visitati" = "Visitati";
 "elementi registrati" = "elementi registrati";
 "Dal" = "Dal";

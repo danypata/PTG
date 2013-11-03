@@ -229,9 +229,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="92" sectionHeaderHeight="22" sectionFooterHeight="22" id="k5t-qD-X0l">
-                                        <rect key="frame" x="0.0" y="75" width="768" height="590"/>
+                                        <rect key="frame" x="0.0" y="55" width="768" height="498"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <inset key="contentInset" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                         <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dataSource" destination="Vbz-8b-QS3" id="lFz-YR-0Jf"/>
@@ -274,9 +275,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="125" sectionHeaderHeight="22" sectionFooterHeight="22" id="Yf5-Hj-d7x">
-                                        <rect key="frame" x="0.0" y="75" width="768" height="836"/>
+                                        <rect key="frame" x="0.0" y="55" width="768" height="856"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <inset key="contentInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
                                         <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dataSource" destination="Ftp-Uo-vfg" id="vHS-oU-1bF"/>
@@ -735,9 +737,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="109" sectionHeaderHeight="22" sectionFooterHeight="22" id="s9N-xA-sCq">
-                                <rect key="frame" x="0.0" y="75" width="768" height="836"/>
+                                <rect key="frame" x="0.0" y="55" width="768" height="856"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
                                 <connections>
                                     <outlet property="dataSource" destination="LF7-4x-kaD" id="bDg-Ma-8qh"/>
                                     <outlet property="delegate" destination="LF7-4x-kaD" id="z59-Gx-yGI"/>
@@ -770,9 +773,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="128" sectionHeaderHeight="22" sectionFooterHeight="22" id="MBn-4q-tVh">
-                                <rect key="frame" x="0.0" y="75" width="768" height="836"/>
+                                <rect key="frame" x="0.0" y="55" width="768" height="856"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
                                 <connections>
                                     <outlet property="dataSource" destination="RVK-EO-To9" id="kI8-KP-NgU"/>
                                     <outlet property="delegate" destination="RVK-EO-To9" id="GA9-zr-Yio"/>
@@ -804,9 +808,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="92" sectionHeaderHeight="22" sectionFooterHeight="22" id="8AK-2v-1Hr">
-                                <rect key="frame" x="0.0" y="75" width="768" height="836"/>
+                                <rect key="frame" x="0.0" y="55" width="768" height="856"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="8BH-5a-9i2" id="LKY-Zu-jL8"/>
@@ -840,9 +845,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="123" sectionHeaderHeight="22" sectionFooterHeight="22" id="Aeq-4F-TRF">
-                                <rect key="frame" x="0.0" y="75" width="768" height="836"/>
+                                <rect key="frame" x="0.0" y="55" width="768" height="856"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
                                 <connections>
                                     <outlet property="dataSource" destination="JMu-j3-CAd" id="PUy-Ih-arM"/>
                                     <outlet property="delegate" destination="JMu-j3-CAd" id="KnU-Ba-b2O"/>
@@ -1082,7 +1088,7 @@
         <image name="home_pink_button_bg.png" width="330" height="139"/>
         <image name="home_separator.png" width="768" height="30"/>
         <image name="img_frame_big.png" width="740" height="555"/>
-        <image name="map_button_icon.png" width="75" height="55"/>
+        <image name="map_button_icon.png" width="62" height="41"/>
         <image name="map_separator_bg.png" width="768" height="67"/>
         <image name="search_button_highlighted.png" width="282" height="38"/>
         <image name="small_image_frame.png" width="141" height="100"/>

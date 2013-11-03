@@ -10,6 +10,13 @@
 #import "PTGPlace.h"
 #import "TTFadeSwitch.h"
 
+@protocol PTGDescriptionContactViewDelegate <NSObject>
+
+-(void)shouldShareOnTwitter;
+-(void)shouldShareOnFacebook;
+
+@end
+
 #define DEFAULT_MARGIN 10
 @interface PTGDescriptionContactView : UIView<UIAlertViewDelegate> {
     IBOutlet UILabel *headerTitleLabel;
@@ -23,6 +30,7 @@
     IBOutlet UIImageView *switchImageView;
     TTFadeSwitch *fadeLabelSwitchLabel;
 }
+@property(nonatomic, assign) id<PTGDescriptionContactViewDelegate>delegate;
 - (IBAction)facebookButtonTapped:(id)sender;
 - (IBAction)twitterButtonTapped:(id)sender;
 

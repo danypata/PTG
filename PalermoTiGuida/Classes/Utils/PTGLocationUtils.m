@@ -17,7 +17,7 @@
         manager.delegate = self;
         manager.distanceFilter = kCLDistanceFilterNone;
         manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-
+        
     }
     return self;
 }
@@ -26,26 +26,28 @@
     static PTGLocationUtils *instance = nil;
     if(!instance) {
         instance = [[PTGLocationUtils alloc] init];
-    
+        
     }
     return instance;
 }
 
 -(void)startUpdating {
-    [manager startMonitoringSignificantLocationChanges];
+    [manager startUpdatingLocation];
 }
 
 -(void)getLocationWithCompletionBlock:(void(^)(CLLocation *location))block {
     block(location);
-
+    
 }
 
 -(void)locationManager:(CLLocationManager *)mManager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     location = newLocation;
+    [manager stopUpdatingLocation];
 }
 
 -(void)locationManager:(CLLocationManager *)mManager didUpdateLocations:(NSArray *)locations {
-       location = [locations lastObject];
+    location = [locations lastObject];
+    [manager stopUpdatingLocation];
 }
 
 +(NSString *)distanceStringFromString:(NSString *)string {

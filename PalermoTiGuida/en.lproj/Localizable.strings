@@ -9,10 +9,18 @@
 "Telefono:"             = "Phone:";
 "Fax:"                  = "Fax:";
 
-"Hai già visitato questo punto d'interesse?" = "Hai già visitato questo punto d'interesse?";
+"Scopri l'isola" = "Discover the Island";
+"Il mio diario" = "My Diary";
+"Cosa Vedere" = "What To See";
+"Tempo libero" = "Free Time";
+"Dove mangiare" = "Where To Eat";
+"Dove dormire" ="Where To Sleep";
+
+"Hai già visitato questo punto d'interesse?" = "Have you visited this point of interest?";
 
 "SI" = "YES";
 
+"riduci" = "reduce";
 "NO" ="NO";
 
 "Dalle " = "From ";

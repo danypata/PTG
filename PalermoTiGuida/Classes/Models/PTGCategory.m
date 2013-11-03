@@ -100,8 +100,6 @@
                      failure:(void(^)(NSString *requestUrl, NSError *error))failureBlock {
     __block CLLocation *oldLocation = nil;
     [[PTGLocationUtils sharedInstance] getLocationWithCompletionBlock:^(CLLocation *location) {
-        if(oldLocation.coordinate.latitude != location.coordinate.latitude
-           && oldLocation.coordinate.longitude != location.coordinate.longitude) {
             oldLocation = location;
             
             NSString *url = [[PTGURLUtils categoryPlacesUrl] stringByAppendingString:self.categoryId];
@@ -116,7 +114,6 @@
                 [self addPlaces:[NSSet setWithArray:finalProducts]];
                 successBlock([self.places allObjects]);
             } failure:failureBlock];
-        }
     }];
 }
 

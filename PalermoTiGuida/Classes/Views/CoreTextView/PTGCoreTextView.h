@@ -15,6 +15,7 @@
 @property(nonatomic) NSInteger lines;
 @property(nonatomic, strong) UIFont *textFont;
 @property(nonatomic, strong) UIColor *fontColor;
+@property(nonatomic) CGFloat lineSpacing;
 
 -(CGFloat)heightForText;
 -(NSInteger)linesForFrame:(CGRect )frame;

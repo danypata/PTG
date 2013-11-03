@@ -38,7 +38,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if([self.parentCategory.children count] > 0) {
+    if([self.parentCategory.children count] > 0 && [self.parentCategory.categoryId integerValue] != 38) {
         [headerImageView setImageWithURLString:[PTGURLUtils
                                                 mainImageUrlForId:self.parentCategory.categoryId]
                              urlRebuildOptions:kFromOther
@@ -58,7 +58,7 @@
     [brView setXOffset:ARROW_MARGINS];
     [containerView addSubview:brView];
     CGRect frame =containerView.frame;
-    frame.origin.y = brView.frame.size.height + 5;
+    frame.origin.y = brView.frame.size.height;
     frame.size.height = containerView.frame.size.height
                                     - brView.frame.size.height
                                     - brView.frame.origin.y;
@@ -129,6 +129,9 @@
     if([currentCategory.children count] > 0) {
         PTGSubcategoryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([self class])];
         vc.parentCategory = currentCategory;
+        NSMutableArray *newBr = [NSMutableArray arrayWithArray:self.breadcrumbs];
+        [newBr addObject:currentCategory.name];
+        vc.breadcrumbs = newBr;
         [self.navigationController pushViewController:vc animated:YES];
     }
     else {

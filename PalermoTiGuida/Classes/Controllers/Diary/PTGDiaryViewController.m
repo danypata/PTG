@@ -11,6 +11,7 @@
 #import "PTGPlaceCell.h"
 #import "PTGNoDataCell.h"
 #import "PTGDiaryHeaderView.h"
+#import "PTGPlaceDetailsViewController.h"
 
 
 @interface PTGDiaryViewController ()
@@ -219,6 +220,19 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    PTGDiaryItem *item = nil;
+    if(indexPath.section == 0) {
+        item = [toBeVisited objectAtIndex:indexPath.row];
+    }
+    else {
+        item = [visitedPlaces objectAtIndex:indexPath.row];
+    }
+    
+    PTGPlace *place = item.place;
+    PTGPlaceDetailsViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([PTGPlaceDetailsViewController class])];
+    vc.place = place;
+    [self.navigationController pushViewController:vc animated:YES];
+
     
 }
 

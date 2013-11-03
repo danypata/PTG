@@ -14,10 +14,12 @@
 @synthesize lines = _lines;
 @synthesize textFont;
 @synthesize fontColor;
+@synthesize lineSpacing;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+            self.lineSpacing = 2;
     }
     return self;
 }
@@ -25,6 +27,9 @@
 -(NSInteger)linesForFrame:(CGRect )frame {
     self.opaque = NO;
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:self.text];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    [style setLineSpacing:self.lineSpacing];
+    [attrString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, attrString.length)];
     [attrString addAttribute:NSFontAttributeName value:self.textFont range:NSMakeRange(0, attrString.length)];
     if(self.fontColor) {
         [attrString addAttribute:NSForegroundColorAttributeName value:fontColor range:NSMakeRange(0, attrString.length)];
@@ -47,6 +52,9 @@
 - (void)drawRect:(CGRect)rect {
     self.backgroundColor = [UIColor clearColor];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:self.text];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    [style setLineSpacing:self.lineSpacing];
+    [attrString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, attrString.length)];
     [attrString addAttribute:NSFontAttributeName value:self.textFont range:NSMakeRange(0, attrString.length)];
     [attrString addAttribute:NSBackgroundColorAttributeName value:[UIColor clearColor] range:NSMakeRange(0, attrString.length)];
     if(self.fontColor) {

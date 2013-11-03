@@ -12,6 +12,10 @@
 #import "PTGURLUtils.h"
 #import "PTGLocationUtils.h"
 #import "PTGMapViewController.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+#import <FacebookSDK/FacebookSDK.h>
+#import <Twitter/Twitter.h>
 
 @interface PTGPlaceDetailsViewController ()
 
@@ -33,6 +37,7 @@
     [self addActivityIndicator];
     descriptionView = [PTGDescriptionView setupViews];
     contactView = [PTGDescriptionContactView initializeViews];
+    contactView.delegate = self;
     [containerScrollView addSubview:descriptionView];
     [containerScrollView addSubview:contactView];
     containerScrollView.alpha = 0.0;
@@ -135,7 +140,7 @@
                                    contactView.frame.size.width,
                                    contactView.frame.size.height);
     containerScrollView.contentSize = CGSizeMake(containerScrollView.contentSize.width,
-                                                 contactView.frame.size.height + contactView.frame.origin.y);
+                                                 contactView.frame.size.height + contactView.frame.origin.y + SPACING_TOP);
 }
 -(void)setupFonts {
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:descriptionStaticLabel];
@@ -181,4 +186,83 @@
     
     
 }
+
+#pragma mark - PTGDescriptionContactViewDelegate methods 
+
+-(void)shouldShareOnTwitter {
+    if([TWTweetComposeViewController canSendTweet]) {
+        
+        TWTweetComposeViewController *twt = [[TWTweetComposeViewController alloc] init];
+        NSString *initialText = [NSString stringWithFormat:MESSAGE_I_LIKE_IT,self.place.name];
+        [twt setInitialText:initialText];
+        [twt addImage:mainImageView.image];
+        [twt addURL:[NSURL URLWithString:SHARE_URL]];
+        
+        twt.completionHandler = ^(TWTweetComposeViewControllerResult result) {
+            switch (result) {
+                case TWTweetComposeViewControllerResultCancelled: {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:MESSAGE_SHARE_STATUS_CANCELED delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    [alertView show];
+                }
+                break;
+                case TWTweetComposeViewControllerResultDone: {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:MESSAGE_SHARE_STATUS_SUCCESS delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    [alertView show];
+                }
+                    break;
+                default:
+                    break;
+            }
+            [self dismissModalViewControllerAnimated:YES];
+        };
+        [self presentModalViewController:twt animated:YES];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:MESSAGE_SHARE_STATUS_NO_ACCOUNT_CONFIG delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alertView show];
+        
+    }
+}
+
+-(void)shouldShareOnFacebook {
+    [FBSession openActiveSessionWithPublishPermissions:@[@"publish_actions"] defaultAudience:FBSessionDefaultAudienceEveryone
+                                          allowLoginUI:YES
+                                     completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                         [self sessionStateChanged:session product:self.place state:session.state error:error];
+                                     }];
+}
+
+- (void)sessionStateChanged:(FBSession *)session
+                    product:(PTGPlace *)place
+                      state:(FBSessionState) state
+                      error:(NSError *)error
+{
+    switch (state) {
+        case FBSessionStateOpen: {
+            NSMutableDictionary *params =
+            [NSMutableDictionary dictionaryWithObjectsAndKeys:
+             place.name, @"name",
+             MESSAGE_I_LIKE_IT, @"caption",
+             SHARE_URL, @"link",
+             [PTGURLUtils detailImageUrlForId:self.place.mainImage], @"picture",
+             nil];
+            [FBWebDialogs presentFeedDialogModallyWithSession:session parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+                if (error == nil && VALID_NOTEMPTY(resultURL, NSURL) && [[resultURL absoluteString] rangeOfString:@"post_id"].location != NSNotFound) {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:MESSAGE_SHARE_STATUS_SUCCESS delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    [alertView show];
+                }
+            }];
+        }
+            break;
+        case FBSessionStateClosed:
+        case FBSessionStateClosedLoginFailed: {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:MESSAGE_SHARE_STATUS_FAILED_UNKNONW delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alertView show];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 @end

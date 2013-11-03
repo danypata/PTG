@@ -1,0 +1,122 @@
+/* Localized versions of Info.plist keys */
+
+"Guida"                 = "Путеводитель";
+"Around Me"             = "Вокруг меня";
+"Cerca"                 = "Ищите";
+"Extra"                 = "Экстра";
+"News"                  = "Новости";
+"Back"                  = "Обратно";
+"Telefono:"             = "телефон:";
+"Fax:"                  = "факсу:";
+
+"Scopri l'isola" = "Открывай Остров";
+"Il mio diario" = "Мой дневник";
+"Cosa Vedere" = "Всё что стоит смотреть";
+"Tempo libero" = "Свободное время";
+"Dove mangiare" = "Где кушать";
+"Dove dormire" ="Где переночевать";
+
+"Hai già visitato questo punto d'interesse?" = "Посещали ли вы эту достопримечательность?";
+"riduci" =  "уменьшить";
+"SI" = "ДА";
+
+"NO" ="NO";
+
+"Dalle " = "от ";
+
+" alle " = " для ";
+
+"Orari di apertura: " = "часы работы: ";
+
+" e dalle" = " и от";
+
+" alle" = " для";
+
+"elementi registrati" = "записанных элементов";
+
+"De visitare" = "Чтобы посетить";
+
+"Visitati" = "Посетили";
+
+"Dal" = "от";
+
+"al" = "для";
+
+"News ed Eventi" = "Новости и события";
+
+"News" = "новости";
+
+"Annulla" = "отменить";
+
+"Conferma" = "подтверждать";
+
+"Keyword to short!" ="Ключевое слово слишком короткий!";
+
+"Got It" = "Got It";
+
+"Please enter a longer keyword. The keyword must have at least 4 characters."="Пожалуйста, введите больше ключевых слов. Ключевое слово должно быть не менее 4-х символов.";
+
+"No search results!" = "Нет результатов поиска!";
+
+"We didn't found any place matching "="Мы не нашли любом месте соответствия ";
+
+"In quest’area del diario potrai tenere come promemoria tutti quei punti d’interesse che  ancora non hai visitato, ma che conti di vedere. Ti basterà attivare il “Metti in diario” nella schermata del monumento. PALERMOtiGUIDA ti chiederà se hai già visitato o meno il punto d’interesse"  = "IВ такой секции дневника возможно сохранить памяткой все не откроенные значительные места, которые вы хотите отрывать. Возможно активировать «Вклади в дневнике» в экране памятника. PALERMOtiGUIDA вам спросит если уже откроили это значительное место.";
+
+"In quest’area del diario potrai tenere come promemoria tutti quei punti d’interesse che hai già visitato. Ti basterà attivare il “Metti in diario” nella schermata del monumento. PALERMOtiGUIDA ti chiederà se hai già visitato o meno il punto d’interesse" = "IВ такой секции дневника возможно сохранить памяткой все уже откроенные значительные места. Возможно активировать «Вклади в дневнике» в экране памятника. PALERMOtiGUIDA вам спросит уже откроили или нет это значительное место.";
+
+
+"Trova Porto" = "Находи порт";
+
+"Trova Imbarcao" = "Находи  Посадка";
+
+"leggi ancora" = "показать больше";
+
+"Metti in diario" = "Внести в дневник";
+
+"Contatti" = "Контакт";
+
+"Condividi" = "Разделай";
+
+"Localizza" = "Находи в плане";
+
+"Presso:" = "Около:";
+
+"Distanta da te:" = "– Далеко от тебя:";
+
+"Dove ti porto ?" = "Куда нам?";
+
+"Tipologia:" = "Тип:";
+
+"ELIMINA" = "Исключи";
+
+"Visualizza tutti i punti d’interesse" = "Покажи все значительные места";
+
+"PALERMOtiGUIDA è un progetto ideato da" = "Проект  PALERMOtiGUIDA создан";
+
+"Per contatti:" = "Контакты:";
+
+"App development & design" = "Развитие и Дезайн Апп";
+
+"News del:" = "Новости с:";
+
+"Validità:" = "Деятельность:";
+
+"Dettagli:" = "Детали:";
+
+"Cerca il tuo punto d’interesse" = "Ищите свое значительное место";
+
+"Inserisci il nome del punto d’interesse" = "Включите свое значительное место";
+
+"Inserisci il testo" = "Введите текст";
+
+"Cerca per tipologia" = "Ищите по типологию";
+
+"Seleziona categoria" = "Отбирайте категория";
+
+"Seleziona tipologia" = "Отбирайте типология";
+
+"Anullar" = "аннулировать";
+
+"Localiza nella mapa" = "Находи в плане";
+
+"Descrizione" = "Описание";
