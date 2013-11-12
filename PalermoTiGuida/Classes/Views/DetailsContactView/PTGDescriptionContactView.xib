@@ -70,8 +70,8 @@
                                 <action selector="twitterButtonTapped:" destination="lLz-0F-h5O" eventType="touchUpInside" id="A93-z5-jU9"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_blue_button_icon.png" id="dxB-wr-DXx">
-                            <rect key="frame" x="0.0" y="4" width="35" height="34"/>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_blue_button_icon.png" id="dxB-wr-DXx">
+                            <rect key="frame" x="8" y="9" width="20" height="23"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                     </subviews>

@@ -11,6 +11,9 @@
 #import "PTGCategoryCell.h"
 #import "PTGBreadcrumbView.h"
 #import "PTGExtraPlaceViewController.h"
+#import "PTGPlaceListViewController.h"
+#import "PTGExtraHeaderViewController.h"
+#import "PTGExtraHeaderType7ViewController.h"
 
 @interface PTGExtraViewController ()
 
@@ -51,6 +54,7 @@
     }
     [self.view addSubview:view];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -107,7 +111,39 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     else {
-        [self performSegueWithIdentifier:@"ExtraSegue" sender:category];
+        switch ([category.type integerValue]) {
+            case 1:
+            case 2:
+            case 3:
+            case 4: {
+                PTGPlaceListViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([PTGPlaceListViewController class])];
+                vc.parentCategory = category;
+                NSMutableArray *arr = [NSMutableArray arrayWithArray:self.breadcrumbsItems];
+                [arr addObject:category.name];
+                vc.breadcrumbs = arr;
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            }
+                break;
+            case 5:
+            case 6:
+            case 9:
+            case 10:
+                [self performSegueWithIdentifier:@"headerSegue" sender:category];
+                break;
+            case 7:
+                [self performSegueWithIdentifier:@"type7" sender:category];
+                break;
+            case 8:
+                //tabella base_extra.psd
+                break;
+            case 11:
+                [self performSegueWithIdentifier:@"ExtraSegue" sender:category];
+                break;
+                
+            default:
+                break;
+        }
     }
 }
 
@@ -118,6 +154,20 @@
         NSMutableArray *arr = [self.breadcrumbsItems mutableCopy];
         [arr addObject:((PTGCategory*)sender).name];
         list.breadcrumbs =arr;
+    }
+    else if([segue.identifier isEqualToString:@"headerSegue"]) {
+        PTGExtraHeaderViewController *list = segue.destinationViewController;
+        list.parentCategory = sender;
+        NSMutableArray *arr = [self.breadcrumbsItems mutableCopy];
+        [arr addObject:((PTGCategory*)sender).name];
+        list.breadcrumbs =arr;
+    }
+    else if([segue.identifier isEqualToString:@"type7"]) {
+        PTGExtraHeaderType7ViewController *list = segue.destinationViewController;
+        list.parentCategory = sender;
+        NSMutableArray *arr = [self.breadcrumbsItems mutableCopy];
+        [arr addObject:((PTGCategory*)sender).name];
+        list.breadcrumbs  = arr;
     }
 }
 

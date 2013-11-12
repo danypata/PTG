@@ -142,15 +142,14 @@
 }
 
 -(void)addSwitch {
-    
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         fadeLabelSwitchLabel = [[TTFadeSwitch alloc] initWithFrame:CGRectMake(switchImageView.frame.origin.x
                                                                               + switchImageView.frame.size.width
                                                                               - 75,
                                                                               (switchImageView.frame.origin.y
                                                                                + switchImageView.frame.size.height - 30) / 2,
-                                                                              115.f,
-                                                                              50.f)];
+                                                                              60.f,
+                                                                              30.f)];
         fadeLabelSwitchLabel.onLabel.font = [UIFont systemFontOfSize:16.f];
         fadeLabelSwitchLabel.offLabel.font = [UIFont systemFontOfSize:16.f];
         fadeLabelSwitchLabel.labelsEdgeInsets = UIEdgeInsetsMake(5.0, 20, 1.0, 20);
@@ -221,36 +220,60 @@
 }
 
 -(NSString *)getOppeningScheduleForPlace:(PTGPlace *)place {
-    NSMutableString *result = [[NSMutableString alloc] initWithString:NSLocalizedString(@"Orari di apertura: ", @"")];
-    if(VALID_NOTEMPTY(place.openTimeAMFrom, NSString)) {
-        [result appendString:NSLocalizedString(@"Dalle ", @"")];
-        [result appendString:place.openTimeAMFrom];
+    NSInteger fromDay = [place.opendayFrom integerValue] - 1;
+    NSInteger toDay = [place.openDayTo integerValue] - 1;
+    
+    NSString *finalString = @"";
+    NSString *fromDayString;
+    NSString *toDayString;
+    if(fromDay >=0 && fromDay < [DAYS_ARRAY count]) {
+        fromDayString = [DAYS_ARRAY objectAtIndex:fromDay];
     }
-    if(VALID_NOTEMPTY(place.openTimeAMTo, NSString)) {
-        [result appendString:NSLocalizedString(@" alle ", @"")];
-        [result appendString:place.openTimeAMTo];
+    if(toDay >=0 && toDay < [DAYS_ARRAY count]) {
+        toDayString = [DAYS_ARRAY objectAtIndex:toDay];
     }
-    if([result isEqualToString:NSLocalizedString(@"Orari di apertura: ", @"")]) {
-        if(VALID_NOTEMPTY(place.openTimePMFrom, NSString)) {
-            [result appendString:NSLocalizedString(@"Dalle ", @"")];
-            [result appendString:place.openTimePMFrom];
-        }
-        if(VALID_NOTEMPTY(place.openTimePMFrom, NSString)) {
-            [result appendString:NSLocalizedString(@" alle ", @"")];
-            [result appendString:place.openTimePMFrom];
-        }
+    if(VALID_NOTEMPTY(toDayString, NSString) && VALID_NOTEMPTY(fromDayString, NSString)) {
+        finalString = [finalString stringByAppendingFormat:@"%@ - %@",fromDayString, toDayString];
     }
-    else {
-        if(VALID_NOTEMPTY(place.openTimePMFrom, NSString)) {
-            [result appendString:NSLocalizedString(@" e dalle", @"")];
-            [result appendString:place.openTimePMFrom];
-        }
-        if(VALID_NOTEMPTY(place.openTimePMFrom, NSString)) {
-            [result appendString:NSLocalizedString(@" alle", @"")];
-            [result appendString:place.openTimePMFrom];
-        }
+    else if(VALID_NOTEMPTY(toDayString, NSString)) {
+        finalString = toDayString;
     }
-    return result;
+    else if (VALID_NOTEMPTY(fromDayString, NSString)) {
+        finalString = fromDayString;
+    }
+    
+    NSString *fromHour = @"";
+    if(VALID_NOTEMPTY(place.openTimeAMFrom, NSString) && VALID_NOTEMPTY(place.openTimeAMTo, NSString)) {
+        fromHour = [NSString stringWithFormat:@"%@/%@",place.openTimeAMFrom, place.openTimeAMTo];
+    }
+    else if(VALID_NOTEMPTY(place.openTimeAMFrom, NSString)) {
+        fromHour = place.openTimeAMFrom;
+    }
+    else if(VALID_NOTEMPTY(place.openTimeAMTo, NSString)) {
+        fromHour = place.openTimeAMTo;
+    }
+    
+    NSString *pmHour = @"";
+    if(VALID_NOTEMPTY(place.openTimePMFrom, NSString) && VALID_NOTEMPTY(place.openTimePMTo, NSString)) {
+        pmHour = [NSString stringWithFormat:@"%@/%@",place.openTimePMFrom, place.openTimePMTo];
+    }
+    else if(VALID_NOTEMPTY(place.openTimePMFrom, NSString)) {
+        pmHour = place.openTimePMFrom;
+    }
+    else if(VALID_NOTEMPTY(place.openTimePMTo, NSString)) {
+        pmHour = place.openTimePMTo;
+    }
+
+    if(VALID_NOTEMPTY(fromHour, NSString) && VALID_NOTEMPTY(pmHour, NSString)) {
+        finalString = [finalString stringByAppendingFormat:@" %@ - %@",fromHour, pmHour];
+    }
+    else if(VALID_NOTEMPTY(fromHour, NSString)) {
+        finalString = [finalString stringByAppendingFormat:@" %@",fromHour];
+    }
+    else if(VALID_NOTEMPTY(pmHour, NSString)) {
+        finalString = [finalString stringByAppendingFormat:@" %@",pmHour];
+    }
+    return finalString;
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {

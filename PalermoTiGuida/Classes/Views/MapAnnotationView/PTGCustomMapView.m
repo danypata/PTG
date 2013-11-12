@@ -26,7 +26,7 @@
     return [views objectAtIndex:0];
 }
 -(void)setTapHandler:(void(^)(PTGPlace * place))handler {
-    
+    tapHandler = handler;
 }
 
 -(void)setupWithPlace:(PTGPlace*)place distanceFromUser:(double)distance{
@@ -38,11 +38,15 @@
                                   } failure:nil];
         placeImageView.layer.cornerRadius = 5;
         placeImageView.layer.masksToBounds = YES;
-        
+        placeImageView.hidden = NO;
+        imageBox.hidden = NO;
+        [self positionLabels];
     }
     else {
-        placeImageView.image = nil;
+        placeImageView.hidden = YES;
+        imageBox.hidden = YES;
     }
+    currentPlace = place;
     placeNameLabel.text = place.name;
     streetStaticLabel.text = NSLocalizedString(streetStaticLabel.text, @"");
     streetLabel.text = place.street;
@@ -51,7 +55,30 @@
     placeTypeLabel.text = place.category.name;
     distanceLabel.text = [NSString stringWithFormat:@"%.2fKm", distance/1000];
     [self applyFonts];
-    
+    [self positionLabels];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected)];
+    [self addGestureRecognizer:tap];
+}
+
+-(void)tapDetected {
+    if(tapHandler) {
+        tapHandler(currentPlace);
+    }
+}
+
+-(void)positionLabels {
+    CGFloat extraSpace;
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        extraSpace = 10;
+    }
+    else {
+        extraSpace = 15;
+    }
+    CGFloat diff = placeImageView.frame.origin.x + placeImageView.frame.size.width;
+    if(placeImageView.hidden) {
+        diff = placeImageView.frame.origin.x - extraSpace + 2;
+    }
+    labelContainer.frame = CGRectMake(diff, labelContainer.frame.origin.y, labelContainer.frame.size.width, labelContainer.frame.size.height);
 }
 -(void)applyFonts {
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:placeNameLabel];
@@ -91,6 +118,7 @@
                              label.frame.size.width,
                              label.frame.size.height);
 }
+
 
 
 @end

@@ -24,6 +24,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
     }
     return self;
 }
@@ -34,12 +35,15 @@
         defaultCellHeight = 64.f;
         sectionHeight = 60.f;
         noCellHeight = 150.f;
+        deleteButtonOffset = 15;
     }
     else {
         defaultCellHeight = 125.f;
         sectionHeight = 104.f;
         noCellHeight = 291.f;
+        deleteButtonOffset = 25;
     }
+    diaryTableView.sectionHeaderHeight = sectionHeight;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -91,9 +95,7 @@
     return header;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return sectionHeight;
-}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
         if([toBeVisited count] == 0) {
@@ -132,7 +134,7 @@
                 button.delegate = self;
                 cell.backgroundColor = [UIColor clearColor];
                 button.cellIndex = indexPath;
-                button.frame = CGRectMake(-button.frame.size.width +15,
+                button.frame = CGRectMake(-button.frame.size.width +deleteButtonOffset,
                                           (cell.frame.size.height - button.frame.size.height) / 2,
                                           button.frame.size.width,
                                           button.frame.size.height);
@@ -167,7 +169,7 @@
                 button.cellIndex = indexPath;
                 cell.backgroundColor = [UIColor clearColor];
                 button.delegate = self;
-                button.frame = CGRectMake(-button.frame.size.width +10,
+                button.frame = CGRectMake(-button.frame.size.width +deleteButtonOffset,
                                           (cell.frame.size.height - button.frame.size.height) / 2,
                                           button.frame.size.width,
                                           button.frame.size.height);

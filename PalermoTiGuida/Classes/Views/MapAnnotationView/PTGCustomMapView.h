@@ -20,6 +20,8 @@
     
     IBOutlet UILabel *placeTypeStaticLabel;
     
+    IBOutlet UIView *labelContainer;
+    IBOutlet UIImageView *imageBox;
     IBOutlet UILabel *placeTypeLabel;
     PTGPlace *currentPlace;
     void(^tapHandler)(PTGPlace *place);

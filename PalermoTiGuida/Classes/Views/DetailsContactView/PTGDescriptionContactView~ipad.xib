@@ -94,7 +94,7 @@
         <image name="blue_divider.png" width="768" height="57"/>
         <image name="facebook_button_bg.png" width="288" height="64"/>
         <image name="facebook_button_logo.png" width="22" height="45"/>
-        <image name="home_blue_button_icon.png" width="56" height="62"/>
+        <image name="home_blue_button_icon.png" width="40" height="46"/>
         <image name="switch_bar_bg.png" width="723" height="82"/>
         <image name="text_view_bg.png" width="742" height="872"/>
         <image name="twitter_button_bg.png" width="288" height="64"/>

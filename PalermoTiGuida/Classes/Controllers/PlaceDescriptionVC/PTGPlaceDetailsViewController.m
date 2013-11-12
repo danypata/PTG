@@ -141,7 +141,20 @@
                                    contactView.frame.size.height);
     containerScrollView.contentSize = CGSizeMake(containerScrollView.contentSize.width,
                                                  contactView.frame.size.height + contactView.frame.origin.y + SPACING_TOP);
+    [self hideUnusedLabels];
+    
+
 }
+
+-(void)hideUnusedLabels {
+    if([self.place.category.type integerValue] == 2) {
+        distanceLabel.hidden = YES;
+        distanceStaticLabel.hidden = YES;
+        mapStaticLabel.hidden = YES;
+        [containerScrollView viewWithTag:123].hidden = YES;
+    }
+}
+
 -(void)setupFonts {
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:descriptionStaticLabel];
     descriptionStaticLabel.text = NSLocalizedString(descriptionStaticLabel.text, @"");
@@ -242,7 +255,7 @@
             NSMutableDictionary *params =
             [NSMutableDictionary dictionaryWithObjectsAndKeys:
              place.name, @"name",
-             MESSAGE_I_LIKE_IT, @"caption",
+             [NSString stringWithFormat:MESSAGE_I_LIKE_IT,place.name] , @"caption",
              SHARE_URL, @"link",
              [PTGURLUtils detailImageUrlForId:self.place.mainImage], @"picture",
              nil];
@@ -255,6 +268,7 @@
         }
             break;
         case FBSessionStateClosed:
+            break;
         case FBSessionStateClosedLoginFailed: {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:MESSAGE_SHARE_STATUS_FAILED_UNKNONW delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alertView show];

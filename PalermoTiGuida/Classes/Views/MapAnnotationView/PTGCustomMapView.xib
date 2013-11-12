@@ -28,14 +28,6 @@
                     <color key="highlightedColor" red="0.81960784310000001" green="0.94117647059999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="shadowColor" red="0.043137254901960784" green="0.047058823529411764" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" contentMode="left" text="via Vittorio Emanuele" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1ND-Os-WVA">
-                    <rect key="frame" x="135" y="29" width="132" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" red="0.45882352939999999" green="0.82745098039999998" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <color key="shadowColor" red="0.043137254901960784" green="0.047058823529411764" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
-                </label>
                 <label opaque="NO" clipsSubviews="YES" contentMode="left" text="via Vittorio Emanuele" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hl8-1k-cbe">
                     <rect key="frame" x="82" y="70" width="187" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -44,58 +36,75 @@
                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="shadowColor" red="0.043137254901960784" green="0.047058823529411764" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" contentMode="left" text="Distanta da te:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IC2-s0-LQ2">
-                    <rect key="frame" x="85" y="48" width="88" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" red="0.0" green="0.68627450980000004" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                    <color key="highlightedColor" red="0.81960784310000001" green="0.94117647059999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="shadowColor" red="0.043137254901960784" green="0.047058823529411764" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" contentMode="left" text="Presso:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="USH-jN-xDO">
-                    <rect key="frame" x="85" y="29" width="42" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" red="0.0" green="0.68627450980000004" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                    <color key="highlightedColor" red="0.81960784310000001" green="0.94117647059999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="shadowColor" red="0.043137254901960784" green="0.047058823529411764" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" contentMode="left" text="La Cattedrale" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pdh-OT-ifo">
-                    <rect key="frame" x="84" y="9" width="182" height="15"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.96078431369999995" green="0.98039215690000003" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="highlightedColor" red="0.066666666669999999" green="0.46666666670000001" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="shadowColor" red="0.043137254901960784" green="0.047058823529411764" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
-                </label>
                 <imageView clipsSubviews="YES" contentMode="scaleToFill" image="small_image_frame.png" id="MwI-sg-slW">
                     <rect key="frame" x="7" y="9" width="71" height="55"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" contentMode="left" text="120m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Nw-ra-Pnj">
-                    <rect key="frame" x="181" y="50" width="86" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" red="0.45882352939999999" green="0.82745098039999998" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <color key="shadowColor" red="0.043137254901960784" green="0.047058823529411764" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
-                </label>
                 <imageView contentMode="scaleToFill" image="table_view_arrow.png" id="PX1-yf-QSt">
                     <rect key="frame" x="274" y="20" width="27" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <view contentMode="scaleToFill" id="HFh-sS-LTr">
+                    <rect key="frame" x="78" y="6" width="197" height="68"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" contentMode="left" text="via Vittorio Emanuele" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A7P-Q6-rbG">
+                            <rect key="frame" x="58" y="24" width="132" height="16"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.45882352939999999" green="0.82745098039999998" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" contentMode="left" text="Distanta da te:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IIQ-jg-lrU">
+                            <rect key="frame" x="8" y="43" width="88" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.0" green="0.68627450980000004" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="highlightedColor" red="0.81960784310000001" green="0.94117647059999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" contentMode="left" text="Presso:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JsE-6h-83T">
+                            <rect key="frame" x="8" y="24" width="42" height="16"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.0" green="0.68627450980000004" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="highlightedColor" red="0.81960784310000001" green="0.94117647059999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" contentMode="left" text="La Cattedrale" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UMC-rK-7ie">
+                            <rect key="frame" x="7" y="4" width="182" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.96078431369999995" green="0.98039215690000003" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="highlightedColor" red="0.066666666669999999" green="0.46666666670000001" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" contentMode="left" text="120m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YKd-SH-D4N">
+                            <rect key="frame" x="104" y="45" width="86" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.45882352939999999" green="0.82745098039999998" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="distanceLabel" destination="9Nw-ra-Pnj" id="5Gd-Nu-rCu"/>
-                <outlet property="distanceStaticLabel" destination="IC2-s0-LQ2" id="maD-Me-O8Q"/>
+                <outlet property="distanceLabel" destination="YKd-SH-D4N" id="iPv-BD-yCP"/>
+                <outlet property="distanceStaticLabel" destination="IIQ-jg-lrU" id="eW1-C7-5JN"/>
+                <outlet property="imageBox" destination="MwI-sg-slW" id="Ig0-nM-ucd"/>
+                <outlet property="labelContainer" destination="HFh-sS-LTr" id="Iha-LB-BSk"/>
                 <outlet property="placeImageView" destination="uIA-bj-A3W" id="zE9-lg-lQf"/>
-                <outlet property="placeNameLabel" destination="Pdh-OT-ifo" id="62u-w3-7cn"/>
+                <outlet property="placeNameLabel" destination="UMC-rK-7ie" id="7oq-Np-zwx"/>
                 <outlet property="placeTypeLabel" destination="Hl8-1k-cbe" id="FTV-XT-Exq"/>
                 <outlet property="placeTypeStaticLabel" destination="nXU-q0-fqD" id="YSZ-yB-Evi"/>
-                <outlet property="streetLabel" destination="1ND-Os-WVA" id="pj4-sj-dm8"/>
-                <outlet property="streetStaticLabel" destination="USH-jN-xDO" id="Hdm-Re-PfD"/>
+                <outlet property="streetLabel" destination="A7P-Q6-rbG" id="oDN-6U-zjn"/>
+                <outlet property="streetStaticLabel" destination="JsE-6h-83T" id="nxd-Nh-JPf"/>
             </connections>
         </view>
     </objects>

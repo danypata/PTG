@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PTGCoreTextView : UIView {
-    
+
 }
 @property(nonatomic, strong) NSString *text;
 @property(nonatomic) NSInteger lines;

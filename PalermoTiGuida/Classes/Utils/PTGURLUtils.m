@@ -31,22 +31,22 @@
     return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], categoryUrl];
 }
 
++(NSString *)allPropertiesUrl {
+       return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], placesWithAllProperties];
+}
+
 +(NSString *)subcategoryUrl {
     return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], subcategoryUrl];
 }
 
 +(NSString *)categoryPlacesUrl {
-#warning TODO: change when available
-//    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], placesUrl];
-        return [[self baseUrlString] stringByAppendingFormat:@"api/%@", placesUrl];
+    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], placesUrl];
 }
 +(NSString *)placesSearchUrl {
     return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], placesSearch];
 }
 +(NSString *)placeUrl {
-    #warning TODO: change when available
-//    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], placeByIdUrl];
-    return [[self baseUrlString] stringByAppendingFormat:@"api/%@", placeByIdUrl];
+    return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], placeByIdUrl];
 }
 +(NSString *)categoriesNewsUrl{
     return [[self baseUrlString] stringByAppendingFormat:@"%@%@",[self languageExtension], newsCategoriesUrl];

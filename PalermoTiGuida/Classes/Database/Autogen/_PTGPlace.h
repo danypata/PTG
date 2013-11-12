@@ -5,6 +5,7 @@
 
 
 extern const struct PTGPlaceAttributes {
+	__unsafe_unretained NSString *airportPrice;
 	__unsafe_unretained NSString *categoryId;
 	__unsafe_unretained NSString *categoryType;
 	__unsafe_unretained NSString *city;
@@ -30,8 +31,11 @@ extern const struct PTGPlaceAttributes {
 	__unsafe_unretained NSString *placePortName;
 	__unsafe_unretained NSString *province;
 	__unsafe_unretained NSString *slides;
+	__unsafe_unretained NSString *stationNumber;
+	__unsafe_unretained NSString *stops;
 	__unsafe_unretained NSString *street;
 	__unsafe_unretained NSString *streetNo;
+	__unsafe_unretained NSString *urbanPrice;
 	__unsafe_unretained NSString *webAddresses;
 	__unsafe_unretained NSString *zipCode;
 } PTGPlaceAttributes;
@@ -79,6 +83,10 @@ extern const struct PTGPlaceFetchedProperties {
 
 
 
+
+
+
+
 @interface PTGPlaceID : NSManagedObjectID {}
 @end
 
@@ -87,6 +95,16 @@ extern const struct PTGPlaceFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (PTGPlaceID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSString* airportPrice;
+
+
+
+//- (BOOL)validateAirportPrice:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -342,6 +360,26 @@ extern const struct PTGPlaceFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* stationNumber;
+
+
+
+//- (BOOL)validateStationNumber:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* stops;
+
+
+
+//- (BOOL)validateStops:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* street;
 
 
@@ -357,6 +395,16 @@ extern const struct PTGPlaceFetchedProperties {
 
 
 //- (BOOL)validateStreetNo:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* urbanPrice;
+
+
+
+//- (BOOL)validateUrbanPrice:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -428,6 +476,12 @@ extern const struct PTGPlaceFetchedProperties {
 @end
 
 @interface _PTGPlace (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSString*)primitiveAirportPrice;
+- (void)setPrimitiveAirportPrice:(NSString*)value;
+
+
 
 
 - (NSString*)primitiveCategoryId;
@@ -580,6 +634,18 @@ extern const struct PTGPlaceFetchedProperties {
 
 
 
+- (NSString*)primitiveStationNumber;
+- (void)setPrimitiveStationNumber:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveStops;
+- (void)setPrimitiveStops:(NSString*)value;
+
+
+
+
 - (NSString*)primitiveStreet;
 - (void)setPrimitiveStreet:(NSString*)value;
 
@@ -588,6 +654,12 @@ extern const struct PTGPlaceFetchedProperties {
 
 - (NSString*)primitiveStreetNo;
 - (void)setPrimitiveStreetNo:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveUrbanPrice;
+- (void)setPrimitiveUrbanPrice:(NSString*)value;
 
 
 

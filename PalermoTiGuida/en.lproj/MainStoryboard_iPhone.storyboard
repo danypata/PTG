@@ -97,7 +97,7 @@ ideato da</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lsr-2t-fzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-674" y="-2899"/>
+            <point key="canvasLocation" x="-18" y="-2331"/>
         </scene>
         <!--Base Tab Bar View Controller-->
         <scene sceneID="15">
@@ -420,7 +420,7 @@ ideato da</string>
                                         <color key="textColor" red="0.45882352941176469" green="0.82745098039215681" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4Ml-lI-T08">
+                                    <button opaque="NO" tag="123" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4Ml-lI-T08">
                                         <rect key="frame" x="216" y="212" width="84" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -549,6 +549,17 @@ ideato da</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2tR-WB-rCQ">
+                                <rect key="frame" x="256" y="309" width="64" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="map_target.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="centerOnUserLocation:" destination="WoI-Iw-HCV" eventType="touchUpInside" id="Mqr-ZN-W5l"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -576,12 +587,13 @@ ideato da</string>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="striped_bg.png" id="Fn6-lp-KrZ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="C4j-t3-iLg">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="-10" maxX="0.0" maxY="10"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="pbK-gY-jEH" id="wGt-Hk-USD"/>
@@ -855,6 +867,8 @@ ideato da</string>
                     <connections>
                         <outlet property="extraTableView" destination="eIF-v8-3wF" id="Esd-YX-Jed"/>
                         <segue destination="XOD-Ze-wTa" kind="push" identifier="ExtraSegue" id="QZ8-5m-o6x"/>
+                        <segue destination="kmF-R6-8Ur" kind="push" identifier="headerSegue" id="6VZ-Wh-OhK"/>
+                        <segue destination="Dl1-gm-prZ" kind="push" identifier="type7" id="SE7-kq-Jgn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mpA-GQ-KCL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -896,7 +910,7 @@ ideato da</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DSS-5e-cpD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168" y="665"/>
+            <point key="canvasLocation" x="1250" y="-461"/>
         </scene>
         <!--Navigation Controller - News-->
         <scene sceneID="vYb-yF-odc">
@@ -925,7 +939,7 @@ ideato da</string>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="striped_bg.png" id="8kY-yf-6Yk">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="IOD-ud-3Bh">
                                 <rect key="frame" x="0.0" y="35" width="320" height="420"/>
@@ -1058,7 +1072,7 @@ ideato da</string>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="La Cattedrale" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zo7-h7-D3K">
-                                                <rect key="frame" x="100" y="8" width="104" height="22"/>
+                                                <rect key="frame" x="100" y="8" width="165" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.96078431369999995" green="0.98039215690000003" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1187,6 +1201,78 @@ ideato da</string>
             </objects>
             <point key="canvasLocation" x="1714" y="1378"/>
         </scene>
+        <!--Extra Header View Controller-->
+        <scene sceneID="yPd-pz-jB8">
+            <objects>
+                <viewController storyboardIdentifier="PTGExtraHeaderViewController" id="kmF-R6-8Ur" customClass="PTGExtraHeaderViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JXr-Wl-aye">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="striped_bg.png" id="5Jc-O4-RE4">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="63" sectionHeaderHeight="22" sectionFooterHeight="22" id="vJp-zc-hSO">
+                                <rect key="frame" x="0.0" y="35" width="320" height="332"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="kmF-R6-8Ur" id="ph3-it-oeg"/>
+                                    <outlet property="delegate" destination="kmF-R6-8Ur" id="hgT-Nj-eB8"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="aJg-qE-m73"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="extraTableView" destination="vJp-zc-hSO" id="2nU-Gh-vOL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MtE-HE-JBW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1250" y="147"/>
+        </scene>
+        <!--Extra Header Type7 View Controller-->
+        <scene sceneID="PK7-cJ-SkN">
+            <objects>
+                <viewController storyboardIdentifier="type7" id="Dl1-gm-prZ" customClass="PTGExtraHeaderType7ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fru-zc-e8g">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="striped_bg.png" id="Gbd-zN-9Qy">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="160" sectionHeaderHeight="22" sectionFooterHeight="22" id="WUy-pv-4Dn">
+                                <rect key="frame" x="0.0" y="35" width="320" height="332"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Dl1-gm-prZ" id="fMW-5C-rbH"/>
+                                    <outlet property="delegate" destination="Dl1-gm-prZ" id="UbH-nC-wXR"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uKQ-Gs-Y7I"/>
+                    <connections>
+                        <outlet property="extraTableView" destination="WUy-pv-4Dn" id="1FY-qQ-C0t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0nz-bD-v37" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1250" y="746"/>
+        </scene>
     </scenes>
     <resources>
         <image name="black_button_bg.png" width="140" height="33"/>
@@ -1215,6 +1301,7 @@ ideato da</string>
         <image name="info_small_bg.png" width="302" height="34"/>
         <image name="map_button_icon.png" width="30" height="21"/>
         <image name="map_separator_bg.png" width="320" height="28"/>
+        <image name="map_target.png" width="37" height="37"/>
         <image name="search_button_highlighted.png" width="282" height="38"/>
         <image name="small_image_frame.png" width="71" height="51"/>
         <image name="striped_bg.png" width="320" height="375"/>

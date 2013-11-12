@@ -36,7 +36,7 @@
     
     if([[self.navigationController viewControllers] count] > 1) {
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [backButton setTitle:NSLocalizedString(@"Back", @"") forState:UIControlStateNormal];
+        [backButton setTitle:@"Back" forState:UIControlStateNormal];
         UIImage *backImage = [[UIImage imageNamed:@"back_button_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 5)];
         UIImage *backSelected = [[UIImage imageNamed:@"back_button_bg_selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 5)];
         [backButton addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];

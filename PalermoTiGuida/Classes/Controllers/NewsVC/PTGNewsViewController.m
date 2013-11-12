@@ -12,6 +12,7 @@
 #import "PTGBreadcrumbView.h"
 #import "PTGNewsListViewController.h"
 #import "PTGBaseTabBarViewController.h"
+#import "PTGCategory.h"
 
 @interface PTGNewsViewController ()
 
@@ -39,8 +40,10 @@
     [self.view addSubview:brView];
 
     NSArray *allFirstLevel = [PTGNewsCategory firstLevel];
+    NSArray *names = [[PTGCategory firstLevelCategories] valueForKey:@"name"];
+    
     for(PTGNewsCategory *category in allFirstLevel) {
-        if([category.categoryType integerValue] == 1) {
+        if([names containsObject:category.name]) {
             [normalCategories addObject:category];
         }
         else {
@@ -93,7 +96,8 @@
         cell =[ PTGCategoryCell setupViews];
         cell.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor clearColor];
-        [cell.countButton setBackgroundImage:[UIImage imageNamed:@"news_badge"] forState:UIControlStateNormal];
+        cell.countButton.enabled = NO;
+        cell.countButton.selected = NO;
     }
     if(indexPath.row == 0) {
         [cell isFirstCell];

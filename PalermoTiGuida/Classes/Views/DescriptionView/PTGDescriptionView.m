@@ -50,13 +50,14 @@
     NSInteger lines = [textView linesForFrame:CGRectMake(textView.frame.origin.x,
                                                          textView.frame.origin.y,
                                                          textView.frame.size.width, CGFLOAT_MAX)];
-    actualHeight = [textView heightForText] * lines;
+    actualHeight = [textView heightForText];
     if(lines < 10) {
         moreButton.hidden = YES;
         textView.frame = CGRectMake(textView.frame.origin.x,
                                     textView.frame.origin.y,
                                     textView.frame.size.width,
                                     actualHeight + SPACING_TOP);
+        
     }
     else {
         moreButton.hidden = NO;

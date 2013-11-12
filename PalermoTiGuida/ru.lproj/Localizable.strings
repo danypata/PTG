@@ -17,8 +17,20 @@
 "Dove dormire" ="Где переночевать";
 
 "Hai già visitato questo punto d'interesse?" = "Посещали ли вы эту достопримечательность?";
+"Questo dispositivo non supporta le telefonate!" = "Это устройство не поддерживает телефонные звонки!";
 "riduci" =  "уменьшить";
 "SI" = "ДА";
+
+
+"Monday" = "понедельник";
+"Tuesday" = "вторник";
+"Wednesday" = "среда";
+"Thursday" = "четверг";
+"Friday" = "пятница";
+"Saturday"= "суббота";
+"Sunday" ="воскресенье";
+
+
 
 "NO" ="NO";
 

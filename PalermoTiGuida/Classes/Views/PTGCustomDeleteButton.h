@@ -17,6 +17,7 @@
 @interface PTGCustomDeleteButton : UIView {
     IBOutlet UILabel *buttonLabel;
     BOOL isShown;
+    CGFloat offset;
 }
 @property (nonatomic, strong)NSIndexPath *cellIndex;
 @property (nonatomic, assign) id<PTGCustomDeleteButtonDelegate>delegate;

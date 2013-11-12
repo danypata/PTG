@@ -18,6 +18,14 @@
 @end
 
 #define DEFAULT_MARGIN 10
+#define DAYS_ARRAY @[NSLocalizedString(@"Monday",@""),\
+                     NSLocalizedString(@"Tuesday",@""),\
+                     NSLocalizedString(@"Wednesday",@""),\
+                     NSLocalizedString(@"Thursday",@""),\
+                     NSLocalizedString(@"Friday",@""),\
+                     NSLocalizedString(@"Saturday",@""),\
+                     NSLocalizedString(@"Sunday",@"")]
+
 @interface PTGDescriptionContactView : UIView<UIAlertViewDelegate> {
     IBOutlet UILabel *headerTitleLabel;
     IBOutlet UILabel *switchLabel;

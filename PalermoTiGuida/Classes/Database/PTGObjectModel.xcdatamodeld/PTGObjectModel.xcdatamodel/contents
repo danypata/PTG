@@ -44,6 +44,7 @@
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PTGNewsCategory" inverseName="children" inverseEntity="PTGNewsCategory" syncable="YES"/>
     </entity>
     <entity name="PTGPlace" representedClassName="PTGPlace" syncable="YES">
+        <attribute name="airportPrice" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="categoryId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="categoryType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
@@ -69,8 +70,11 @@
         <attribute name="placePortName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="slides" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="stationNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stops" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetNo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urbanPrice" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="webAddresses" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PTGCategory" inverseName="places" inverseEntity="PTGCategory" syncable="YES"/>

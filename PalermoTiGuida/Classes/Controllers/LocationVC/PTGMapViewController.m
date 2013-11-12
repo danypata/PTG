@@ -14,6 +14,7 @@
 #import "PTGCategory.h"
 #import "PTGLocationUtils.h"
 #import "PTGCustomAnnotation.h"
+#import "PTGPlaceDetailsViewController.h"
 
 @interface PTGMapViewController ()
 
@@ -90,6 +91,10 @@
     navBarFrame.origin.x = 0;
     self.navigationController.navigationBar.frame = navBarFrame;
     [leftMenuview shouldShow:NO];
+    topBarContainer.frame = CGRectMake(0,
+                                       topBarContainer.frame.origin.y,
+                                       topBarContainer.frame.size.width,
+                                       topBarContainer.frame.size.height);
 }
 - (void)didReceiveMemoryWarning
 {
@@ -137,14 +142,7 @@
     }
 }
 -(void)remainingAnnotations {
-    NSMutableArray *places = [NSMutableArray new];
-    for(PTGMapAnnotation *annotation in mapView.annotations) {
-        if(![annotation isKindOfClass:[MKUserLocation class]]) {
-            [places addObject:annotation.place];
-        }
-    }
-
-    NSArray *titles = [places valueForKey:@"name"];
+    NSArray *titles = [self currentAnnotationNames];
     NSArray *newTitles = [self.places valueForKey:@"name"];
     NSMutableArray *remainingPlaces = [NSMutableArray new];
     for(NSString *newTitile in newTitles) {
@@ -157,25 +155,54 @@
     
 }
 
+-(NSArray *)currentAnnotationNames {
+    NSMutableArray *places = [NSMutableArray new];
+    for(PTGMapAnnotation *annotation in mapView.annotations) {
+        if(![annotation isKindOfClass:[MKUserLocation class]]) {
+            [places addObject:annotation.place];
+        }
+    }
+    return [places valueForKey:@"name"];
+}
+
+-(void)removePlaceForName:(NSString *)name {
+    for(PTGMapAnnotation *annotation in mapView.annotations) {
+        if(![annotation isKindOfClass:[MKUserLocation class]]) {
+            if([annotation.place.name isEqualToString:name]) {
+                [mapView removeAnnotation:annotation];
+            }
+        }
+    }
+}
+
 -(void)addAnnotations {
+    NSArray *newNames = [self.places valueForKey:@"name"];
+    NSArray *current = [self currentAnnotationNames];
     if([leftMenuview.selectedFilters count] == 0) {
         [self remainingAnnotations];
     }
     else {
-        [mapView removeAnnotations:mapView.annotations];
+        for(NSString *placeName in current) {
+            if(![newNames containsObject:placeName]) {
+                [self removePlaceForName:placeName];
+            }
+        }
     }
+
     for(PTGPlace *place in self.places) {
-        [UIImageView downloadImageWithURLString:[[PTGURLUtils pinImageUrlString] stringByAppendingFormat:@"%@.png",place.category.categoryId]  successBlock:^(UIImage *image) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                PTGMapAnnotation *annotation = [[PTGMapAnnotation alloc] init];
-                annotation.pinImage = image;
-                annotation.place = place;
-                [annotation setupViews];
-                [mapView addAnnotation:annotation];
-                
-            });
-        } failureBloc:^(NSError *error) {
-        }];
+        if(![current containsObject:place.name]) {
+            [UIImageView downloadImageWithURLString:[[PTGURLUtils pinImageUrlString] stringByAppendingFormat:@"%@.png",place.category.categoryId]  successBlock:^(UIImage *image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    PTGMapAnnotation *annotation = [[PTGMapAnnotation alloc] init];
+                    annotation.pinImage = image;
+                    annotation.place = place;
+                    [annotation setupViews];
+                    [mapView addAnnotation:annotation];
+                    
+                });
+            } failureBloc:^(NSError *error) {
+            }];
+        }
     }
     if([self.places count] == 1 && !needUserUpdate) {
         PTGPlace *place = [self.places objectAtIndex:0];
@@ -251,9 +278,16 @@
 }
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    
     if([view isKindOfClass:[PTGCustomAnnotation class]]) {
         if(!customMapView) {
             customMapView = [PTGCustomMapView initializeView];
+            __weak PTGMapViewController *weakSelf = self;
+            [customMapView setTapHandler:^(PTGPlace *place) {
+                PTGPlaceDetailsViewController *description = (PTGPlaceDetailsViewController *)[weakSelf.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([PTGPlaceDetailsViewController class])];
+                description.place = place;
+                [weakSelf.navigationController pushViewController:description animated:YES];
+            }];
         }
         if(needUserUpdate) {
             customMapView.frame = CGRectMake(5,
@@ -267,6 +301,7 @@
         }
         PTGPlace *place = ((PTGCustomAnnotation *)view).place;
         [customMapView setupWithPlace:place distanceFromUser:[self distanceFromUserToPlace:place]];
+        
         [self.view addSubview:customMapView];
     }
 }
@@ -412,4 +447,8 @@
 }
 
 
+- (IBAction)centerOnUserLocation:(id)sender {
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, 500, 500);
+    [mapView setRegion:[mapView regionThatFits:region] animated:YES];
+}
 @end

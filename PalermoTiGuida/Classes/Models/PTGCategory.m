@@ -100,21 +100,44 @@
                      failure:(void(^)(NSString *requestUrl, NSError *error))failureBlock {
     __block CLLocation *oldLocation = nil;
     [[PTGLocationUtils sharedInstance] getLocationWithCompletionBlock:^(CLLocation *location) {
-            oldLocation = location;
-            
-            NSString *url = [[PTGURLUtils categoryPlacesUrl] stringByAppendingString:self.categoryId];
-            url =[url stringByAppendingFormat:@"/%f/%f",location.coordinate.latitude, location.coordinate.longitude];
-            NSManagedObjectContext *moc = self.managedObjectContext;
-            for(PTGPlace *place in self.places) {
-                [moc deleteObject:place];
-            }
-            [moc saveToPersistentStoreAndWait];
-            [PTGPlace placesForUrl:url succes:^(NSString *requestUrl, NSArray *products) {
-                NSArray *finalProducts = [PTGPlace findAllWithPredicate:[NSPredicate predicateWithFormat:@"self in %@", [products valueForKey:@"objectID"]] inContext:self.managedObjectContext];
-                [self addPlaces:[NSSet setWithArray:finalProducts]];
-                successBlock([self.places allObjects]);
-            } failure:failureBlock];
+        oldLocation = location;
+        
+        NSString *url = [[PTGURLUtils categoryPlacesUrl] stringByAppendingString:self.categoryId];
+        url =[url stringByAppendingFormat:@"/%f/%f",location.coordinate.latitude, location.coordinate.longitude];
+        NSManagedObjectContext *moc = self.managedObjectContext;
+        for(PTGPlace *place in self.places) {
+            [moc deleteObject:place];
+        }
+        [moc saveToPersistentStoreAndWait];
+        [PTGPlace placesForUrl:url succes:^(NSString *requestUrl, NSArray *products) {
+            NSArray *finalProducts = [PTGPlace findAllWithPredicate:[NSPredicate predicateWithFormat:@"self in %@", [products valueForKey:@"objectID"]] inContext:self.managedObjectContext];
+            [self addPlaces:[NSSet setWithArray:finalProducts]];
+            successBlock([self.places allObjects]);
+        } failure:failureBlock];
     }];
+}
+
+-(void)loadAllPlacesProperties:(void(^)(NSArray *products))successBlock
+                       failure:(void(^)(NSString *requestUrl, NSError *error))failureBlock {
+    __block CLLocation *oldLocation = nil;
+    [[PTGLocationUtils sharedInstance] getLocationWithCompletionBlock:^(CLLocation *location) {
+        oldLocation = location;
+        
+        NSString *url = [[PTGURLUtils allPropertiesUrl] stringByAppendingString:self.categoryId];
+        url =[url stringByAppendingFormat:@"/%f/%f",location.coordinate.latitude, location.coordinate.longitude];
+        NSManagedObjectContext *moc = self.managedObjectContext;
+        for(PTGPlace *place in self.places) {
+            [moc deleteObject:place];
+        }
+        [moc saveToPersistentStoreAndWait];
+        [PTGPlace placesForUrl:url succes:^(NSString *requestUrl, NSArray *products) {
+            NSArray *finalProducts = [PTGPlace findAllWithPredicate:[NSPredicate predicateWithFormat:@"self in %@", [products valueForKey:@"objectID"]] inContext:self.managedObjectContext];
+            [self addPlaces:[NSSet setWithArray:finalProducts]];
+            successBlock([self.places allObjects]);
+        } failure:failureBlock];
+    }];
+    
+    
 }
 
 +(void)parseCatgoriesFromJSON:(id)JSON {
@@ -155,5 +178,24 @@
     return nil;
 }
 
+-(NSArray *)lowestLevelOfChildren {
+    NSMutableArray *children = [NSMutableArray new];
+    for(PTGCategory *category in self.children) {
+        if([category.children count] == 0) {
+            [children addObject:category];
+        }
+        else {
+            [children addObjectsFromArray:[category lowestLevelOfChildren]];
+        }
+    }
+    children = [[children filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PTGCategory *evaluatedObject, NSDictionary *bindings) {
+        NSInteger type = [evaluatedObject.type integerValue];
+        if(type == 2 || type == 5 || type == 7 || type == 8) {
+            return NO;
+        }
+        return YES;
+    }]]mutableCopy];
+    return children;
+}
 
 @end

@@ -67,7 +67,7 @@
     PTGLeftMenuSection *sectionView = [sectionInfo objectAtIndex:section];
     if(VALID(sectionView, PTGLeftMenuSection) && sectionView.isOpened == YES) {
         PTGCategory *category = [parrentCategories objectAtIndex:section];
-        return [category.children count];
+        return [[category lowestLevelOfChildren] count];
     }
     return 0;
 }
@@ -96,7 +96,7 @@
         cell = [PTGLeftMenuCell initializeViews];
     }
     PTGCategory *category = [parrentCategories objectAtIndex:indexPath.section];
-    PTGCategory *subCategory = [[category.children allObjects] objectAtIndex:indexPath.row];
+    PTGCategory *subCategory = [[category lowestLevelOfChildren] objectAtIndex:indexPath.row];
     if([self.selectedFilters containsObject:subCategory]) {
         [mTableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
@@ -106,7 +106,7 @@
 
 -(void)tableView:(UITableView *)mTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PTGCategory *category = [parrentCategories objectAtIndex:indexPath.section];
-    PTGCategory *subCategory = [[category.children allObjects] objectAtIndex:indexPath.row];
+    PTGCategory *subCategory = [[category lowestLevelOfChildren] objectAtIndex:indexPath.row];
     [self.selectedFilters addObject:subCategory];
     if([self.delegate respondsToSelector:@selector(filterResultsUsingCategories:)]) {
         [self.delegate filterResultsUsingCategories:self.selectedFilters];
@@ -115,7 +115,7 @@
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     PTGCategory *category = [parrentCategories objectAtIndex:indexPath.section];
-    PTGCategory *subCategory = [[category.children allObjects] objectAtIndex:indexPath.row];
+    PTGCategory *subCategory = [[category lowestLevelOfChildren] objectAtIndex:indexPath.row];
     [self.selectedFilters removeObject:subCategory];
     if([self.delegate respondsToSelector:@selector(filterResultsUsingCategories:)]) {
         [self.delegate filterResultsUsingCategories:self.selectedFilters];
@@ -129,7 +129,7 @@
     [sectionInfo replaceObjectAtIndex:index withObject:indexSection];
     NSMutableArray *indexPathsToInsert = [NSMutableArray new];
     PTGCategory *parrent = [parrentCategories objectAtIndex:index];
-    for(int row = 0; row < [parrent.children count]; row++) {
+    for(int row = 0; row < [[parrent lowestLevelOfChildren] count]; row++) {
         [indexPathsToInsert addObject:[NSIndexPath indexPathForRow:row inSection:index]];
     }
     
@@ -140,7 +140,7 @@
         tappedSection.isOpened = NO;
         [sectionInfo replaceObjectAtIndex:previousSection withObject:tappedSection];
         PTGCategory *oldCategory = [parrentCategories objectAtIndex:previousSection];
-        for(int row = 0; row < [oldCategory.children count]; row++) {
+        for(int row = 0; row < [[oldCategory lowestLevelOfChildren] count]; row++) {
             [indexPathsToDelete addObject:[NSIndexPath indexPathForRow:row inSection:previousSection]];
         }
     }
@@ -170,7 +170,7 @@
     [sectionInfo replaceObjectAtIndex:index withObject:tappedSection];
     NSMutableArray *indexPathsToDelete = [[NSMutableArray alloc] init];
     PTGCategory *category = [parrentCategories objectAtIndex:index];
-    for (NSInteger i = 0; i < [category.children count]; i++) {
+    for (NSInteger i = 0; i < [[category lowestLevelOfChildren] count]; i++) {
         [indexPathsToDelete addObject:[NSIndexPath indexPathForRow:i inSection:index]];
     }
     [tableView deleteRowsAtIndexPaths:indexPathsToDelete withRowAnimation:UITableViewRowAnimationTop];

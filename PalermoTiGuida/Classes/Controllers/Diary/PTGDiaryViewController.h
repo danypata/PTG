@@ -8,6 +8,7 @@
 
 #import "PTGBaseViewController.h"
 #import "PTGCustomDeleteButton.h"
+#import "PTGCoreTextView.h"
 @interface PTGDiaryViewController : PTGBaseViewController <UITableViewDataSource, UITableViewDelegate, PTGCustomDeleteButtonDelegate> {
     
     IBOutlet UITableView *diaryTableView;
@@ -16,6 +17,8 @@
     CGFloat sectionHeight;
     CGFloat noCellHeight;
     CGFloat defaultCellHeight;
+    CGFloat deleteButtonOffset;
+    PTGCoreTextView *textView;
     
 }
 

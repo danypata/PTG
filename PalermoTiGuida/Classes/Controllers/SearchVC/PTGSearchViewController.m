@@ -111,7 +111,7 @@
 
 -(void)fireRequest {
     [[PTGLocationUtils sharedInstance] getLocationWithCompletionBlock:^(CLLocation *location) {
-        NSString *searchUrl = [[PTGURLUtils placesSearchUrl] stringByAppendingString:searchTextField.text];
+        NSString *searchUrl = [[PTGURLUtils placesSearchUrl] stringByAppendingString:[searchTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         searchUrl = [searchUrl stringByAppendingFormat:@"/%f/%f", location.coordinate.latitude, location.coordinate.longitude];
         [PTGPlace placesForUrl:searchUrl succes:^(NSString *requestUrl, NSArray *products) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -169,6 +169,9 @@
         if([selectedCategory.categoryId integerValue] == 36) {
             NSArray *ids = [selectedCategory.childCategories valueForKey:@"categoryId"];
             datasource =@[[selectedCategory.childCategories objectAtIndex:[ids indexOfObject:@"38"]]];
+        }
+        else {
+            datasource = [selectedCategory allSubcategories];
         }
         [pickerView reloadAllComponents];
         [self togglePicker:NO];

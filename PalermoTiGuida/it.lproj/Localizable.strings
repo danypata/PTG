@@ -17,6 +17,7 @@
 "Dove dormire" ="Dove dormire";
 "riduci" = "riduci";
 "Hai già visitato questo punto d'interesse?" = "Hai già visitato questo punto d'interesse?";
+"This device doesn't support phone calls!" = "Questo dispositivo non supporta le telefonate!";
 "SI" = "SI";
 "NO" ="NO";
 "Dalle " = "Dalle ";
@@ -36,6 +37,17 @@
 "Conferma" = "Conferma";
 "Keyword to short!" ="Chiave a breve!";
 "Got It" = "Capito";
+
+"Monday" = "Lunedi";
+"Tuesday" = "Martedì";
+"Wednesday" = "Mercoledì";
+"Thursday" = "Giovedi";
+"Friday" = "Venerdì";
+"Saturday"= "Sabato";
+"Sunday" ="Domenica";
+
+
+
 "Please enter a longer keyword. The keyword must have at least 4 characters."="Si prega di inserire una parola chiave più lungo. La parola chiave deve avere almeno 4 caratteri.";
 "No search results!" = "Nessun risultato di ricerca!";
 "We didn't found any place matching "="Non abbiamo trovato alcun amore di corrispondenza ";

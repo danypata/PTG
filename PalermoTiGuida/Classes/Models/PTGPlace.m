@@ -143,6 +143,10 @@
     self.placePortId = [json objectForKey:@"id_place_connect_port"];
     self.placePortName = [json objectForKey:@"name_place_connect_port"];
     self.categoryId = [json objectForKey:@"id_category"];
+    self.stationNumber = [json objectForKey:@"stationno"];
+    self.stops = [json objectForKey:@"stops"];
+    self.airportPrice = [json objectForKey:@"priceairport"];
+    self.urbanPrice = [json objectForKey:@"priceurban"];
     NSMutableArray *array = [[NSMutableArray alloc] init];
     NSString *value = [json objectForKey:@"website"];
     if(VALID_NOTEMPTY(value, NSString)) {

@@ -31,15 +31,21 @@
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:buttonLabel];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(toggleView)];
     [self addGestureRecognizer:tapGesture];
-    tapGesture.cancelsTouchesInView = NO;
+    tapGesture.cancelsTouchesInView = YES;
     tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(deleteCell)];
     [buttonLabel addGestureRecognizer:tapGesture];
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        offset = 15;
+    }
+    else {
+        offset = 25;
+    }
 }
 
 -(void)toggleView {
     [UIView animateWithDuration:0.3 animations:^{
         if(isShown) {
-            self.frame =CGRectMake(-self.frame.size.width +15,
+            self.frame =CGRectMake(-self.frame.size.width + offset,
                                    self.frame.origin.y,
                                    self.frame.size.width,
                                    self.frame.size.height);

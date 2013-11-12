@@ -63,7 +63,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    [newsTableView reloadData];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -145,6 +145,14 @@
             else {
                 cell.countButton.hidden = YES;
             }
+            if([category.newNews integerValue] == 0) {
+                cell.countButton.hidden = YES;
+            }
+            else {
+                cell.countButton.hidden = NO;
+                cell.countButton.selected = NO;
+                cell.countButton.enabled = NO;
+            }
             cell.categoryNameLabel.text = category.name;
             [self checkCategoryCell:cell forIndexPath:indexPath];
             return cell;
@@ -179,13 +187,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if([self.parentCategory.children count] == 0) {
+        self.parentCategory.newNews = [NSNumber numberWithInt:0];
+        [self.parentCategory.managedObjectContext saveToPersistentStoreAndWait];
         PTGNews *news = [[self.parentCategory.news allObjects] objectAtIndex:indexPath.row];
         PTGNewsDetailsViewController *newsDetailsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PTGNewsDetailsViewController"];
         newsDetailsVC.news = news;
         NSMutableArray *aray = [NSMutableArray arrayWithArray:self.breadCrumbs];
         [aray addObject:self.parentCategory.name];
         newsDetailsVC.breadcrums = aray;
-
         [self.navigationController pushViewController:newsDetailsVC animated:YES];
     }
     else {

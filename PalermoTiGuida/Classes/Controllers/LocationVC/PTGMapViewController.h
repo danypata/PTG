@@ -29,6 +29,7 @@
 
 @property(nonatomic, strong) NSArray *places;
 
+- (IBAction)centerOnUserLocation:(id)sender;
 
 
 @end

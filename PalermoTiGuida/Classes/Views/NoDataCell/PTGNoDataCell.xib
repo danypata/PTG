@@ -15,18 +15,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text_view_diary_bg.png" id="ae3-tM-QEA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                        <rect key="frame" x="10" y="0.0" width="299" height="149"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" id="Ryb-NQ-cpV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" id="Ryb-NQ-cpV">
+                        <rect key="frame" x="20" y="14" width="280" height="123"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <string key="text">In quest’area del diario potrai tenere come
 promemoria tutti quei punti d’interesse che
 ancora non hai visitato, ma che conti di vedere.
 Ti basterà attivare il “Metti in diario” nella
-schermata del monumento. APPalermo ti chiederà
+schermata del monumento.
+ APPalermo ti chiederà
 se hai già visitato o meno il punto d’interesse.</string>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>

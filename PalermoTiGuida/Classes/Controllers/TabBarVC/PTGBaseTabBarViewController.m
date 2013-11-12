@@ -37,16 +37,12 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor colorWithRed:74.f/255.f green:87.f/255 blue:91.f/255.f alpha:1]} forState:UIControlStateSelected];
     [self setTitles];
     [PTGNewsCategory newsCategoriesWithSuccess:^(NSInteger newNews) {
-        if(newNews != 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                ((UITabBarItem *)[self.tabBar.items objectAtIndex:4]).badgeValue = [NSString stringWithFormat:@"%d",newNews];
+                [self updateNewsBadge];
             });
-            
-        }
     } failure:^(NSError *error) {
-        
+        ZLog(@"ERROR");
     }];
-    
 }
 
 -(void)setTitles {
@@ -113,6 +109,7 @@
 }
 
 -(void)updateNewsBadge {
+    
     NSArray *all = [PTGNewsCategory findAll];
     NSInteger badgeNumber = 0;
     for(PTGNewsCategory *news in all) {

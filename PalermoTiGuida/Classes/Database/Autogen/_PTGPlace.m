@@ -4,6 +4,7 @@
 #import "_PTGPlace.h"
 
 const struct PTGPlaceAttributes PTGPlaceAttributes = {
+	.airportPrice = @"airportPrice",
 	.categoryId = @"categoryId",
 	.categoryType = @"categoryType",
 	.city = @"city",
@@ -29,8 +30,11 @@ const struct PTGPlaceAttributes PTGPlaceAttributes = {
 	.placePortName = @"placePortName",
 	.province = @"province",
 	.slides = @"slides",
+	.stationNumber = @"stationNumber",
+	.stops = @"stops",
 	.street = @"street",
 	.streetNo = @"streetNo",
+	.urbanPrice = @"urbanPrice",
 	.webAddresses = @"webAddresses",
 	.zipCode = @"zipCode",
 };
@@ -73,6 +77,13 @@ const struct PTGPlaceFetchedProperties PTGPlaceFetchedProperties = {
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic airportPrice;
+
+
 
 
 
@@ -252,6 +263,20 @@ const struct PTGPlaceFetchedProperties PTGPlaceFetchedProperties = {
 
 
 
+@dynamic stationNumber;
+
+
+
+
+
+
+@dynamic stops;
+
+
+
+
+
+
 @dynamic street;
 
 
@@ -260,6 +285,13 @@ const struct PTGPlaceFetchedProperties PTGPlaceFetchedProperties = {
 
 
 @dynamic streetNo;
+
+
+
+
+
+
+@dynamic urbanPrice;
 
 
 

@@ -9,7 +9,8 @@
 #import "PTGIconLabelView.h"
 
 @implementation PTGIconLabelView
-
+@synthesize useGrayIcons;
+@synthesize fontSize;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -26,9 +27,16 @@
 
 -(void)setText:(NSString *)text forIconType:(IconLabelIconType)type {
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:label];
+    if(self.fontColor) {
+        label.textColor = self.fontColor;
+    }
+    if(self.fontSize == 0) {
+        self.fontSize = label.font.pointSize;
+    }
+    label.font = [UIFont fontWithName:label.font.fontName size:self.fontSize];
     label.text = text;
     [label sizeToFit];
-    label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, label.frame.size.height + 4);
+   label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, label.frame.size.height + 4);
     NSString *iconName = [self imageNameForType:type];
     int lines = label.frame.size.height/label.font.leading;
     if(lines == 1) {
@@ -53,24 +61,36 @@
     if(type == kIconTypeWebAddress) {
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openBrowserOrMail)];
         [self addGestureRecognizer:tap];
+        tap.cancelsTouchesInView = NO;
     }
 }
 
 -(NSString *)imageNameForType:(IconLabelIconType)type {
+    NSString *imageName = @"";
     switch (type) {
         case kIconTypeAddress:
-            return @"home_logo";
+            imageName= @"home_logo";
+            break;
         case kIconTypeMobilePhone:
-            return @"mobile_phone_logo";
+            imageName = @"mobile_phone_logo";
+            break;
         case kIconTypePhone:
-            return @"phone_logo";
+            imageName =  @"phone_logo";
+            break;
         case kIconTypeSchedule:
-            return @"clock_logo";
+            imageName = @"clock_logo";
+            break;
         case kIconTypeWebAddress:
-            return @"web_logo";
+            imageName =@"web_logo";
+            break;
         default:
-            return nil;
+            imageName = @"";
+            break;
     }
+    if(self.useGrayIcons && VALID_NOTEMPTY(imageName, NSString)) {
+        imageName = [@"gray_" stringByAppendingString:imageName];
+    }
+    return imageName;
 }
 
 -(CGRect)labelFrame {

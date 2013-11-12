@@ -21,7 +21,9 @@ typedef enum {
     IBOutlet UIImageView *iconImageView;
     IBOutlet UILabel *label;
 }
-
+@property(nonatomic) BOOL useGrayIcons;
+@property(nonatomic, strong) UIColor *fontColor;
+@property(nonatomic) CGFloat fontSize;
 +(PTGIconLabelView*)initializeViews;
 -(void)setText:(NSString *)text forIconType:(IconLabelIconType)type;
 -(CGRect)labelFrame;

@@ -25,6 +25,7 @@ static NSString *placesNearMeUrl                = @"place_near_me/";
 static NSString *placesSearch                   = @"places/search/";
 static NSString *newsCategoriesUrl              = @"categorynewssall";
 static NSString *newsByCategoryUrl              = @"news_by_category/";
+static NSString *placesWithAllProperties        = @"place_by_category_all_prop/";
 
 static NSString *mainImageIphoneRetina          = @"MainPictureiPad_retina";
 static NSString *mainImageIphone                = @"MainPictureiPhone_iphone";
@@ -41,6 +42,7 @@ static NSString *imageDetailsIpad               = @"Slide1iPad_retina";
 }
 +(NSString *)baseUrlString;
 +(NSString *)pinImageUrlString;
++(NSString *)allPropertiesUrl;
 +(NSString *)mainCategoryUrl;
 +(NSString *)subcategoryUrl;
 +(NSString *)categoryPlacesUrl;

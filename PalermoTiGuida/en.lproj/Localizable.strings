@@ -17,8 +17,17 @@
 "Dove dormire" ="Where To Sleep";
 
 "Hai già visitato questo punto d'interesse?" = "Have you visited this point of interest?";
+"This device doesn't support phone calls!" = "This device doesn't support phone calls!";
 
 "SI" = "YES";
+
+"Monday" = "Monday";
+"Tuesday" = "Tuesday";
+"Wednesday" = "medium";
+"Thursday" = "Thursday";
+"Friday" = "Friday";
+"Saturday" = "Saturday";
+"Sunday" = "Sunday";
 
 "riduci" = "reduce";
 "NO" ="NO";

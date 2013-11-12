@@ -30,6 +30,7 @@
 }
 -(void)setupFonts {
     [self.textView sizeToFit];
+
     [ICFontUtils applyFont:QLASSIK_BOLD_TB forView:self.textView];
 }
 
