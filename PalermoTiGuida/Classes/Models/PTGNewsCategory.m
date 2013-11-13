@@ -109,7 +109,7 @@
                                                           parameters:nil
                                             withResponseOnMainThread:NO
                                                              success:^(NSString *requestURL, id JSON) {
-                                                                 self.newNews = [NSNumber numberWithInteger:0];
+//                                                                 self.newNews = [NSNumber numberWithInteger:0];
                                                                  ZLog(@"recived datta");
                                                                  [self addNewsFromJSON:JSON];
                                                                  successBlock(YES);
@@ -120,10 +120,10 @@
 }
 
 -(void)addNewsFromJSON:(id)JSON {
-    for(NSDictionary *dict in [JSON objectForKey:@"news"]) {
-        [self addNewsObject:[PTGNews newsFromDictionary:dict context:self.managedObjectContext]];
-    }
-    [self.managedObjectContext saveToPersistentStoreAndWait];
+//    for(NSDictionary *dict in [JSON objectForKey:@"news"]) {
+//        [self addNewsObject:[PTGNews newsFromDictionary:dict context:self.managedObjectContext]];
+//    }
+//    [self.managedObjectContext saveToPersistentStoreAndWait];
 }
 
 @end

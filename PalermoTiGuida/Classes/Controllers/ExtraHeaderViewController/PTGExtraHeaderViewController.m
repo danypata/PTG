@@ -35,7 +35,7 @@
         sectionHeight = 77.f;
     }
     else {
-        sectionHeight = 82.f;
+        sectionHeight = 152.f;
     }
     selectedSection = NSNotFound;
     sectionInfo = [NSMutableArray new];

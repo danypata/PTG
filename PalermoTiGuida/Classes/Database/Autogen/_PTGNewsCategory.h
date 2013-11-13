@@ -68,9 +68,9 @@ extern const struct PTGNewsCategoryFetchedProperties {
 
 
 
-@property int32_t newNewsValue;
-- (int32_t)newNewsValue;
-- (void)setNewNewsValue:(int32_t)value_;
+@property int64_t newNewsValue;
+- (int64_t)newNewsValue;
+- (void)setNewNewsValue:(int64_t)value_;
 
 //- (BOOL)validateNewNews:(id*)value_ error:(NSError**)error_;
 
@@ -168,8 +168,8 @@ extern const struct PTGNewsCategoryFetchedProperties {
 - (NSNumber*)primitiveNewNews;
 - (void)setPrimitiveNewNews:(NSNumber*)value;
 
-- (int32_t)primitiveNewNewsValue;
-- (void)setPrimitiveNewNewsValue:(int32_t)value_;
+- (int64_t)primitiveNewNewsValue;
+- (void)setPrimitiveNewNewsValue:(int64_t)value_;
 
 
 

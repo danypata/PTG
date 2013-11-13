@@ -13,7 +13,9 @@
     
     IBOutlet UITableView *extraTableView;
     NSMutableArray *dataSource;
+    BOOL isType8;
 }
 @property (nonatomic, strong) NSArray *breadcrumbs;
 @property (nonatomic, strong) PTGCategory *parentCategory;
+
 @end

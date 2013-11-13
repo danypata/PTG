@@ -60,7 +60,7 @@
 }
 
 -(void)popViewController {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 -(void)infoButtonTapped {

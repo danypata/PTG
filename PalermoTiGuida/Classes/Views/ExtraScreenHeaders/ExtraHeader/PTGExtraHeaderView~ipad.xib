@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1280" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="jAn-ow-eSH" customClass="PTGExtraHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="152"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="table_middle_cell_bg.png" id="wja-WZ-Plo">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="152"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small_blue_divider.png" id="IJI-rz-Txv">
+                    <rect key="frame" x="14" y="119" width="740" height="33"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="via Vittorio Emanuele" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m3w-Ge-7mX">
+                    <rect key="frame" x="132" y="44" width="515" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <color key="textColor" red="0.45882352939999999" green="0.82745098039999998" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus_sign.png" highlightedImage="minus_sign.png" id="vij-dx-mpi">
+                    <rect key="frame" x="24" y="121" width="28" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="La Cattedrale" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="55x-Bj-b83">
+                    <rect key="frame" x="24" y="9" width="623" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                    <color key="textColor" red="0.96078431369999995" green="0.98039215690000003" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" red="0.066666666669999999" green="0.46666666670000001" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Più informazioni" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HWm-0o-SoX">
+                    <rect key="frame" x="60" y="121" width="625" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Presso:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5nk-4y-kQy">
+                    <rect key="frame" x="24" y="44" width="83" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <color key="textColor" red="0.0" green="0.68627450980000004" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                    <color key="highlightedColor" red="0.81960784310000001" green="0.94117647059999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="via Vittorio Emanuele" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HZJ-UM-bNY">
+                    <rect key="frame" x="192" y="80" width="465" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <color key="textColor" red="0.45882352939999999" green="0.82745098039999998" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distanta da te:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vUm-k3-Cdb">
+                    <rect key="frame" x="24" y="80" width="160" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <color key="textColor" red="0.0" green="0.68627450980000004" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                    <color key="highlightedColor" red="0.81960784310000001" green="0.94117647059999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                </label>
+                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" id="lQC-Pp-jdR">
+                    <rect key="frame" x="672" y="20" width="60" height="79"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <state key="normal" image="table_view_location_pin.png">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Localizza" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cj1-kb-l1M">
+                    <rect key="frame" x="657" y="85" width="91" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="addressLabel" destination="m3w-Ge-7mX" id="F9Q-eo-noC"/>
+                <outlet property="addressStaticLabel" destination="5nk-4y-kQy" id="p2D-Up-g1e"/>
+                <outlet property="bgImage" destination="wja-WZ-Plo" id="JMc-yr-MeR"/>
+                <outlet property="distanceLabel" destination="HZJ-UM-bNY" id="K47-2f-YDo"/>
+                <outlet property="distanceStaticLabel" destination="vUm-k3-Cdb" id="sKk-AL-mWv"/>
+                <outlet property="localizeLabel" destination="cj1-kb-l1M" id="d2c-Ib-QaX"/>
+                <outlet property="moreInfoLabel" destination="HWm-0o-SoX" id="zB4-fe-nC5"/>
+                <outlet property="placeName" destination="55x-Bj-b83" id="3st-68-XML"/>
+                <outlet property="plusImageView" destination="vij-dx-mpi" id="p6J-SS-a7M"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="minus_sign.png" width="20" height="21"/>
+        <image name="plus_sign.png" width="20" height="21"/>
+        <image name="small_blue_divider.png" width="728" height="31"/>
+        <image name="table_middle_cell_bg.png" width="768" height="92"/>
+        <image name="table_view_location_pin.png" width="46" height="65"/>
+    </resources>
+</document>

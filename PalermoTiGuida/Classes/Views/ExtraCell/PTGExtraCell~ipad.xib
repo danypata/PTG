@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Presso:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b8j-mi-CVS">
-                        <rect key="frame" x="32" y="82" width="197" height="29"/>
+                        <rect key="frame" x="32" y="49" width="197" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                         <color key="textColor" red="0.0" green="0.68627450980000004" blue="1" alpha="1" colorSpace="deviceRGB"/>
@@ -36,7 +36,7 @@
                         </state>
                     </button>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distanta da te:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7gc-RJ-Bh7">
-                        <rect key="frame" x="32" y="53" width="186" height="31"/>
+                        <rect key="frame" x="32" y="77" width="186" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                         <color key="textColor" red="0.0" green="0.68627450980000004" blue="1" alpha="1" colorSpace="deviceRGB"/>
@@ -51,7 +51,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="120m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GVS-9y-kom">
-                        <rect key="frame" x="196" y="52" width="447" height="32"/>
+                        <rect key="frame" x="196" y="77" width="447" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                         <color key="textColor" red="0.45882352939999999" green="0.82745098039999998" blue="1" alpha="1" colorSpace="deviceRGB"/>
@@ -59,7 +59,7 @@
                         <color key="shadowColor" red="0.043137254899999998" green="0.047058823530000002" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="via Vittorio Emanuele" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cze-zz-Id6">
-                        <rect key="frame" x="121" y="82" width="522" height="29"/>
+                        <rect key="frame" x="121" y="49" width="522" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                         <color key="textColor" red="0.45882352939999999" green="0.82745098039999998" blue="1" alpha="1" colorSpace="deviceRGB"/>

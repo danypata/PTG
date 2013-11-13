@@ -76,22 +76,22 @@ const struct PTGNewsCategoryFetchedProperties PTGNewsCategoryFetchedProperties =
 
 
 
-- (int32_t)newNewsValue {
+- (int64_t)newNewsValue {
 	NSNumber *result = [self newNews];
-	return [result intValue];
+	return [result longLongValue];
 }
 
-- (void)setNewNewsValue:(int32_t)value_ {
-	[self setNewNews:[NSNumber numberWithInt:value_]];
+- (void)setNewNewsValue:(int64_t)value_ {
+	[self setNewNews:[NSNumber numberWithLongLong:value_]];
 }
 
-- (int32_t)primitiveNewNewsValue {
+- (int64_t)primitiveNewNewsValue {
 	NSNumber *result = [self primitiveNewNews];
-	return [result intValue];
+	return [result longLongValue];
 }
 
-- (void)setPrimitiveNewNewsValue:(int32_t)value_ {
-	[self setPrimitiveNewNews:[NSNumber numberWithInt:value_]];
+- (void)setPrimitiveNewNewsValue:(int64_t)value_ {
+	[self setPrimitiveNewNews:[NSNumber numberWithLongLong:value_]];
 }
 
 

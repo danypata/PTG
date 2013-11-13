@@ -159,11 +159,11 @@ ideato da</string>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="home_default_image.png" id="beH-1D-Vvv">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="479"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="506"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KCe-Zg-6ud">
-                                <rect key="frame" x="50" y="353" width="323" height="133"/>
+                                <rect key="frame" x="44" y="383" width="323" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -180,7 +180,7 @@ ideato da</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aQG-q3-ros">
-                                <rect key="frame" x="403" y="353" width="323" height="133"/>
+                                <rect key="frame" x="402" y="383" width="323" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -197,7 +197,7 @@ ideato da</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JfB-HW-FCW">
-                                <rect key="frame" x="50" y="531" width="323" height="133"/>
+                                <rect key="frame" x="44" y="579" width="323" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -214,7 +214,7 @@ ideato da</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="f3u-Va-o51">
-                                <rect key="frame" x="408" y="531" width="323" height="133"/>
+                                <rect key="frame" x="402" y="579" width="323" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -231,7 +231,7 @@ ideato da</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DLa-G0-rHs">
-                                <rect key="frame" x="50" y="692" width="323" height="133"/>
+                                <rect key="frame" x="44" y="740" width="323" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="33"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -248,7 +248,7 @@ ideato da</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jgd-HJ-4zh">
-                                <rect key="frame" x="408" y="692" width="323" height="133"/>
+                                <rect key="frame" x="402" y="740" width="323" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -265,7 +265,7 @@ ideato da</string>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="home_separator.png" id="70t-ve-1Wj">
-                                <rect key="frame" x="0.0" y="476" width="768" height="32"/>
+                                <rect key="frame" x="0.0" y="506" width="768" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
                         </subviews>
@@ -834,6 +834,8 @@ ideato da</string>
                     <connections>
                         <outlet property="extraTableView" destination="s9N-xA-sCq" id="UOG-vC-MQ2"/>
                         <segue destination="RVK-EO-To9" kind="push" identifier="ExtraSegue" id="d3h-om-Xoa"/>
+                        <segue destination="Gha-mq-P1g" kind="push" identifier="headerSegue" id="GtK-6Z-ojV"/>
+                        <segue destination="lHg-NL-hQK" kind="push" identifier="type7" id="Wh1-hR-9eX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IcP-ga-AMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -873,7 +875,7 @@ ideato da</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EDA-DO-ekL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3104" y="1180"/>
+            <point key="canvasLocation" x="3096" y="132"/>
         </scene>
         <!--News View Controller-->
         <scene sceneID="Ub9-6B-5Np">
@@ -905,7 +907,7 @@ ideato da</string>
                     <navigationItem key="navigationItem" id="59a-Ec-kl8"/>
                     <connections>
                         <outlet property="newsTableView" destination="8AK-2v-1Hr" id="MNO-oR-yse"/>
-                        <segue destination="JMu-j3-CAd" kind="push" id="pzC-Cj-edv"/>
+                        <segue destination="JMu-j3-CAd" kind="push" identifier="testSegue" id="pzC-Cj-edv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NEJ-Fp-XAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -947,6 +949,73 @@ ideato da</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2W-Cx-p3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3088" y="2405"/>
+        </scene>
+        <!--Extra Header View Controller-->
+        <scene sceneID="NVy-Ud-aD0">
+            <objects>
+                <viewController id="Gha-mq-P1g" customClass="PTGExtraHeaderViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2ga-81-pnD">
+                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="striped_bg.png" id="xkE-su-1FE">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="911"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="128" sectionHeaderHeight="22" sectionFooterHeight="22" id="dgN-go-STh">
+                                <rect key="frame" x="0.0" y="55" width="768" height="856"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Gha-mq-P1g" id="WLf-uJ-Hgh"/>
+                                    <outlet property="delegate" destination="Gha-mq-P1g" id="Xkr-cl-UMn"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="Lnb-iz-MgY"/>
+                    <connections>
+                        <outlet property="extraTableView" destination="dgN-go-STh" id="V3Y-VS-ly1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pgM-ra-ZTt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3096" y="1286"/>
+        </scene>
+        <!--Extra Header Type7 View Controller-->
+        <scene sceneID="fM1-su-ImD">
+            <objects>
+                <viewController id="lHg-NL-hQK" customClass="PTGExtraHeaderType7ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sy9-RK-Lsd">
+                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="striped_bg.png" id="L3p-8Q-DAn">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="911"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="128" sectionHeaderHeight="22" sectionFooterHeight="22" id="D2M-Gn-Ppe">
+                                <rect key="frame" x="0.0" y="55" width="768" height="856"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Gha-mq-P1g" id="oec-Y4-pl5"/>
+                                    <outlet property="delegate" destination="Gha-mq-P1g" id="bXv-aA-1KW"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="c58-tl-gMS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JEA-qw-UlQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4118" y="1234"/>
         </scene>
         <!--News Details View Controller-->
         <scene sceneID="4Ts-XG-fiw">

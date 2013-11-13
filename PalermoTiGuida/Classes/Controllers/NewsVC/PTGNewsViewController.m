@@ -130,8 +130,16 @@
     
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"testSegue"]) {
+        PTGNewsListViewController *vc = segue.destinationViewController;
+        PTGNewsCategory *category = (PTGNewsCategory *)sender;
+        vc.breadCrumbs = @[NSLocalizedString(@"News", @""), category.name];
+        vc.parentCategory = category;
+    }
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    PTGNewsListViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"PTGNewsListViewController"];
     PTGNewsCategory *category = nil;
     if(indexPath.section == 0) {
         category = [normalCategories objectAtIndex:indexPath.row];
@@ -139,11 +147,17 @@
     else {
         category = [specialCategories objectAtIndex:indexPath.row];
     }
+    NSInteger badgeValue = [[[[self.tabBarController.tabBar items] objectAtIndex:4] badgeValue] integerValue];
+    badgeValue -=[category.newNews integerValue];
+    
     category.newNews = [NSNumber numberWithInteger:0];
     [category.managedObjectContext saveToPersistentStoreAndWait];
-    [((PTGBaseTabBarViewController *)self.tabBarController) updateNewsBadge];
-    vc.breadCrumbs = @[NSLocalizedString(@"News", @""), category.name];
-    vc.parentCategory = category;
-    [self.navigationController pushViewController:vc animated:YES];
+    if(badgeValue <=0){
+        [[[self.tabBarController.tabBar items] objectAtIndex:4] setBadgeValue:nil];
+    }
+    else {
+        [[[self.tabBarController.tabBar items] objectAtIndex:4] setBadgeValue:[NSString stringWithFormat:@"%d",badgeValue]];
+    }
+    [self performSegueWithIdentifier:@"testSegue" sender:category];
 }
 @end

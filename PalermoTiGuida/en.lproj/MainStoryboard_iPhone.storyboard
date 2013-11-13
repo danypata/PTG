@@ -945,7 +945,7 @@ ideato da</string>
                                 <rect key="frame" x="0.0" y="35" width="320" height="420"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <inset key="contentInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -960,7 +960,7 @@ ideato da</string>
                     <navigationItem key="navigationItem" id="grW-bu-PuC"/>
                     <connections>
                         <outlet property="newsTableView" destination="IOD-ud-3Bh" id="Icv-wK-krL"/>
-                        <segue destination="AjW-xT-xy0" kind="push" identifier="newsList" id="LJg-wo-9hn"/>
+                        <segue destination="AjW-xT-xy0" kind="push" identifier="testSegue" id="57z-PO-qni"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NEb-cn-IH6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -996,7 +996,6 @@ ideato da</string>
                     <navigationItem key="navigationItem" id="Ce4-wb-nUX"/>
                     <connections>
                         <outlet property="newsTableView" destination="xB3-ag-PPj" id="6L8-On-WbK"/>
-                        <segue destination="CPa-YK-mG9" kind="push" identifier="newsDetails" id="yiN-pw-h3W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVS-Tt-bE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1008,11 +1007,11 @@ ideato da</string>
             <objects>
                 <viewController storyboardIdentifier="PTGNewsDetailsViewController" automaticallyAdjustsScrollViewInsets="NO" id="CPa-YK-mG9" customClass="PTGNewsDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qu7-Ok-Fjr">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="striped_bg.png" id="Svh-rr-xnb">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pek-ij-CVn">
@@ -1264,6 +1263,7 @@ ideato da</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="uKQ-Gs-Y7I"/>
                     <connections>
                         <outlet property="extraTableView" destination="WUy-pv-4Dn" id="1FY-qQ-C0t"/>

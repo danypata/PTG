@@ -18,6 +18,8 @@
 @end
 
 @implementation PTGNewsListViewController
+@synthesize parentCategory;
+@synthesize breadCrumbs;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,10 +48,7 @@
     if(VALID(self.parentCategory, PTGNewsCategory)) {
         [self.parentCategory loadNewsWithSuccess:^(BOOL done) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                ZLog(@"Reloading");
                 [newsTableView reloadData];
-                ZLog(@"DoneLoading");
-                
             });
         } failure:^(NSError *error) {
             

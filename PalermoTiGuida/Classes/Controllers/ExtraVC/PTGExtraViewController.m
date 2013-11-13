@@ -132,10 +132,8 @@
                 [self performSegueWithIdentifier:@"headerSegue" sender:category];
                 break;
             case 7:
-                [self performSegueWithIdentifier:@"type7" sender:category];
-                break;
             case 8:
-                //tabella base_extra.psd
+                [self performSegueWithIdentifier:@"type7" sender:category];
                 break;
             case 11:
                 [self performSegueWithIdentifier:@"ExtraSegue" sender:category];
